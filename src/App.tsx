@@ -1,13 +1,15 @@
 import UserContextProvider from "./store/user-context";
 
-import Header from "./components/Header";
+import MainHeader from "./components/MainHeader";
+import SweetsList from "./components/SweetsList";
 import Footer from "./components/Footer";
 
 function App() {
   return (
     <UserContextProvider>
-      <Header />
-      <main>main</main>
+      <MainHeader />
+      <main>Order our delicious sweets now!</main>
+      <SweetsList />
       <Footer />
     </UserContextProvider>
   );

@@ -1,15 +1,12 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  font-family: "rubik" sans-serif;
-}
-
 * {
+  box-sizing: border-box;
   margin: 0;
 }
 
-html,
+html {
+  font-family: "rubik" sans-serif;
+}
+
 body {
   height: 100%;
 }
