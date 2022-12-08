@@ -13,6 +13,3 @@ function App() {
       <Footer />
     </UserContextProvider>
   );
-}
-
-export default App;
