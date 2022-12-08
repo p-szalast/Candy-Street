@@ -6,19 +6,14 @@ const FooterElement = styled.footer`
   left: 0;
   width: 100%;
   height: 3rem;
-
   background-color: #fff;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   padding: 0 1rem;
-
-  /* border: 1px solid #000; */
 `;
 
-const Footer: React.FC = () => {
+const Footer = () => {
   return (
     <FooterElement>
       © 2022 | Przemysław Szalast for Capgemini React Academy | All Rights
