@@ -1,8 +1,8 @@
 import UserContextProvider from "./store/user-context";
 
-import MainHeader from "./components/MainHeader";
-import SweetsList from "./components/SweetsList";
-import Footer from "./components/Footer";
+import MainHeader from "./components/MainHeader/MainHeader";
+import SweetsList from "./components/SweetsList/SweetsList";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -13,3 +13,6 @@ function App() {
       <Footer />
     </UserContextProvider>
   );
+}
+
+export default App;
