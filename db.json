@@ -1,4 +1,51 @@
 {
-  "item": { "name": "test" },
-  "order": {}
+  "candies": [
+    {
+      "id": "c01",
+      "name": "Classic Chocolate Chip Cookies (20)",
+      "price": 8,
+      "image": "https://sallysbakingaddiction.com/wp-content/uploads/2013/05/classic-chocolate-chip-cookies.jpg",
+      "description": "A chocolate chip cookie is a drop cookie that features chocolate chips or chocolate morsels as its istinguishing ingredient. Chocolate chip cookies originated in the US about 1938."
+    },
+    {
+      "id": "c02",
+      "name": "Candy Canes (12)",
+      "price": 6.5,
+      "image": "https://www.farmersalmanac.com/wp-content/uploads/2011/12/candy-canes-as_235424105-.jpeg",
+      "description": "Enjoy the classic holiday flavor of Brachs Peppermint Candy Canes - the original candy cane! Now available year-round. Perfect for home or office."
+    },
+    {
+      "id": "c03",
+      "name": "Moist Chocolate Muffins (4)",
+      "price": 12,
+      "image": "https://www.onceuponachef.com/images/2020/02/Double-Chocolate-Muffins.jpg",
+      "description": "These tasty chocolate muffins are scrumptious! Yogurt in the batter keeps them super moist while cocoa powder and chocolate chips add a huge dose of chocolaty goodness."
+    },
+    {
+      "id": "c04",
+      "name": "Christmas Tree Lolipops (10)",
+      "price": 4.5,
+      "image": "https://cdn.shopify.com/s/files/1/1371/3393/products/41862HPQRML._SL1000.jpg",
+      "description": "Great for Holiday Gifts. Great stocking stuffers"
+    },
+    {
+      "id": "c05",
+      "name": "Fruit Slices Candy (25)",
+      "price": 9.5,
+      "image": "https://www.sweetasfudge.com/wp-content/uploads/2019/02/Assorted-Boston-Fruit-Slices-1-500x500.jpg",
+      "description": "Fruit slices gummies are a fabulous treat that comes in many exciting flavors! If you love chewy gummy candy but want more options when it comes to taste, this is a must-try."
+    },
+    {
+      "id": "c06",
+      "name": "Fruit Jelly Candy",
+      "price": 18,
+      "image": "https://cdn.shopify.com/s/files/1/0320/9930/3561/products/512RzKI0nxL_1024x1024@2x.jpg",
+      "description": "Candy lovers of all ages really dig this mix of oversized jellies! Giant jellies are a real hit at birthday parties and candy buffets, as well as toppers for your favorite crafts (think gingerbread houses) and desserts!"
+    }
+  ],
+  "orders": [],
+  "users": [
+    { "id": "u01", "type": "ADMIN" },
+    { "id": "u02", "type": "USER" }
+  ]
 }
