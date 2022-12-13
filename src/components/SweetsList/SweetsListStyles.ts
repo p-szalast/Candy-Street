@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import backgroundImage from "../assets/background.png";
+import backgroundImage from "../../assets/background.png";
 
 export const StyledMain = styled.main`
   position: fixed;
@@ -18,6 +18,7 @@ export const StyledMain = styled.main`
   & p {
     padding: 2rem;
     font-size: 4rem;
+    font-family: "Rubik Moonrocks", cursive;
     text-align: center;
   }
 `;

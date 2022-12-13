@@ -11,6 +11,13 @@ const StyledMainHeader = styled.header`
   justify-content: space-between;
   padding: 0 1rem;
   background-color: #fff;
+  font-size: 3.5rem;
+  font-family: "Rubik Puddles", cursive;
+  word-spacing: 0.5rem;
+
+  & img {
+    height: 3rem;
+  }
 `;
 
 export default StyledMainHeader;
