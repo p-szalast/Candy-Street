@@ -12,21 +12,29 @@ export const StyledMain = styled.main`
   background-size: cover;
   height: 100vh;
   width: 100%;
+  min-width: 600px;
 
   color: #fff;
-
-  & p {
-    padding: 2rem;
-    font-size: 4rem;
-    font-family: "Rubik Moonrocks", cursive;
-    text-align: center;
-  }
 `;
 
 export const StyledSection = styled.section`
-  margin: 3rem auto;
+  margin: 1rem auto;
   max-width: 60rem;
   text-align: center;
-  border: 1px solid #fff;
+  /* border: 1px solid #fff; */
   border-radius: 20px;
+
+  & .btn-order__container {
+    margin: 1rem 2rem;
+    display: flex;
+    justify-content: end;
+  }
+
+  & .btn-order {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: #fff;
+    font-weight: bold;
+    border-radius: 10px;
+  }
 `;
