@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 const StyledCandyItem = styled.div`
   display: flex;
-  /* TODO: */
   margin: 1rem;
 
   padding: 1rem 1rem;

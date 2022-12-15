@@ -18,33 +18,6 @@ const SweetsList = () => {
     fetchCandies();
   }, []);
 
-  // const availableCandiesb = await getAvailableCandies.then((resp) => {
-  //   resp.data;
-  // });
-
-  // console.log(availableCandies);
-
-  // setSweets(availableCandies);
-
-  // const availableCandies = async() => {
-  //   const availableCandies: CandyItemObject[] = [];
-  //   await const getAvailableCandies();
-  //   setSweets(availableCandies);
-
-  // }
-
-  /////////////////////////////////////////////
-  // let availableCandies: any[] = [];
-
-  //   await axios.get(`${BASE_URL}/candies/`).then((response) => {
-  //     availableCandies = response.data;
-  //   });
-
-  //   console.log(availableCandies);
-  // };
-
-  // getAvailableCandies();
-
   return (
     <StyledMain>
       <Hero />

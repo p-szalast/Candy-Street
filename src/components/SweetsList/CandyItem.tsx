@@ -1,9 +1,10 @@
 import { CandyItemObject } from "../../common/types/common.types";
 
 import StyledCandyItem from "./CandyItemStyles";
-// import classicChocolateChipCookies from "../../assets/classic-chocolate-chip-cookies.jpg";
 
 const CandyItem: React.FC<CandyItemObject> = (props) => {
+  // const addToCartHandler = (event: MouseEvent) => {};
+
   return (
     <StyledCandyItem>
       <img alt="" src={props.image} />
@@ -18,7 +19,11 @@ const CandyItem: React.FC<CandyItemObject> = (props) => {
           <p>1</p>
           <button>+</button>
         </div>
-        <button>Add To Cart</button>
+        <button
+        // onClick={addToCartHandler}
+        >
+          Add To Cart
+        </button>
       </div>
     </StyledCandyItem>
   );
