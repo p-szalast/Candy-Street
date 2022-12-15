@@ -13,6 +13,8 @@ export const StyledMain = styled.main`
   height: 100vh;
   width: 100%;
   min-width: 600px;
+  padding-bottom: 5rem;
+  overflow: auto;
 
   color: #fff;
 `;
@@ -21,7 +23,6 @@ export const StyledSection = styled.section`
   margin: 1rem auto;
   max-width: 60rem;
   text-align: center;
-  /* border: 1px solid #fff; */
   border-radius: 20px;
 
   & .btn-order__container {
