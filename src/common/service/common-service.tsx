@@ -1,25 +1,39 @@
 import axios from "axios";
-import { useState } from "react";
+
+import { CandyItemObject } from "../types/common.types";
 
 import { BASE_URL } from "../config";
 
-export const getAvailableCandies: () => void = async () => {
-  //   const [sweets, setSweets] = useState([]);
+// export const getAvailableCandies = async () => {
+//   let availableCandies: CandyItemObject[] = [];
 
-  // const fetchMeals = async () => {
-  //     const response = await fetch("");
+//   await axios.get(`${BASE_URL}/candies/`).then((response) => {
+//     availableCandies = response.data;
+//   });
 
-  //     const mealsData = await response.json();
+//   return availableCandies;
+// };
 
-  let availableCandies: any[] = [];
+///////////////////////////////////////////////
 
-  //   await axios.get(`${BASE_URL}/candies/`).then((response) => {
-  //     availableCandies = response.data;
-  //   });
+export const getAvailableCandies = async () => {
+  let availableCandies: CandyItemObject[] = [];
 
-  const response = await fetch(BASE_URL + "candies/");
-  availableCandies = await response.json();
+  await axios.get(`${BASE_URL}/candies/`).then((response) => {
+    availableCandies = response.data;
+  });
 
   console.log(availableCandies);
+
   return availableCandies;
 };
+
+////////////////////////////////////////////////
+
+// export const getAvailableCandies = () => {
+//   let availableCandies: CandyItemObject[] = [];
+//   return axios.get(`${BASE_URL}/candies/`).then((response) => {
+//     availableCandies = response.data;
+//     return availableCandies;
+//   });
+// };

@@ -22,6 +22,9 @@ const StyledCandyItem = styled.div`
   }
 
   & .item__text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
     text-align: left;
     width: 65%;
 
@@ -31,6 +34,10 @@ const StyledCandyItem = styled.div`
 
     & .item__description {
       font-size: 1rem;
+    }
+
+    & .item__price {
+      font-weight: bold;
     }
   }
 

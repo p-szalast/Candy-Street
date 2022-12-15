@@ -1,7 +1,6 @@
-import axios from "axios";
-import { BASE_URL } from "../../common/config";
-
 import { useState, useEffect } from "react";
+
+import { CandyItemObject } from "../../common/types/common.types";
 
 import { StyledMain, StyledSection } from "./SweetsListStyles";
 import Hero from "../Hero/Hero";
@@ -9,39 +8,58 @@ import CandyItem from "./CandyItem";
 import { getAvailableCandies } from "../../common/service/common-service";
 
 const SweetsList = () => {
-  const [sweets, setSweets] = useState([]);
+  const [sweets, setSweets] = useState<CandyItemObject[] | null>([]);
 
-  // useEffect(() => {
-  // const availableCandies = getAvailableCandies();
+  useEffect(() => {
+    const fetchCandies = async () => {
+      const data = await getAvailableCandies();
+      setSweets(data);
+    };
+    fetchCandies();
+  }, []);
+
+  // const availableCandiesb = await getAvailableCandies.then((resp) => {
+  //   resp.data;
+  // });
+
+  // console.log(availableCandies);
+
+  // setSweets(availableCandies);
+
+  // const availableCandies = async() => {
+  //   const availableCandies: CandyItemObject[] = [];
+  //   await const getAvailableCandies();
   //   setSweets(availableCandies);
-  //   console.log(availableCandies);
-  // }, []);
+
+  // }
 
   /////////////////////////////////////////////
-  let availableCandies: any[] = [];
+  // let availableCandies: any[] = [];
 
-  const getAvailableCandies = async () => {
-    // const fetchMeals = async () => {
-    //     const response = await fetch("");
+  //   await axios.get(`${BASE_URL}/candies/`).then((response) => {
+  //     availableCandies = response.data;
+  //   });
 
-    //     const mealsData = await response.json();
+  //   console.log(availableCandies);
+  // };
 
-    await axios.get(`${BASE_URL}/candies/`).then((response) => {
-      availableCandies = response.data;
-    });
-
-    console.log(availableCandies);
-  };
-
-  getAvailableCandies();
+  // getAvailableCandies();
 
   return (
     <StyledMain>
       <Hero />
       <StyledSection>
-        {availableCandies.map((item) => (
-          <CandyItem name={item.name} />
-        ))}
+        {sweets &&
+          sweets.map((item) => (
+            <CandyItem
+              id={item.id}
+              key={item.id}
+              name={item.name}
+              description={item.description}
+              price={item.price}
+              image={item.image}
+            />
+          ))}
         <div className="btn-order__container">
           <button className="btn-order">Order</button>
         </div>
