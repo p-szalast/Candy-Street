@@ -1,7 +1,17 @@
-import React from "react";
+import UserContextProvider from "./store/user-context";
+
+import MainHeader from "./components/MainHeader/MainHeader";
+import SweetsList from "./components/SweetsList/SweetsList";
+import Footer from "./components/Footer/Footer";
 
 function App() {
-  return <div className="App">Test</div>;
+  return (
+    <UserContextProvider>
+      <MainHeader />
+      <SweetsList />
+      <Footer />
+    </UserContextProvider>
+  );
 }
 
 export default App;
