@@ -50,6 +50,11 @@ const StyledCandyItem = styled.div`
   & .btn-container .btns-add-remove {
     display: flex;
     justify-content: space-between;
+    /* flex: 0 0 auto;
+
+    & input {
+      width: 2rem;
+    } */
   }
 `;
 
