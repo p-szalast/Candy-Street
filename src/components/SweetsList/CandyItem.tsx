@@ -1,10 +1,13 @@
 import { CandyItemObject } from "../../common/types/common.types";
 import { useState, useContext } from "react";
 
+import { UserContext } from "../../store/user-context";
+
 import StyledCandyItem from "./CandyItemStyles";
 
 const CandyItem: React.FC<CandyItemObject> = (props) => {
   const [amount, setAmount] = useState(1);
+  const ctx = useContext(UserContext);
 
   const btnMinusHandler = () => {
     setAmount((prevState) => {
@@ -19,6 +22,15 @@ const CandyItem: React.FC<CandyItemObject> = (props) => {
 
   const addToCartHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
+
+    ctx.addItem({
+      id: props.id,
+      name: props.name,
+      price: props.price,
+      amount: amount,
+    });
+
+    //TODO: delete after adding cart page
     console.log(props.name, amount);
   };
 

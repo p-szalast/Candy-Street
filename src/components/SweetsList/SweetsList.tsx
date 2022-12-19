@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 
 import { CandyItemObject } from "../../common/types/common.types";
 
-import { StyledMain, StyledSection } from "./SweetsListStyles";
-import Hero from "../Hero/Hero";
+import { StyledSweetsList } from "./SweetsListStyles";
 import CandyItem from "./CandyItem";
 import { getAvailableCandies } from "../../common/service/common-service";
 
@@ -19,25 +18,22 @@ const SweetsList = () => {
   }, []);
 
   return (
-    <StyledMain>
-      <Hero />
-      <StyledSection>
-        {sweets &&
-          sweets.map((item) => (
-            <CandyItem
-              id={item.id}
-              key={item.id}
-              name={item.name}
-              description={item.description}
-              price={item.price}
-              image={item.image}
-            />
-          ))}
-        <div className="btn-order__container">
-          <button className="btn-order">Order</button>
-        </div>
-      </StyledSection>
-    </StyledMain>
+    <StyledSweetsList>
+      {sweets &&
+        sweets.map((item) => (
+          <CandyItem
+            id={item.id}
+            key={item.id}
+            name={item.name}
+            description={item.description}
+            price={item.price}
+            image={item.image}
+          />
+        ))}
+      <div className="btn-order__container">
+        <button className="btn-order">Order</button>
+      </div>
+    </StyledSweetsList>
   );
 };
 
