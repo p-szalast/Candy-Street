@@ -1,10 +1,8 @@
 import styled from "styled-components";
 import backgroundImage from "../../assets/background.png";
 
-export const StyledMain = styled.main`
-  /* position: fixed;
-  top: 5rem; */
-  margin-top: 5rem;
+export const StyledCartPage = styled.main`
+  /* top: 5rem; */
   background: linear-gradient(
       rgba(207, 187, 203, 0.81),
       rgba(207, 187, 203, 0.81)
