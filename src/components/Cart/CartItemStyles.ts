@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-const StyledCandyItem = styled.div`
+const StyledCartItem = styled.div`
+  //TODO: all file
+
   display: flex;
   margin: 1rem;
 
@@ -58,4 +60,4 @@ const StyledCandyItem = styled.div`
   }
 `;
 
-export default StyledCandyItem;
+export default StyledCartItem;

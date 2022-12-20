@@ -1,18 +1,2 @@
+@import "./common/styles/_reset.css";
 @import url("https://fonts.googleapis.com/css2?family=Rubik&family=Rubik+Microbe&family=Rubik+Moonrocks&family=Rubik+Puddles&display=swap");
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-}
-
-html {
-  font-family: "Rubik", sans-serif;
-}
-
-body {
-  height: 100%;
-}
-
-.hero {
-  font-family: "Rubik Moonrocks", sans-serif;
-}

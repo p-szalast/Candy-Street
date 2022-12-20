@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const StyledMainHeader = styled.header`
   display: flex;
-  /* position: fixed; */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;

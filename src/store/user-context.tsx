@@ -1,43 +1,88 @@
-import React, { useState, useReducer } from "react";
+import React, { useReducer } from "react";
+import {
+  Props,
+  UserContextObject,
+  CartItemObject,
+} from "../common/types/common.types";
 
-type UserContextObject = {
-  order: {
-    items: Object[];
-    adress: {};
-  };
-  history: [];
-  sortType: string;
-  addItem: () => void;
-  removeItem: () => void;
-};
-
-type Props = { children: React.ReactNode };
-
-// default: empty values
-export const UserContext = React.createContext<UserContextObject>({
-  order: {
-    items: [],
-    adress: {},
-  },
+// Creating default context state object
+const defaultUserState: UserContextObject = {
+  cartItems: [],
+  address: {},
   history: [],
   sortType: "",
   addItem: () => {},
   removeItem: () => {},
-});
+  clearCart: () => {},
+};
 
+// Creating context
+export const UserContext = React.createContext<UserContextObject>(
+  Object.assign(defaultUserState)
+);
+
+// Creating reducer function
+const userReducer = (
+  state: UserContextObject,
+  action: { type: string; item?: CartItemObject; id?: string }
+) => {
+  if (action.type === "ADD_ITEM") {
+    //TODO: more complex
+
+    //guard clause
+    if (!action.item) return state;
+
+    const updatedCartItems = state.cartItems.concat(action.item);
+    const updatedState = {
+      ...state,
+      cartItems: updatedCartItems,
+    };
+
+    return updatedState;
+  }
+  if (action.type === "REMOVE_ITEM") {
+  }
+  if (action.type === "CLEAR_CART") {
+  }
+
+  return defaultUserState;
+};
+
+//Creating context state
 const UserContextProvider: React.FC<Props> = (props) => {
-  // TODO:
-  const [order, setOrder] = useState();
+  const [userState, dispatchUserAction] = useReducer(
+    userReducer,
+    defaultUserState
+  );
+
+  const addItemHandler = (item: CartItemObject) => {
+    dispatchUserAction({
+      type: "ADD_ITEM",
+      item: item,
+    });
+  };
+
+  const removeItemHandler = (id: string) => {
+    dispatchUserAction({
+      type: "REMOVE_ITEM",
+      id: id,
+    });
+  };
+
+  const clearCartHandler = () => {
+    dispatchUserAction({
+      type: "CLEAR_CART",
+    });
+  };
 
   const contextValue: UserContextObject = {
-    order: {
-      items: [],
-      adress: {},
-    },
-    history: [],
+    cartItems: userState.cartItems,
+    address: userState.address,
+    history: userState.history,
     sortType: "",
-    addItem: () => {},
-    removeItem: () => {},
+    addItem: addItemHandler,
+    removeItem: removeItemHandler,
+    clearCart: clearCartHandler,
   };
 
   return (
