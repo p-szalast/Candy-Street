@@ -11,7 +11,7 @@ function App() {
   return (
     <UserContextProvider>
       <MainHeader />
-      <Route path="/">
+      <Route path="/main">
         <MainPage />
       </Route>
       <Route path="/cart">
