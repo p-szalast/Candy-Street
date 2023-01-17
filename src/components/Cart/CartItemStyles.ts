@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-const StyledCandyItem = styled.div`
+const StyledCartItem = styled.div`
+  //TODO: all file
+
   display: flex;
   margin: 1rem;
 
@@ -50,7 +52,12 @@ const StyledCandyItem = styled.div`
   & .btn-container .btns-add-remove {
     display: flex;
     justify-content: space-between;
+    /* flex: 0 0 auto;
+
+    & input {
+      width: 2rem;
+    } */
   }
 `;
 
-export default StyledCandyItem;
+export default StyledCartItem;

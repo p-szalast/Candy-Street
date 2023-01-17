@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const StyledSweetsList = styled.section`
+const StyledCart = styled.div`
+  // TODO:? styling duplicated from sweetslist
+  display: block;
   margin: 1rem auto;
   max-width: 60rem;
   text-align: center;
@@ -20,3 +22,5 @@ export const StyledSweetsList = styled.section`
     border-radius: 10px;
   }
 `;
+
+export default StyledCart;

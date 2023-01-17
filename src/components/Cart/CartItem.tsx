@@ -1,12 +1,12 @@
-import { CandyItemObject } from "../../common/types/common.types";
+import { CartItemObject } from "../../common/types/common.types";
 import { useState, useContext } from "react";
 
 import { UserContext } from "../../store/user-context";
 
-import StyledCandyItem from "./CandyItemStyles";
+import StyledCartItem from "./CartItemStyles";
 
-const CandyItem: React.FC<CandyItemObject> = (props) => {
-  const [amount, setAmount] = useState(1);
+const CandyItem: React.FC<CartItemObject> = (props) => {
+  const [amount, setAmount] = useState(props.amount);
   const { addItem } = useContext(UserContext);
 
   const btnMinusHandler = () => {
@@ -35,11 +35,10 @@ const CandyItem: React.FC<CandyItemObject> = (props) => {
   };
 
   return (
-    <StyledCandyItem>
-      <img alt="" src={props.image} />
+    <StyledCartItem>
+      {/* <img alt="" src={props.image} /> */}
       <div className="item__text">
         <h3 className="item__title">{props.name}</h3>
-        <p className="item__description">{props.description}</p>
         <p className="item__price">{props.price} zł</p>
       </div>
       <div className="btn-container">
@@ -52,9 +51,8 @@ const CandyItem: React.FC<CandyItemObject> = (props) => {
             +
           </button>
         </div>
-        <button onClick={addToCartHandler}>Add To Cart</button>
       </div>
-    </StyledCandyItem>
+    </StyledCartItem>
   );
 };
 

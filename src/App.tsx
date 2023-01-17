@@ -1,14 +1,22 @@
 import UserContextProvider from "./store/user-context";
 
-import MainHeader from "./components/MainHeader/MainHeader";
-import SweetsList from "./components/SweetsList/SweetsList";
-import Footer from "./components/Footer/Footer";
+import { Route } from "react-router-dom";
+
+import MainHeader from "./components/Layout/MainHeader/MainHeader";
+import MainPage from "./pages/MainPage/MainPage";
+import CartPage from "./pages/CartPage/CartPage";
+import Footer from "./components/Layout/Footer/Footer";
 
 function App() {
   return (
     <UserContextProvider>
       <MainHeader />
-      <SweetsList />
+      <Route path="/main">
+        <MainPage />
+      </Route>
+      <Route path="/cart">
+        <CartPage />
+      </Route>
       <Footer />
     </UserContextProvider>
   );
