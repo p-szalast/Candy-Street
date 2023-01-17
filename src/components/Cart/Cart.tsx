@@ -1,15 +1,16 @@
 import { useContext } from "react";
 import { UserContext } from "../../store/user-context";
 
-import StyledCart from "./CartStyles";
-
 import CartItem from "./CartItem";
+
+import StyledCart from "./CartStyles";
 
 const Cart = () => {
   const { cartItems } = useContext(UserContext);
 
   return (
     <StyledCart>
+      <h2 className="cart--heading">Cart</h2>
       {cartItems.length === 0 && (
         <p className="empty-cart-msg">
           Cart is empty. Please add sweets to cart first!

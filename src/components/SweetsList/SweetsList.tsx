@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 
-import { CandyItemObject } from "../../common/types/common.types";
+import CandyItem from "./CandyItem";
 
 import { StyledSweetsList } from "./SweetsListStyles";
-import CandyItem from "./CandyItem";
+
+import { CandyItemObject } from "../../common/types/common.types";
+
 import { getAvailableCandies } from "../../common/service/common-service";
 
 const SweetsList = () => {
