@@ -8,8 +8,6 @@ import CartItem from "./CartItem";
 const Cart = () => {
   const ctx = useContext(UserContext);
 
-  console.log(ctx.cartItems);
-
   return (
     <StyledCart>
       <p>Cart</p>
@@ -21,7 +19,7 @@ const Cart = () => {
             name={item.name}
             amount={item.amount}
             price={item.price}
-            // image={item.image}
+            //TODO: image={item.image}
           ></CartItem>
         ))}
 

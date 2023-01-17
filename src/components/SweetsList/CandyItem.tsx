@@ -7,7 +7,7 @@ import StyledCandyItem from "./CandyItemStyles";
 
 const CandyItem: React.FC<CandyItemObject> = (props) => {
   const [amount, setAmount] = useState(1);
-  const ctx = useContext(UserContext);
+  const { addItem } = useContext(UserContext);
 
   const btnMinusHandler = () => {
     setAmount((prevState) => {
@@ -23,7 +23,7 @@ const CandyItem: React.FC<CandyItemObject> = (props) => {
   const addToCartHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
-    ctx.addItem({
+    addItem({
       id: props.id,
       name: props.name,
       price: props.price,

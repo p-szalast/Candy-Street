@@ -17,9 +17,8 @@ const defaultUserState: UserContextObject = {
 };
 
 // Creating context
-export const UserContext = React.createContext<UserContextObject>(
-  Object.assign(defaultUserState)
-);
+export const UserContext =
+  React.createContext<UserContextObject>(defaultUserState);
 
 // Creating reducer function
 const userReducer = (
