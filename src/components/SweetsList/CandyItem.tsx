@@ -28,6 +28,7 @@ const CandyItem: React.FC<CandyItemObject> = (props) => {
       name: props.name,
       price: props.price,
       amount: amount,
+      image: props.image,
     });
 
     //TODO: delete after adding cart page

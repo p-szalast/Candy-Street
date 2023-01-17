@@ -5,7 +5,7 @@ import logo from "../../../assets/logo.png";
 const MainHeader: React.FC = () => {
   return (
     <StyledMainHeader>
-      <NavLink to="/main">
+      <NavLink to="/">
         <img className="logo" alt="" src={logo} />
       </NavLink>
       <h1 className="header__brand-name">Candy Street</h1>
