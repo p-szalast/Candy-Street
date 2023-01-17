@@ -1,6 +1,6 @@
 import UserContextProvider from "./store/user-context";
 
-import { Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import MainHeader from "./components/Layout/MainHeader/MainHeader";
 import MainPage from "./pages/MainPage/MainPage";
@@ -11,12 +11,11 @@ function App() {
   return (
     <UserContextProvider>
       <MainHeader />
-      <Route path="/main">
-        <MainPage />
-      </Route>
-      <Route path="/cart">
-        <CartPage />
-      </Route>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/cart" element={<CartPage />} />
+      </Routes>
+      <Routes></Routes>
       <Footer />
     </UserContextProvider>
   );

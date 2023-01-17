@@ -17,6 +17,7 @@ export type CartItemObject = {
   name: string;
   price: number;
   amount: number;
+  image: string;
 };
 
 type AddressObject = {

@@ -28,6 +28,7 @@ const CandyItem: React.FC<CartItemObject> = (props) => {
       name: props.name,
       price: props.price,
       amount: amount,
+      image: props.image,
     });
 
     //TODO: delete after adding cart page
@@ -36,7 +37,7 @@ const CandyItem: React.FC<CartItemObject> = (props) => {
 
   return (
     <StyledCartItem>
-      {/* <img alt="" src={props.image} /> */}
+      <img alt="" src={props.image} />
       <div className="item__text">
         <h3 className="item__title">{props.name}</h3>
         <p className="item__price">{props.price} zł</p>

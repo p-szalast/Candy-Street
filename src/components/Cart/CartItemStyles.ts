@@ -16,8 +16,8 @@ const StyledCartItem = styled.div`
 
   & img {
     object-fit: cover;
-    height: 10rem;
-    width: 10rem;
+    height: 5rem;
+    width: 5rem;
     border: 0px solid #fff;
     border-radius: 10px;
   }
@@ -52,11 +52,6 @@ const StyledCartItem = styled.div`
   & .btn-container .btns-add-remove {
     display: flex;
     justify-content: space-between;
-    /* flex: 0 0 auto;
-
-    & input {
-      width: 2rem;
-    } */
   }
 `;
 
