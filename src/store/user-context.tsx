@@ -1,14 +1,11 @@
 import React, { useReducer } from "react";
-import {
-  Props,
-  UserContextObject,
-  CartItemObject,
-} from "../common/types/common.types";
+import { Props, CartItemObject } from "../common/types/common.types";
+import { CartActions, CartTypes, UserContextObject } from "./types";
 
 // Creating default context state object
 const defaultUserState: UserContextObject = {
   cartItems: [],
-  address: {},
+  address: null,
   history: [],
   sortType: "",
   addItem: () => {},
@@ -21,17 +18,11 @@ export const UserContext =
   React.createContext<UserContextObject>(defaultUserState);
 
 // Creating reducer function
-const userReducer = (
-  state: UserContextObject,
-  action: { type: string; item?: CartItemObject; id?: string }
-) => {
-  if (action.type === "ADD_ITEM") {
-    //guard clause
-    if (!action.item) return state;
-
+const userReducer = (state: UserContextObject, action: CartActions) => {
+  if (action.type === CartTypes.ADD_ITEM) {
     //Check if item is already in the cart
     const indexOfAlreadyAddedItem: number = state.cartItems.findIndex(
-      (item) => action.item?.id === item.id
+      (item) => action.payload.item.id === item.id
     );
 
     const alreadyAddedItem: CartItemObject =
@@ -43,14 +34,14 @@ const userReducer = (
     if (alreadyAddedItem) {
       const updatedItem = {
         ...alreadyAddedItem,
-        amount: alreadyAddedItem.amount + action.item.amount,
+        amount: alreadyAddedItem.amount + action.payload.item.amount,
       };
 
       updatedCartItems = [...state.cartItems];
       updatedCartItems[indexOfAlreadyAddedItem] = updatedItem;
     } else {
       //if item does not exist
-      updatedCartItems = state.cartItems.concat(action.item);
+      updatedCartItems = state.cartItems.concat(action.payload.item);
     }
 
     //updating app state with changed CartItems
@@ -61,12 +52,11 @@ const userReducer = (
 
     return updatedState;
   }
-  if (action.type === "REMOVE_ITEM") {
-  }
-  if (action.type === "CLEAR_CART") {
+
+  if (action.type === CartTypes.REMOVE_ITEM) {
   }
 
-  return defaultUserState;
+  return state;
 };
 
 //Creating context state
@@ -78,21 +68,25 @@ const UserContextProvider: React.FC<Props> = (props) => {
 
   const addItemHandler = (item: CartItemObject) => {
     dispatchUserAction({
-      type: "ADD_ITEM",
-      item: item,
+      type: CartTypes.ADD_ITEM,
+      payload: {
+        item,
+      },
     });
   };
 
   const removeItemHandler = (id: string) => {
     dispatchUserAction({
-      type: "REMOVE_ITEM",
-      id: id,
+      type: CartTypes.REMOVE_ITEM,
+      payload: {
+        id,
+      },
     });
   };
 
   const clearCartHandler = () => {
     dispatchUserAction({
-      type: "CLEAR_CART",
+      type: CartTypes.CLEAR_CART,
     });
   };
 

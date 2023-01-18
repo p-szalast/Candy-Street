@@ -1,9 +1,11 @@
 import { useContext } from "react";
+import { NavLink } from "react-router-dom";
 import { UserContext } from "../../store/user-context";
 
 import CartItem from "./CartItem";
+import { CartHeading } from "./CartItemStyles";
 
-import StyledCart from "./CartStyles";
+import { StyledCart } from "./CartStyles";
 
 const Cart = () => {
   const { cartItems } = useContext(UserContext);
@@ -14,7 +16,7 @@ const Cart = () => {
 
   return (
     <StyledCart>
-      <h2 className="cart--heading">Cart</h2>
+      <CartHeading>Cart</CartHeading>
       {cartItems.length === 0 && (
         <p className="empty-cart-msg">
           Cart is empty. Please add sweets to cart first!
@@ -33,7 +35,10 @@ const Cart = () => {
         ))}
       {cartItems.length !== 0 && (
         <div className="btn-order__container">
-          <button className="btn-order" onClick={orderHandler}>
+          <NavLink className="btn btn-go-to-cart__container" to="/">
+            <button className="btn btn-back">Back</button>
+          </NavLink>
+          <button className="btn btn-order" onClick={orderHandler}>
             Order
           </button>
         </div>

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 import CandyItem from "./CandyItem";
 
@@ -32,9 +33,9 @@ const SweetsList = () => {
             image={item.image}
           />
         ))}
-      <div className="btn-order__container">
-        <button className="btn-order">Order</button>
-      </div>
+      <NavLink className="btn-go-to-cart__container" to="/cart">
+        <button className="btn-go-to-cart">Go to Cart</button>
+      </NavLink>
     </StyledSweetsList>
   );
 };

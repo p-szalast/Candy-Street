@@ -20,21 +20,11 @@ export type CartItemObject = {
   image: string;
 };
 
-type AddressObject = {
+export type AddressObject = {
   firstName: string;
   lastName: string;
   street: string;
   number: string;
   postalCode: string;
   city: string;
-};
-
-export type UserContextObject = {
-  cartItems: CartItemObject[];
-  address: AddressObject | {};
-  history?: [];
-  sortType?: string;
-  addItem: (item: CartItemObject) => void;
-  removeItem: (id: string) => void;
-  clearCart: () => void;
 };

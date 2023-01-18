@@ -6,13 +6,14 @@ export const StyledSweetsList = styled.section`
   text-align: center;
   border-radius: 20px;
 
-  & .btn-order__container {
+  & .btn-go-to-cart__container {
     margin: 1rem 2rem;
     display: flex;
     justify-content: end;
   }
 
-  & .btn-order {
+  & .btn-go-to-cart {
+    text-decoration: none;
     padding: 0.5rem 1rem;
     border: none;
     background: #fff;
