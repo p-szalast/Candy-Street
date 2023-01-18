@@ -26,12 +26,34 @@ const userReducer = (
   action: { type: string; item?: CartItemObject; id?: string }
 ) => {
   if (action.type === "ADD_ITEM") {
-    //TODO: more complex
-
     //guard clause
     if (!action.item) return state;
 
-    const updatedCartItems = state.cartItems.concat(action.item);
+    //Check if item is already in the cart
+    const indexOfAlreadyAddedItem: number = state.cartItems.findIndex(
+      (item) => action.item?.id === item.id
+    );
+
+    const alreadyAddedItem: CartItemObject =
+      state.cartItems[indexOfAlreadyAddedItem];
+
+    let updatedCartItems: CartItemObject[];
+
+    //if item exists:
+    if (alreadyAddedItem) {
+      const updatedItem = {
+        ...alreadyAddedItem,
+        amount: alreadyAddedItem.amount + action.item.amount,
+      };
+
+      updatedCartItems = [...state.cartItems];
+      updatedCartItems[indexOfAlreadyAddedItem] = updatedItem;
+    } else {
+      //if item does not exist
+      updatedCartItems = state.cartItems.concat(action.item);
+    }
+
+    //updating app state with changed CartItems
     const updatedState = {
       ...state,
       cartItems: updatedCartItems,

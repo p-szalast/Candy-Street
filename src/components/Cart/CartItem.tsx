@@ -6,39 +6,39 @@ import { UserContext } from "../../store/user-context";
 
 const CandyItem: React.FC<CartItemObject> = (props) => {
   const [amount, setAmount] = useState(props.amount);
-  const { addItem } = useContext(UserContext);
+  const { addItem, removeItem, cartItems } = useContext(UserContext);
 
   const btnCartMinusHandler = () => {
     setAmount((prevState) => {
       return prevState <= 1 ? prevState : --prevState;
     });
 
+    //guard clause
+    if (amount <= 1) return;
+
     addItem({
       id: props.id,
       name: props.name,
       price: props.price,
-      amount: amount,
+      amount: -1,
       image: props.image,
     });
-
-    //TODO: delete after finishing
-    console.log(props.name, amount);
   };
   const btnCartPlusHandler = () => {
     setAmount((prevState) => {
       return prevState >= 99 ? prevState : ++prevState;
     });
 
-    //   addItem({
-    //     id: props.id,
-    //     name: props.name,
-    //     price: props.price,
-    //     amount: amount,
-    //     image: props.image,
-    //   });
+    //guard clause
+    if (amount >= 99) return;
 
-    //   //TODO: delete after finishing
-    //   console.log(props.name, amount);
+    addItem({
+      id: props.id,
+      name: props.name,
+      price: props.price,
+      amount: 1,
+      image: props.image,
+    });
   };
 
   return (
@@ -57,7 +57,7 @@ const CandyItem: React.FC<CartItemObject> = (props) => {
         </button>
       </div>
       <p className="cart-item--signs"> = </p>
-      <p className="item__price-total">{props.price * props.amount} zł</p>
+      <p className="item__price-total">{props.price * amount} zł</p>
     </StyledCartItem>
   );
 };

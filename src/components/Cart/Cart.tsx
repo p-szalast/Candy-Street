@@ -8,6 +8,10 @@ import StyledCart from "./CartStyles";
 const Cart = () => {
   const { cartItems } = useContext(UserContext);
 
+  const orderHandler: () => void = () => {
+    console.log(cartItems);
+  };
+
   return (
     <StyledCart>
       <h2 className="cart--heading">Cart</h2>
@@ -29,7 +33,9 @@ const Cart = () => {
         ))}
       {cartItems.length !== 0 && (
         <div className="btn-order__container">
-          <button className="btn-order">Order</button>
+          <button className="btn-order" onClick={orderHandler}>
+            Order
+          </button>
         </div>
       )}
     </StyledCart>
