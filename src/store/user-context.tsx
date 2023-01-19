@@ -20,6 +20,7 @@ const defaultUserState: UserContextObject = {
 // Creating context
 export const UserContext =
   React.createContext<UserContextObject>(defaultUserState);
+UserContext.displayName = "UserContext";
 
 // Creating reducer function
 const userReducer = (state: UserContextObject, action: CartActions) => {
@@ -75,7 +76,7 @@ const userReducer = (state: UserContextObject, action: CartActions) => {
 };
 
 //Creating context state
-const UserContextProvider = (props: PropsWithChildren<UserContextObject>) => {
+const UserContextProvider = (props: PropsWithChildren) => {
   const [userState, dispatchUserAction] = useReducer(
     userReducer,
     defaultUserState

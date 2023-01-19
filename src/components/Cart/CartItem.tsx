@@ -44,7 +44,6 @@ const CandyItem = (props: CartItemObject) => {
       name: props.name,
       price: props.price,
       amount: 1,
-      image: props.image,
     });
   };
 

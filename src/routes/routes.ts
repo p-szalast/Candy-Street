@@ -1,5 +1,6 @@
 export const navKeys = {
   main: "/",
   cart: "/cart",
-  history: "./history",
+  history: "/history",
+  summary: "/summary",
 };

@@ -18,7 +18,7 @@ export type CartItemObject = {
   name: string;
   price: number;
   amount: number;
-  image: string;
+  image?: string;
 };
 
 export type AddressObject = {
@@ -28,4 +28,16 @@ export type AddressObject = {
   number: string;
   postalCode: string;
   city: string;
+};
+
+/// Personal Data Form exports ////
+
+export type PersonalDataFormInputs = {
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  street: string;
+  houseNumber: string;
+  city: string;
+  postCode: string;
 };
