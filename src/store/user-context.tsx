@@ -1,6 +1,10 @@
 import React, { useReducer } from "react";
 import { Props, CartItemObject } from "../common/types/common.types";
-import { CartActions, CartTypes, UserContextObject } from "./types";
+import {
+  CartActions,
+  CartTypes,
+  UserContextObject,
+} from "./user-context-types";
 
 // Creating default context state object
 const defaultUserState: UserContextObject = {
@@ -54,6 +58,17 @@ const userReducer = (state: UserContextObject, action: CartActions) => {
   }
 
   if (action.type === CartTypes.REMOVE_ITEM) {
+    const updatedState = {
+      ...state,
+      cartItems: state.cartItems.filter(
+        (item) => item.id !== action.payload.id
+      ),
+    };
+
+    return updatedState;
+  }
+
+  if (action.type === CartTypes.CLEAR_CART) {
   }
 
   return state;

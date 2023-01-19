@@ -1,33 +1,58 @@
-import { CandyItemObject } from "../../common/types/common.types";
 import { useState, useContext } from "react";
+import { CandyItemObject } from "../../common/types/common.types";
+import { ButtonLittle } from "../../common/styles/components";
 
 import { UserContext } from "../../store/user-context";
 
 import StyledCandyItem from "./CandyItemStyles";
 
+import { CartItemObject } from "../../common/types/common.types";
+
 const CandyItem: React.FC<CandyItemObject> = (props) => {
-  const [amount, setAmount] = useState(1);
-  const { addItem } = useContext(UserContext);
+  const { cartItems, addItem, removeItem } = useContext(UserContext);
+
+  //checking if item is already in cart
+  const itemAlreadyInCart: CartItemObject | undefined = cartItems.find(
+    (item) => item.id === props.id
+  );
+
+  const existingItemAmount: number = itemAlreadyInCart
+    ? itemAlreadyInCart.amount
+    : 0;
+
+  const [amount, setAmount] = useState(existingItemAmount);
 
   const btnMinusHandler = () => {
     setAmount((prevState) => {
-      return prevState <= 1 ? prevState : --prevState;
+      return prevState <= 0 ? prevState : --prevState;
     });
+
+    //guard clause
+    if (amount > 1) {
+      addItem({
+        id: props.id,
+        name: props.name,
+        price: props.price,
+        amount: -1,
+        image: props.image,
+      });
+    } else if (amount <= 1) {
+      removeItem(props.id);
+    }
   };
   const btnPlusHandler = () => {
     setAmount((prevState) => {
       return prevState >= 99 ? prevState : ++prevState;
     });
-  };
 
-  const addToCartHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
+    //guard clause
+    if (amount >= 99) return;
 
     addItem({
       id: props.id,
       name: props.name,
       price: props.price,
-      amount: amount,
+      amount: 1,
       image: props.image,
     });
   };
@@ -42,15 +67,11 @@ const CandyItem: React.FC<CandyItemObject> = (props) => {
       </div>
       <div className="btn-container">
         <div className="btns-add-remove">
-          <button type="button" onClick={btnMinusHandler}>
-            -
-          </button>
+          <ButtonLittle onClick={btnMinusHandler}>-</ButtonLittle>
           <p>{amount}</p>
-          <button type="button" onClick={btnPlusHandler}>
-            +
-          </button>
+          <ButtonLittle onClick={btnPlusHandler}>+</ButtonLittle>
         </div>
-        <button onClick={addToCartHandler}>Add To Cart</button>
+        {/* <button onClick={addToCartHandler}>Add To Cart</button> */}
       </div>
     </StyledCandyItem>
   );

@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { NavLink } from "react-router-dom";
 
 import CandyItem from "./CandyItem";
+import { UserContext } from "../../store/user-context";
 
 import { StyledSweetsList } from "./SweetsListStyles";
 

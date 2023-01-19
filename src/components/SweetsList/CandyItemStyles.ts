@@ -49,7 +49,9 @@ const StyledCandyItem = styled.div`
 
   & .btn-container .btns-add-remove {
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    gap: 1rem;
   }
 `;
 

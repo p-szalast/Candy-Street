@@ -1,12 +1,15 @@
 import { useState, useContext } from "react";
-import { CartItemObject } from "../../common/types/common.types";
+import { UserContext } from "../../store/user-context";
+
+import { Delete } from "../../assets/icons";
+
 import StyledCartItem from "./CartItemStyles";
 
-import { UserContext } from "../../store/user-context";
+import { CartItemObject } from "../../common/types/common.types";
 
 const CandyItem: React.FC<CartItemObject> = (props) => {
   const [amount, setAmount] = useState(props.amount);
-  const { addItem, removeItem, cartItems } = useContext(UserContext);
+  const { addItem, removeItem } = useContext(UserContext);
 
   const btnCartMinusHandler = () => {
     setAmount((prevState) => {
@@ -41,6 +44,10 @@ const CandyItem: React.FC<CartItemObject> = (props) => {
     });
   };
 
+  const btnDeleteHandler = () => {
+    removeItem(props.id);
+  };
+
   return (
     <StyledCartItem>
       <img alt="" src={props.image} />
@@ -58,6 +65,9 @@ const CandyItem: React.FC<CartItemObject> = (props) => {
       </div>
       <p className="cart-item--signs"> = </p>
       <p className="item__price-total">{props.price * amount} zł</p>
+      <button onClick={btnDeleteHandler}>
+        <Delete />
+      </button>
     </StyledCartItem>
   );
 };

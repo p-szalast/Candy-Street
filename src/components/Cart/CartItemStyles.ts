@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { BaseHeading } from "../../common/styles/components";
+// import { BaseHeading } from "../../common/styles/components";
 
-export const CartHeading = styled(BaseHeading)`
-  padding: 0 1.5rem;
-  font-weight: normal;
-  text-align: start;
-`;
+// export const CartHeading = styled(BaseHeading)`
+//   padding: 0 1.5rem;
+//   font-weight: normal;
+//   text-align: start;
+// `;
 
 const StyledCartItem = styled.div`
   display: flex;

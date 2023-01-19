@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import StyledMainHeader from "./MainHeaderStyles";
+import { StyledMainHeader, MainHeadingBrandName } from "./MainHeaderStyles";
 import logo from "../../../assets/logo.png";
 
 const MainHeader: React.FC = () => {
@@ -8,9 +8,9 @@ const MainHeader: React.FC = () => {
       <NavLink to="/">
         <img className="logo" alt="" src={logo} />
       </NavLink>
-      <h1 className="header__brand-name">Candy Street</h1>
+      <MainHeadingBrandName>Candy Street</MainHeadingBrandName>
       <div className="nav">
-        <NavLink to="/cart">
+        <NavLink to="/history">
           <p>Order History</p>
         </NavLink>
         <NavLink to="/cart">

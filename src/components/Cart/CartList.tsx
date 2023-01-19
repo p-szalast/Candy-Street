@@ -3,20 +3,21 @@ import { NavLink } from "react-router-dom";
 import { UserContext } from "../../store/user-context";
 
 import CartItem from "./CartItem";
-import { CartHeading } from "./CartItemStyles";
+// import { CartHeading } from "./CartItemStyles";
 
-import { StyledCart } from "./CartStyles";
+import { StyledCart } from "./CartListStyles";
 
-const Cart = () => {
+const CartList = () => {
   const { cartItems } = useContext(UserContext);
 
   const orderHandler: () => void = () => {
+    //TODO:
     console.log(cartItems);
   };
 
   return (
     <StyledCart>
-      <CartHeading>Cart</CartHeading>
+      {/* <CartHeading>Cart</CartHeading> */}
       {cartItems.length === 0 && (
         <p className="empty-cart-msg">
           Cart is empty. Please add sweets to cart first!
@@ -47,4 +48,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default CartList;
