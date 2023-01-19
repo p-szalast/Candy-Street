@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { navKeys } from "../../../routes/routes";
 
 import { StyledMainHeader, MainHeadingBrandName } from "./MainHeaderStyles";
 import { Button } from "../../../common/styles/componentsStyles";
@@ -14,10 +15,10 @@ const MainHeader: React.FC = () => {
       </NavLink>
       <MainHeadingBrandName>Candy Street</MainHeadingBrandName>
       <div className="nav">
-        <NavLink to="/history">
+        <NavLink to={navKeys.history}>
           <Button>Order History</Button>
         </NavLink>
-        <NavLink to="/cart">
+        <NavLink to={navKeys.cart}>
           <Button>
             <Cart />
             Cart
