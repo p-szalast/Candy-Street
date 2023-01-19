@@ -1,4 +1,4 @@
-export type Props = { children: React.ReactNode };
+import React from "react";
 
 /// Sweets List exports ////
 
@@ -8,6 +8,7 @@ export type CandyItemObject = {
   price: number;
   image: string;
   description: string;
+  children?: React.ReactNode;
 };
 
 /// Context exports ////

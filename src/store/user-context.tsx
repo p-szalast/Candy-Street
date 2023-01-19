@@ -1,5 +1,5 @@
-import React, { useReducer } from "react";
-import { Props, CartItemObject } from "../common/types/common.types";
+import React, { useReducer, PropsWithChildren } from "react";
+import { CartItemObject } from "../common/types/common.types";
 import {
   CartActions,
   CartTypes,
@@ -75,7 +75,7 @@ const userReducer = (state: UserContextObject, action: CartActions) => {
 };
 
 //Creating context state
-const UserContextProvider: React.FC<Props> = (props) => {
+const UserContextProvider = (props: PropsWithChildren<UserContextObject>) => {
   const [userState, dispatchUserAction] = useReducer(
     userReducer,
     defaultUserState
