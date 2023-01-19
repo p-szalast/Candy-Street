@@ -1,11 +1,5 @@
 import styled from "styled-components";
-// import { BaseHeading } from "../../common/styles/components";
-
-// export const CartHeading = styled(BaseHeading)`
-//   padding: 0 1.5rem;
-//   font-weight: normal;
-//   text-align: start;
-// `;
+import { Container, ButtonLittle } from "../../common/styles/componentsStyles";
 
 const StyledCartItem = styled.div`
   display: flex;
@@ -18,7 +12,6 @@ const StyledCartItem = styled.div`
   opacity: 90%;
   border: 0px solid #fff;
   border-radius: 10px;
-  /* gap: 1rem; */
   color: black;
 
   & img {
@@ -44,17 +37,20 @@ const StyledCartItem = styled.div`
     font-weight: bold;
   }
 
-  & .btns-add-remove {
-    display: flex;
-    padding-right: 4rem;
-    gap: 0.5rem;
-    width: 2rem;
-  }
-
   & .item__price-total {
     width: 3.5rem;
     font-weight: bold;
   }
+`;
+
+export const BtnsAddRemoveContainer = styled(Container)`
+  padding: 0 4rem;
+  gap: 0.5rem;
+  width: 2rem;
+`;
+
+export const ButtonDelete = styled(ButtonLittle)`
+  padding: 0;
 `;
 
 export default StyledCartItem;

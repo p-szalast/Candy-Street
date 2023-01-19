@@ -3,7 +3,11 @@ import { UserContext } from "../../store/user-context";
 
 import { Delete } from "../../assets/icons";
 
-import StyledCartItem from "./CartItemStyles";
+import StyledCartItem, {
+  BtnsAddRemoveContainer,
+  ButtonDelete,
+} from "./CartItemStyles";
+import { ButtonLittle } from "../../common/styles/componentsStyles";
 
 import { CartItemObject } from "../../common/types/common.types";
 
@@ -54,20 +58,16 @@ const CandyItem: React.FC<CartItemObject> = (props) => {
       <h3 className="cart-item__title">{props.name}</h3>
       <p className="item__price">{props.price} zł</p>
       <p className="cart-item--signs"> x </p>
-      <div className="btns-add-remove">
-        <button type="button" onClick={btnCartMinusHandler}>
-          -
-        </button>
+      <BtnsAddRemoveContainer>
+        <ButtonLittle onClick={btnCartMinusHandler}>-</ButtonLittle>
         <p>{amount}</p>
-        <button type="button" onClick={btnCartPlusHandler}>
-          +
-        </button>
-      </div>
+        <ButtonLittle onClick={btnCartPlusHandler}>+</ButtonLittle>
+      </BtnsAddRemoveContainer>
       <p className="cart-item--signs"> = </p>
       <p className="item__price-total">{props.price * amount} zł</p>
-      <button onClick={btnDeleteHandler}>
+      <ButtonDelete onClick={btnDeleteHandler}>
         <Delete />
-      </button>
+      </ButtonDelete>
     </StyledCartItem>
   );
 };

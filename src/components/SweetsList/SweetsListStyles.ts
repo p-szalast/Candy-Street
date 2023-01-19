@@ -11,13 +11,4 @@ export const StyledSweetsList = styled.section`
     display: flex;
     justify-content: end;
   }
-
-  & .btn-go-to-cart {
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border: none;
-    background: #fff;
-    font-weight: bold;
-    border-radius: 10px;
-  }
 `;

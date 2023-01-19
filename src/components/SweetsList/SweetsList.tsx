@@ -1,14 +1,14 @@
 import { useState, useEffect, useContext } from "react";
 import { NavLink } from "react-router-dom";
 
-import CandyItem from "./CandyItem";
 import { UserContext } from "../../store/user-context";
+import { getAvailableCandies } from "../../common/service/common-service";
+import CandyItem from "./CandyItem";
 
+import { Button } from "../../common/styles/componentsStyles";
 import { StyledSweetsList } from "./SweetsListStyles";
 
 import { CandyItemObject } from "../../common/types/common.types";
-
-import { getAvailableCandies } from "../../common/service/common-service";
 
 const SweetsList = () => {
   const [sweets, setSweets] = useState<CandyItemObject[] | null>([]);
@@ -35,7 +35,7 @@ const SweetsList = () => {
           />
         ))}
       <NavLink className="btn-go-to-cart__container" to="/cart">
-        <button className="btn-go-to-cart">Go to Cart</button>
+        <Button>Go to Cart</Button>
       </NavLink>
     </StyledSweetsList>
   );

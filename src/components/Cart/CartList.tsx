@@ -3,7 +3,8 @@ import { NavLink } from "react-router-dom";
 import { UserContext } from "../../store/user-context";
 
 import CartItem from "./CartItem";
-// import { CartHeading } from "./CartItemStyles";
+import { Button } from "../../common/styles/componentsStyles";
+import { BtnsContainer } from "./CartListStyles";
 
 import { StyledCart } from "./CartListStyles";
 
@@ -35,14 +36,12 @@ const CartList = () => {
           ></CartItem>
         ))}
       {cartItems.length !== 0 && (
-        <div className="btn-order__container">
-          <NavLink className="btn btn-go-to-cart__container" to="/">
-            <button className="btn btn-back">Back</button>
+        <BtnsContainer>
+          <NavLink to="/">
+            <Button>Back</Button>
           </NavLink>
-          <button className="btn btn-order" onClick={orderHandler}>
-            Order
-          </button>
-        </div>
+          <Button onClick={orderHandler}>Order</Button>
+        </BtnsContainer>
       )}
     </StyledCart>
   );
