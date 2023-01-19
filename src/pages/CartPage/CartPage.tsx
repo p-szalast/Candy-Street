@@ -1,7 +1,7 @@
 import { StyledCartPage } from "./CartPageStyles";
 
-import Hero from "../../components/Hero/Hero";
-import Cart from "../../components/Cart/Cart";
+import Hero from "../../components/Layout/Hero/Hero";
+import Cart from "../../components/Cart/CartList";
 
 const CartPage = () => {
   return (

@@ -1,58 +1,73 @@
-import { CartItemObject } from "../../common/types/common.types";
 import { useState, useContext } from "react";
-
 import { UserContext } from "../../store/user-context";
 
-import StyledCartItem from "./CartItemStyles";
+import { Delete } from "../../assets/icons";
+
+import StyledCartItem, {
+  BtnsAddRemoveContainer,
+  ButtonDelete,
+} from "./CartItemStyles";
+import { ButtonLittle } from "../../common/styles/componentsStyles";
+
+import { CartItemObject } from "../../common/types/common.types";
 
 const CandyItem: React.FC<CartItemObject> = (props) => {
   const [amount, setAmount] = useState(props.amount);
-  const { addItem } = useContext(UserContext);
+  const { addItem, removeItem } = useContext(UserContext);
 
-  const btnMinusHandler = () => {
+  const btnCartMinusHandler = () => {
     setAmount((prevState) => {
       return prevState <= 1 ? prevState : --prevState;
     });
-  };
-  const btnPlusHandler = () => {
-    setAmount((prevState) => {
-      return prevState >= 99 ? prevState : ++prevState;
-    });
-  };
 
-  const addToCartHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
+    //guard clause
+    if (amount <= 1) return;
 
     addItem({
       id: props.id,
       name: props.name,
       price: props.price,
-      amount: amount,
+      amount: -1,
       image: props.image,
     });
+  };
+  const btnCartPlusHandler = () => {
+    setAmount((prevState) => {
+      return prevState >= 99 ? prevState : ++prevState;
+    });
 
-    //TODO: delete after adding cart page
-    console.log(props.name, amount);
+    //guard clause
+    if (amount >= 99) return;
+
+    addItem({
+      id: props.id,
+      name: props.name,
+      price: props.price,
+      amount: 1,
+      image: props.image,
+    });
+  };
+
+  const btnDeleteHandler = () => {
+    removeItem(props.id);
   };
 
   return (
     <StyledCartItem>
       <img alt="" src={props.image} />
-      <div className="item__text">
-        <h3 className="item__title">{props.name}</h3>
-        <p className="item__price">{props.price} zł</p>
-      </div>
-      <div className="btn-container">
-        <div className="btns-add-remove">
-          <button type="button" onClick={btnMinusHandler}>
-            -
-          </button>
-          <p>{amount}</p>
-          <button type="button" onClick={btnPlusHandler}>
-            +
-          </button>
-        </div>
-      </div>
+      <h3 className="cart-item__title">{props.name}</h3>
+      <p className="item__price">{props.price} zł</p>
+      <p className="cart-item--signs"> x </p>
+      <BtnsAddRemoveContainer>
+        <ButtonLittle onClick={btnCartMinusHandler}>-</ButtonLittle>
+        <p>{amount}</p>
+        <ButtonLittle onClick={btnCartPlusHandler}>+</ButtonLittle>
+      </BtnsAddRemoveContainer>
+      <p className="cart-item--signs"> = </p>
+      <p className="item__price-total">{props.price * amount} zł</p>
+      <ButtonDelete onClick={btnDeleteHandler}>
+        <Delete />
+      </ButtonDelete>
     </StyledCartItem>
   );
 };

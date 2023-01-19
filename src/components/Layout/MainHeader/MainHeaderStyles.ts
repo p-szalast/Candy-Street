@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyledMainHeader = styled.header`
+export const StyledMainHeader = styled.header`
   display: flex;
   position: fixed;
   top: 0;
@@ -17,15 +17,20 @@ const StyledMainHeader = styled.header`
   }
 
   & .header__brand-name {
-    font-size: 3.5rem;
-    font-weight: normal;
-    font-family: "Rubik Puddles", cursive;
-    word-spacing: 0.5rem;
-    /* TODO: */
-    /* display: inline-block;
-    min-width: 600px;
-    position: relative; */
+  }
+
+  & .nav {
+    display: flex;
+    gap: 0.5rem;
   }
 `;
 
-export default StyledMainHeader;
+export const MainHeadingBrandName = styled.h1`
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 3.5rem;
+  font-weight: normal;
+  font-family: "Rubik Puddles", cursive;
+  word-spacing: 0.5rem;
+`;

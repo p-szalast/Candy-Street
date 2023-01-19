@@ -1,15 +1,24 @@
 import { useContext } from "react";
+import { NavLink } from "react-router-dom";
 import { UserContext } from "../../store/user-context";
 
-import StyledCart from "./CartStyles";
-
 import CartItem from "./CartItem";
+import { Button } from "../../common/styles/componentsStyles";
+import { BtnsContainer } from "./CartListStyles";
 
-const Cart = () => {
+import { StyledCart } from "./CartListStyles";
+
+const CartList = () => {
   const { cartItems } = useContext(UserContext);
+
+  const orderHandler: () => void = () => {
+    //TODO:
+    console.log(cartItems);
+  };
 
   return (
     <StyledCart>
+      {/* <CartHeading>Cart</CartHeading> */}
       {cartItems.length === 0 && (
         <p className="empty-cart-msg">
           Cart is empty. Please add sweets to cart first!
@@ -27,12 +36,15 @@ const Cart = () => {
           ></CartItem>
         ))}
       {cartItems.length !== 0 && (
-        <div className="btn-order__container">
-          <button className="btn-order">Order</button>
-        </div>
+        <BtnsContainer>
+          <NavLink to="/">
+            <Button>Back</Button>
+          </NavLink>
+          <Button onClick={orderHandler}>Order</Button>
+        </BtnsContainer>
       )}
     </StyledCart>
   );
 };
 
-export default Cart;
+export default CartList;

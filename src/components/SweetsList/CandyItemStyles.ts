@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { Container } from "../../common/styles/componentsStyles";
+
 const StyledCandyItem = styled.div`
   display: flex;
   margin: 1rem;
@@ -39,18 +41,11 @@ const StyledCandyItem = styled.div`
       font-weight: bold;
     }
   }
+`;
 
-  & .btn-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1rem;
-  }
-
-  & .btn-container .btns-add-remove {
-    display: flex;
-    justify-content: space-between;
-  }
+export const BtnsMainAddRemoveContainer = styled(Container)`
+  justify-content: space-between;
+  gap: 1rem;
 `;
 
 export default StyledCandyItem;
