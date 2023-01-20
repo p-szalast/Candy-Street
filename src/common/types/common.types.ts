@@ -25,14 +25,14 @@ export type AddressObject = {
   firstName: string;
   lastName: string;
   street: string;
-  number: string;
-  postalCode: string;
+  houseNumber: string;
+  postCode: string;
   city: string;
 };
 
 /// Personal Data Form exports ////
 
-export type PersonalDataFormInputs = {
+export type PersonalDataFormInputsObject = {
   firstName: string;
   lastName: string;
   phoneNumber: string;
@@ -41,3 +41,11 @@ export type PersonalDataFormInputs = {
   city: string;
   postCode: string;
 };
+
+/// Order Object & History
+
+export interface OrderInterface {
+  orderedCandies: CartItemObject[];
+  address: AddressObject;
+  date: String;
+}

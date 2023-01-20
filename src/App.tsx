@@ -6,6 +6,7 @@ import MainHeader from "./components/Layout/MainHeader/MainHeader";
 import MainPage from "./pages/MainPage/MainPage";
 import CartPage from "./pages/CartPage/CartPage";
 import SummaryPage from "./pages/SummaryPage/SummaryPage";
+import HistoryPage from "./pages/History/HistoryPage";
 import Footer from "./components/Layout/Footer/Footer";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path={navKeys.main} element={<MainPage />} />
         <Route path={navKeys.cart} element={<CartPage />} />
         <Route path={navKeys.summary} element={<SummaryPage />} />
+        <Route path={navKeys.history} element={<HistoryPage />} />
       </Routes>
       <Footer />
     </UserContextProvider>

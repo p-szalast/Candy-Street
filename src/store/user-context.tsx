@@ -1,8 +1,14 @@
 import React, { useReducer, PropsWithChildren } from "react";
-import { CartItemObject } from "../common/types/common.types";
+import {
+  CartItemObject,
+  AddressObject,
+  OrderInterface,
+} from "../common/types/common.types";
 import {
   CartActions,
   CartTypes,
+  UserTypes,
+  UserActions,
   UserContextObject,
 } from "./user-context-types";
 
@@ -15,6 +21,8 @@ const defaultUserState: UserContextObject = {
   addItem: () => {},
   removeItem: () => {},
   clearCart: () => {},
+  setAddress: () => {},
+  addToHistory: () => {},
 };
 
 // Creating context
@@ -23,7 +31,14 @@ export const UserContext =
 UserContext.displayName = "UserContext";
 
 // Creating reducer function
-const userReducer = (state: UserContextObject, action: CartActions) => {
+const userReducer = (
+  state: UserContextObject,
+  action: CartActions | UserActions
+) => {
+  ///////////////////////
+  ///// CART ACTIONS /////
+  ////////////////////////
+
   if (action.type === CartTypes.ADD_ITEM) {
     //Check if item is already in the cart
     const indexOfAlreadyAddedItem: number = state.cartItems.findIndex(
@@ -70,6 +85,35 @@ const userReducer = (state: UserContextObject, action: CartActions) => {
   }
 
   if (action.type === CartTypes.CLEAR_CART) {
+    const updatedState = {
+      ...state,
+      cartItems: [],
+    };
+
+    return updatedState;
+  }
+
+  ///////////////////////
+  ///// USER ACTIONS /////
+  ////////////////////////
+
+  if (action.type === UserTypes.SET_ADDRESS) {
+    const updatedState = {
+      ...state,
+      address: action.payload.address,
+    };
+
+    return updatedState;
+  }
+
+  if (action.type === UserTypes.ADD_TO_HISTORY) {
+    //TODO: history: number??
+    // const updatedHistory = state.history.push(action.payload.order);
+    // const updatedState = {
+    //   ...state,
+    //   history: updatedHistory,
+    // };
+    // return updatedState;
   }
 
   return state;
@@ -81,6 +125,10 @@ const UserContextProvider = (props: PropsWithChildren) => {
     userReducer,
     defaultUserState
   );
+
+  ///////////////////////
+  ///// CART ACTIONS /////
+  ////////////////////////
 
   const addItemHandler = (item: CartItemObject) => {
     dispatchUserAction({
@@ -106,6 +154,30 @@ const UserContextProvider = (props: PropsWithChildren) => {
     });
   };
 
+  ///////////////////////
+  ///// USER ACTIONS /////
+  ////////////////////////
+
+  const setAddressHandler = (address: AddressObject) => {
+    dispatchUserAction({
+      type: UserTypes.SET_ADDRESS,
+      payload: {
+        address,
+      },
+    });
+  };
+
+  const addToHistoryHandler = (order: OrderInterface) => {
+    dispatchUserAction({
+      type: UserTypes.ADD_TO_HISTORY,
+      payload: {
+        order,
+      },
+    });
+  };
+
+  ///////////////////////////////////////
+
   const contextValue: UserContextObject = {
     cartItems: userState.cartItems,
     address: userState.address,
@@ -114,6 +186,8 @@ const UserContextProvider = (props: PropsWithChildren) => {
     addItem: addItemHandler,
     removeItem: removeItemHandler,
     clearCart: clearCartHandler,
+    setAddress: setAddressHandler,
+    addToHistory: addToHistoryHandler,
   };
 
   return (

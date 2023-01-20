@@ -8,7 +8,7 @@ import CartItem from "./CartItem";
 import { Button } from "../../common/styles/componentsStyles";
 import { BtnsContainer } from "./CartListStyles";
 
-import { StyledCart } from "./CartListStyles";
+import { StyledCartList } from "./CartListStyles";
 
 const CartList = () => {
   const { cartItems } = useContext(UserContext);
@@ -19,7 +19,7 @@ const CartList = () => {
   );
 
   return (
-    <StyledCart>
+    <StyledCartList>
       {/* <CartHeading>Cart</CartHeading> */}
       <h3>Cart</h3>
       {cartItems.length === 0 && (
@@ -47,7 +47,7 @@ const CartList = () => {
           </NavLink>
         </BtnsContainer>
       )}
-    </StyledCart>
+    </StyledCartList>
   );
 };
 

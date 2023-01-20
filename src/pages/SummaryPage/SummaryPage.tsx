@@ -1,14 +1,14 @@
-import { StyledSummaryPage } from "./SummaryPageStyles";
-import Summary from "../../components/Summary/Summary";
+import { StyledPage } from "../../common/styles/componentsStyles";
 
+import Summary from "../../components/Summary/Summary";
 import Hero from "../../components/Layout/Hero/Hero";
 
 const SummaryPage = () => {
   return (
-    <StyledSummaryPage>
+    <StyledPage>
       <Hero />
       <Summary />
-    </StyledSummaryPage>
+    </StyledPage>
   );
 };
 

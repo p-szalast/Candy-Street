@@ -1,33 +1,39 @@
 import { useContext } from "react";
-
 import { UserContext } from "../../store/user-context";
 
 import PersonalDataForm from "./PersonalDataForm";
 
-import { StyledSummary } from "./SummaryStyles";
+import Order from "../../models/order";
 
+import { postOrder } from "../../common/service/common-service";
+
+import { StyledSummary } from "./SummaryStyles";
 import { Button, Container } from "../../common/styles/componentsStyles";
 
+import { AddressObject } from "../../common/types/common.types";
+
 const Summary = () => {
-  const { cartItems, address } = useContext(UserContext);
+  const { cartItems, clearCart } = useContext(UserContext);
 
   const totalAmount = cartItems.reduce(
     (acc, cur) => acc + cur.amount * cur.price,
     0
   );
 
-  const confirmOrderHandler: () => void = () => {
-    //TODO:
-    console.log(cartItems, address);
+  const confirmOrderHandler: (enteredAddress: AddressObject) => void = (
+    enteredAddress
+  ) => {
+    const newOrder = new Order(cartItems, enteredAddress);
+    postOrder(newOrder);
+    console.log(newOrder);
+
+    clearCart();
   };
 
   return (
     <StyledSummary>
-      <PersonalDataForm />
-      <div>
-        <p>Total amount:</p>
-        <p>{totalAmount} zł</p>
-      </div>
+      <PersonalDataForm onConfirmOrder={confirmOrderHandler} />
+      {cartItems && <p>Total Amount: {totalAmount} zł</p>}
     </StyledSummary>
   );
 };

@@ -1,13 +1,19 @@
-import { AddressObject, CartItemObject } from "../common/types/common.types";
+import {
+  AddressObject,
+  CartItemObject,
+  OrderInterface,
+} from "../common/types/common.types";
 
 export type UserContextObject = {
   cartItems: CartItemObject[];
   address: AddressObject | null;
-  history?: [];
+  history: OrderInterface[];
   sortType?: string;
   addItem: (item: CartItemObject) => void;
   removeItem: (id: string) => void;
   clearCart: () => void;
+  setAddress: (address: AddressObject) => void;
+  addToHistory: (order: OrderInterface) => void;
 };
 
 export enum CartTypes {
@@ -35,3 +41,26 @@ export type ClearCartAction = {
 };
 
 export type CartActions = AddItemAction | RemoveItemAction | ClearCartAction;
+
+///////////////////////////////////////////
+
+export enum UserTypes {
+  SET_ADDRESS = "SET_ADDRESS",
+  ADD_TO_HISTORY = "ADD_TO_HISTORY",
+}
+
+export type SetAddressAction = {
+  type: UserTypes.SET_ADDRESS;
+  payload: {
+    address: AddressObject;
+  };
+};
+
+export type AddToHistoryAction = {
+  type: UserTypes.ADD_TO_HISTORY;
+  payload: {
+    order: OrderInterface;
+  };
+};
+
+export type UserActions = SetAddressAction | AddToHistoryAction;

@@ -1,14 +1,14 @@
-import { StyledCartPage } from "./CartPageStyles";
+import { StyledPage } from "../../common/styles/componentsStyles";
 
 import Hero from "../../components/Layout/Hero/Hero";
 import Cart from "../../components/Cart/CartList";
 
 const CartPage = () => {
   return (
-    <StyledCartPage>
+    <StyledPage>
       <Hero />
       <Cart />
-    </StyledCartPage>
+    </StyledPage>
   );
 };
 
