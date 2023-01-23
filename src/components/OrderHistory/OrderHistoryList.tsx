@@ -6,7 +6,10 @@ import { fetchOrderHistory } from "../../common/service/common-service";
 import OrderItem from "./OrderItem";
 
 import { Button } from "../../common/styles/componentsStyles";
-import { StyledOrderHistoryList } from "./OrderHistoryListStyles";
+import {
+  BtnsContainer,
+  StyledOrderHistoryList,
+} from "./OrderHistoryListStyles";
 
 import { OrderInterface } from "../../common/types/common.types";
 
@@ -27,18 +30,21 @@ const OrderHistoryList = () => {
 
   return (
     <StyledOrderHistoryList>
+      <h2>Order History</h2>
+      <BtnsContainer>
+        <NavLink className="btn-go-to-cart__container" to={navKeys.main}>
+          <Button>Back to Sweets List</Button>
+        </NavLink>
+      </BtnsContainer>
       {orders &&
         orders.map((item) => (
           <OrderItem
             orderedCandies={item.orderedCandies}
             address={item.address}
             date={item.date}
-            key={item.date.toString()}
+            key={item.date}
           />
         ))}
-      <NavLink className="btn-go-to-cart__container" to={navKeys.main}>
-        <Button>Back to Sweets List</Button>
-      </NavLink>
     </StyledOrderHistoryList>
   );
 };

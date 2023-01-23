@@ -1,49 +1,21 @@
-import { NavLink } from "react-router-dom";
-import { navKeys } from "../../routes/routes";
-
-import { useContext } from "react";
-import { UserContext } from "../../store/user-context";
-
 import {
   Label,
   Input,
   LabelInputContainer,
 } from "../../common/styles/componentsStyles";
 
-import {
-  Container,
-  FormContainer,
-  Button,
-} from "../../common/styles/componentsStyles";
+import { FormContainer } from "../../common/styles/componentsStyles";
 
-import { useFormik } from "formik";
-import { AddressObject } from "../../common/types/common.types";
+import { FormikProps } from "formik";
+import { PersonalDataFormInputsObject } from "../../common/types/common.types";
 
-const PersonalDataForm = (props: {
-  onConfirmOrder: (address: AddressObject) => void;
+const PersonalDataForm = ({
+  formik,
+}: {
+  formik: FormikProps<PersonalDataFormInputsObject>;
 }) => {
-  const { setAddress } = useContext(UserContext);
-
-  const formik = useFormik({
-    initialValues: {
-      firstName: "",
-      lastName: "",
-      phoneNumber: "",
-      street: "",
-      houseNumber: "",
-      city: "",
-      postCode: "",
-    },
-
-    //TODO: move Buttons to Summary.tsx
-    onSubmit: (values) => {
-      setAddress(values);
-      props.onConfirmOrder(values);
-    },
-  });
-
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form>
       <FormContainer>
         <LabelInputContainer>
           <Label htmlFor="firstName">First Name</Label>
@@ -118,16 +90,6 @@ const PersonalDataForm = (props: {
           />
         </LabelInputContainer>
       </FormContainer>
-      <Container>
-        <NavLink to={navKeys.cart}>
-          <Button>Back to Cart</Button>
-        </NavLink>
-        {/* TODO: NavLink + SubmitButton */}
-
-        {/* <NavLink to={navKeys.main}> */}
-        <Button type="submit">Confirm Order</Button>
-        {/* </NavLink> */}
-      </Container>
     </form>
   );
 };

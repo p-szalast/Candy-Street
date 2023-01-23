@@ -7,7 +7,7 @@ import {
 class Order implements OrderInterface {
   orderedCandies: CartItemObject[];
   address: AddressObject;
-  date: String;
+  date: string;
 
   constructor(cartItems: CartItemObject[], address: AddressObject) {
     this.address = address;

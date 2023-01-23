@@ -84,6 +84,11 @@ export const Container = styled.div`
   justify-content: center;
 `;
 
+export const BtnsContainer = styled(Container)`
+  margin: auto 2rem;
+  justify-content: end;
+`;
+
 export const LabelInputContainer = styled(Container)`
   flex-direction: column;
 `;

@@ -58,6 +58,8 @@ const userReducer = (
       updatedCartItems = state.cartItems.concat(action.payload.item);
     }
 
+    //TODO: update local storage
+
     //updating app state with changed CartItems
     const updatedState = {
       ...state,

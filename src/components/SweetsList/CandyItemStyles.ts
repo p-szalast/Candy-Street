@@ -5,8 +5,7 @@ import { Container } from "../../common/styles/componentsStyles";
 const StyledCandyItem = styled.div`
   display: flex;
   margin: 1rem;
-
-  padding: 1rem 1rem;
+  padding: 1rem;
   background: #fff;
   opacity: 90%;
   border: 0px solid #fff;
