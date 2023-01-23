@@ -7,7 +7,7 @@ import { Button } from "../../../common/styles/componentsStyles";
 import logo from "../../../assets/logo.png";
 import { Cart } from "../../../assets/icons";
 
-const MainHeader: React.FC = () => {
+const MainHeader = () => {
   return (
     <StyledMainHeader>
       <NavLink to="/">

@@ -1,13 +1,14 @@
-import { StyledMain } from "./MainPageStyles";
+import { StyledPage } from "../../common/styles/componentsStyles";
+
 import Hero from "../../components/Layout/Hero/Hero";
 import SweetsList from "../../components/SweetsList/SweetsList";
 
 const MainPage = () => {
   return (
-    <StyledMain>
+    <StyledPage>
       <Hero />
       <SweetsList />
-    </StyledMain>
+    </StyledPage>
   );
 };
 

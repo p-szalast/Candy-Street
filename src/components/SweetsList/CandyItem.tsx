@@ -8,7 +8,7 @@ import StyledCandyItem, { BtnsMainAddRemoveContainer } from "./CandyItemStyles";
 
 import { CartItemObject } from "../../common/types/common.types";
 
-const CandyItem: React.FC<CandyItemObject> = (props) => {
+const CandyItem = (props: CandyItemObject) => {
   const { cartItems, addItem, removeItem } = useContext(UserContext);
 
   //checking if item is already in cart

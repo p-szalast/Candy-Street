@@ -11,7 +11,7 @@ import { ButtonLittle } from "../../common/styles/componentsStyles";
 
 import { CartItemObject } from "../../common/types/common.types";
 
-const CandyItem: React.FC<CartItemObject> = (props) => {
+const CandyItem = (props: CartItemObject) => {
   const [amount, setAmount] = useState(props.amount);
   const { addItem, removeItem } = useContext(UserContext);
 
@@ -44,7 +44,6 @@ const CandyItem: React.FC<CartItemObject> = (props) => {
       name: props.name,
       price: props.price,
       amount: 1,
-      image: props.image,
     });
   };
 

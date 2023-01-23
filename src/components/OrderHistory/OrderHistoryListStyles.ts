@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { Container } from "../../common/styles/componentsStyles";
 
-export const StyledCartList = styled.div`
+export const StyledOrderHistoryList = styled.div`
   display: block;
   margin: 1rem auto;
   max-width: 60rem;

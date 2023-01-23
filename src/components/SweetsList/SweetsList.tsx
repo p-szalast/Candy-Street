@@ -1,7 +1,7 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { navKeys } from "../../routes/routes";
 
-import { UserContext } from "../../store/user-context";
 import { getAvailableCandies } from "../../common/service/common-service";
 import CandyItem from "./CandyItem";
 
@@ -34,7 +34,7 @@ const SweetsList = () => {
             image={item.image}
           />
         ))}
-      <NavLink className="btn-go-to-cart__container" to="/cart">
+      <NavLink className="btn-go-to-cart__container" to={navKeys.cart}>
         <Button>Go to Cart</Button>
       </NavLink>
     </StyledSweetsList>

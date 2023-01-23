@@ -2,27 +2,28 @@ import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { UserContext } from "../../store/user-context";
 
+import { navKeys } from "../../routes/routes";
+
 import CartItem from "./CartItem";
 import { Button } from "../../common/styles/componentsStyles";
 import { BtnsContainer } from "./CartListStyles";
 
-import { StyledCart } from "./CartListStyles";
+import { StyledCartList } from "./CartListStyles";
 
 const CartList = () => {
   const { cartItems } = useContext(UserContext);
 
-  const orderHandler: () => void = () => {
-    //TODO:
-    console.log(cartItems);
-  };
+  const totalAmount = cartItems.reduce(
+    (acc, cur) => acc + cur.amount * cur.price,
+    0
+  );
 
   return (
-    <StyledCart>
+    <StyledCartList>
       {/* <CartHeading>Cart</CartHeading> */}
+      <h3>Cart</h3>
       {cartItems.length === 0 && (
-        <p className="empty-cart-msg">
-          Cart is empty. Please add sweets to cart first!
-        </p>
+        <p>Cart is empty. Please add sweets to cart first!</p>
       )}
       {cartItems &&
         cartItems.map((item) => (
@@ -35,15 +36,18 @@ const CartList = () => {
             image={item.image}
           ></CartItem>
         ))}
+      {cartItems && <p>Total Amount: {totalAmount} zł</p>}
       {cartItems.length !== 0 && (
         <BtnsContainer>
-          <NavLink to="/">
+          <NavLink to={navKeys.main}>
             <Button>Back</Button>
           </NavLink>
-          <Button onClick={orderHandler}>Order</Button>
+          <NavLink to={navKeys.summary}>
+            <Button>Order</Button>
+          </NavLink>
         </BtnsContainer>
       )}
-    </StyledCart>
+    </StyledCartList>
   );
 };
 

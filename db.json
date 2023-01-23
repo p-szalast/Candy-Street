@@ -43,9 +43,27 @@
       "description": "Candy lovers of all ages really dig this mix of oversized jellies! Giant jellies are a real hit at birthday parties and candy buffets, as well as toppers for your favorite crafts (think gingerbread houses) and desserts!"
     }
   ],
-  "orders": [],
-  "users": [
-    { "id": "u01", "type": "ADMIN" },
-    { "id": "u02", "type": "USER" }
+  "orders": [
+    {
+      "orderedCandies": [
+        {
+          "id": "c01",
+          "name": "Classic Chocolate Chip Cookies (20 pieces)",
+          "price": 8,
+          "amount": 2
+        }
+      ],
+      "address": {
+        "firstName": "test name 2",
+        "lastName": "",
+        "phoneNumber": "",
+        "street": "",
+        "houseNumber": "",
+        "city": "",
+        "postCode": ""
+      },
+      "date": "Mon Jan 23 2023 10:04:35 GMT+0100 (Central European Standard Time)",
+      "id": 2
+    }
   ]
 }

@@ -1,15 +1,15 @@
 import { StyledPage } from "../../common/styles/componentsStyles";
 
+import Summary from "../../components/Summary/Summary";
 import Hero from "../../components/Layout/Hero/Hero";
-import Cart from "../../components/Cart/CartList";
 
-const CartPage = () => {
+const SummaryPage = () => {
   return (
     <StyledPage>
       <Hero />
-      <Cart />
+      <Summary />
     </StyledPage>
   );
 };
 
-export default CartPage;
+export default SummaryPage;
