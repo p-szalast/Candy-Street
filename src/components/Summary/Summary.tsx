@@ -23,6 +23,7 @@ const Summary = () => {
   const confirmOrderHandler: (enteredAddress: AddressObject) => void = (
     enteredAddress
   ) => {
+    // cartItems;
     const newOrder = new Order(cartItems, enteredAddress);
     postOrder(newOrder);
     console.log(newOrder);

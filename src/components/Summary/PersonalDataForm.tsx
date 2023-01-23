@@ -39,8 +39,6 @@ const PersonalDataForm = (props: {
     onSubmit: (values) => {
       setAddress(values);
       props.onConfirmOrder(values);
-
-      // console.log({ cartItems, address: values, date: new Date() });
     },
   });
 

@@ -16,7 +16,6 @@ export const StyledPage = styled.main`
   min-width: 600px;
   padding-bottom: 5rem;
   overflow: auto;
-
   color: #fff;
 `;
 
@@ -45,7 +44,6 @@ export const ButtonLittle = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-
   border: 1px solid black;
   border-radius: 100px;
   background-color: white;
@@ -94,8 +92,6 @@ export const FormContainer = styled(Container)`
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 1rem 12rem 0 12rem;
-  /* justify-items: flex-start; */
-
   gap: 1rem;
   margin-bottom: 2rem;
 `;

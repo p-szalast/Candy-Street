@@ -50,63 +50,19 @@
           "id": "c01",
           "name": "Classic Chocolate Chip Cookies (20 pieces)",
           "price": 8,
-          "amount": 5,
-          "image": "https://sallysbakingaddiction.com/wp-content/uploads/2013/05/classic-chocolate-chip-cookies.jpg"
-        },
-        {
-          "id": "c04",
-          "name": "Christmas Tree Lolipops (10 piesces)",
-          "price": 4.5,
-          "amount": 1,
-          "image": "https://cdn.shopify.com/s/files/1/1371/3393/products/41862HPQRML._SL1000.jpg"
-        },
-        {
-          "id": "c02",
-          "name": "Candy Canes (12 pieces)",
-          "price": 6.5,
-          "amount": 2,
-          "image": "https://www.farmersalmanac.com/wp-content/uploads/2011/12/candy-canes-as_235424105-.jpeg"
+          "amount": 2
         }
       ],
       "address": {
-        "firstName": "TEST NAME",
-        "lastName": "TEST LASTNAME",
-        "phoneNumber": "TEST",
-        "street": "TEST",
-        "houseNumber": "",
-        "city": "",
-        "postCode": ""
-      },
-      "date": "2023-01-20T14:00:44.012Z",
-      "id": 1
-    },
-    {
-      "orderedCandies": [
-        {
-          "id": "c01",
-          "name": "Classic Chocolate Chip Cookies (20 pieces)",
-          "price": 8,
-          "amount": 3,
-          "image": "https://sallysbakingaddiction.com/wp-content/uploads/2013/05/classic-chocolate-chip-cookies.jpg"
-        },
-        {
-          "id": "c02",
-          "name": "Candy Canes (12 pieces)",
-          "price": 6.5,
-          "amount": 1,
-          "image": "https://www.farmersalmanac.com/wp-content/uploads/2011/12/candy-canes-as_235424105-.jpeg"
-        }
-      ],
-      "address": {
-        "firstName": "TEST2",
-        "lastName": "TEST2",
+        "firstName": "test name 2",
+        "lastName": "",
         "phoneNumber": "",
         "street": "",
         "houseNumber": "",
         "city": "",
         "postCode": ""
       },
-      "date": "Fri Jan 20 2023 16:27:47 GMT+0100 (Central European Standard Time)",
+      "date": "Mon Jan 23 2023 10:04:35 GMT+0100 (Central European Standard Time)",
       "id": 2
     }
   ]

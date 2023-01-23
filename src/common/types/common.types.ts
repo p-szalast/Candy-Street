@@ -48,4 +48,5 @@ export interface OrderInterface {
   orderedCandies: CartItemObject[];
   address: AddressObject;
   date: String;
+  key?: String;
 }

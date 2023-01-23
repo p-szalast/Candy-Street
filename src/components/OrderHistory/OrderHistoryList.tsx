@@ -11,7 +11,7 @@ import { StyledOrderHistoryList } from "./OrderHistoryListStyles";
 import { OrderInterface } from "../../common/types/common.types";
 
 const OrderHistoryList = () => {
-  const [orders, setOrders] = useState<OrderInterface[] | null>([]);
+  const [orders, setOrders] = useState<OrderInterface[]>([]);
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -33,9 +33,7 @@ const OrderHistoryList = () => {
             orderedCandies={item.orderedCandies}
             address={item.address}
             date={item.date}
-            // TODO:
-            // key={item.date}
-            key={Math.random.toString()}
+            key={item.date.toString()}
           />
         ))}
       <NavLink className="btn-go-to-cart__container" to={navKeys.main}>

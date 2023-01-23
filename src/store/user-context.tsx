@@ -1,9 +1,5 @@
 import React, { useReducer, PropsWithChildren } from "react";
-import {
-  CartItemObject,
-  AddressObject,
-  OrderInterface,
-} from "../common/types/common.types";
+import { CartItemObject, AddressObject } from "../common/types/common.types";
 import {
   CartActions,
   CartTypes,
@@ -16,13 +12,11 @@ import {
 const defaultUserState: UserContextObject = {
   cartItems: [],
   address: null,
-  history: [],
   sortType: "",
   addItem: () => {},
   removeItem: () => {},
   clearCart: () => {},
   setAddress: () => {},
-  addToHistory: () => {},
 };
 
 // Creating context
@@ -106,16 +100,6 @@ const userReducer = (
     return updatedState;
   }
 
-  if (action.type === UserTypes.ADD_TO_HISTORY) {
-    //TODO: history: number??
-    // const updatedHistory = state.history.push(action.payload.order);
-    // const updatedState = {
-    //   ...state,
-    //   history: updatedHistory,
-    // };
-    // return updatedState;
-  }
-
   return state;
 };
 
@@ -167,27 +151,16 @@ const UserContextProvider = (props: PropsWithChildren) => {
     });
   };
 
-  const addToHistoryHandler = (order: OrderInterface) => {
-    dispatchUserAction({
-      type: UserTypes.ADD_TO_HISTORY,
-      payload: {
-        order,
-      },
-    });
-  };
-
   ///////////////////////////////////////
 
   const contextValue: UserContextObject = {
     cartItems: userState.cartItems,
     address: userState.address,
-    history: userState.history,
     sortType: "",
     addItem: addItemHandler,
     removeItem: removeItemHandler,
     clearCart: clearCartHandler,
     setAddress: setAddressHandler,
-    addToHistory: addToHistoryHandler,
   };
 
   return (

@@ -10,9 +10,15 @@ class Order implements OrderInterface {
   date: String;
 
   constructor(cartItems: CartItemObject[], address: AddressObject) {
-    this.orderedCandies = cartItems;
     this.address = address;
+
+    //Adding current date
     this.date = new Date().toString();
+
+    //Removing url to image before creating object to post
+    cartItems.forEach((item) => delete item.image);
+
+    this.orderedCandies = cartItems;
   }
 }
 
