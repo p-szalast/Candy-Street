@@ -19,13 +19,38 @@ export const StyledPage = styled.main`
   color: #fff;
 `;
 
+export const Item = styled.div`
+  display: flex;
+  margin: 1rem;
+  padding: 1rem;
+  background: #fff;
+  opacity: 90%;
+  gap: 0.5rem;
+  border: 0px solid #fff;
+  border-radius: 10px;
+  color: black;
+`;
+
+export const TotalAmountItem = styled(Item)`
+  justify-content: center;
+`;
+
 //// Text
+export const PageHeading = styled.h2`
+  text-align: left;
+  margin-left: 1.5rem;
+  font-weight: 300;
+`;
 
-export const H2 = styled.h2``;
+///Image
 
-export const H3 = styled.h3``;
-
-export const P = styled.p``;
+export const Image = styled.img`
+  object-fit: cover;
+  height: 10rem;
+  width: 10rem;
+  border: 0px solid #fff;
+  border-radius: 10px;
+`;
 
 /// Label/Input
 
@@ -92,19 +117,11 @@ export const Container = styled.div`
   justify-content: center;
 `;
 
-export const BtnsContainer = styled(Container)`
-  margin: auto 2rem;
-  justify-content: end;
-`;
-
-export const LabelInputContainer = styled(Container)`
+export const VFlexBox = styled(Container)`
   flex-direction: column;
 `;
 
-export const FormContainer = styled(Container)`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 1rem 12rem 0 12rem;
-  gap: 1rem;
-  margin-bottom: 2rem;
+export const BtnsContainer = styled(Container)`
+  margin: auto 2rem;
+  justify-content: end;
 `;

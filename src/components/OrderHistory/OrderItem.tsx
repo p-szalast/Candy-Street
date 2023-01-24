@@ -1,5 +1,7 @@
 import { OrderInterface } from "../../common/types/common.types";
 
+import { calcCartTotalAmount } from "../../common/helpers";
+
 import StyledOrderItem, {
   OrderContainer,
   OrderDetailsContainer,
@@ -20,10 +22,7 @@ const OrderItem = (props: OrderInterface) => {
   const orderedContentJoined: string = orderedContent.join(", ");
 
   //Calculating TotalAmount
-  const totalAmount = props.orderedCandies.reduce(
-    (acc, cur) => acc + cur.amount * cur.price,
-    0
-  );
+  const totalAmount = calcCartTotalAmount(props.orderedCandies);
 
   return (
     <StyledOrderItem>

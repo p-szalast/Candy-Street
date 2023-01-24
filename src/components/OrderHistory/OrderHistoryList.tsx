@@ -5,7 +5,7 @@ import { navKeys } from "../../routes/routes";
 import { fetchOrderHistory } from "../../common/service/common-service";
 import OrderItem from "./OrderItem";
 
-import { Button } from "../../common/styles/componentsStyles";
+import { Button, PageHeading } from "../../common/styles/componentsStyles";
 import {
   BtnsContainer,
   StyledOrderHistoryList,
@@ -24,18 +24,14 @@ const OrderHistoryList = () => {
     fetchOrders();
   }, []);
 
-  //guard clause
-  if (!orders)
-    return <p>No orders. Please make your fisrt order to see history!</p>;
-
   return (
     <StyledOrderHistoryList>
-      <h2>Order History</h2>
       <BtnsContainer>
         <NavLink className="btn-go-to-cart__container" to={navKeys.main}>
           <Button>Back to Sweets List</Button>
         </NavLink>
       </BtnsContainer>
+      <PageHeading>Order History</PageHeading>
       {orders &&
         orders.map((item) => (
           <OrderItem
@@ -44,6 +40,10 @@ const OrderHistoryList = () => {
             date={item.date}
             key={item.date}
           />
+        ))}
+      {!orders ||
+        (orders.length === 0 && (
+          <p>No orders. Please make your fisrt order to see history!</p>
         ))}
     </StyledOrderHistoryList>
   );

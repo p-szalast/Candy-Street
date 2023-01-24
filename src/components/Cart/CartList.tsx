@@ -4,24 +4,26 @@ import { UserContext } from "../../store/user-context";
 
 import { navKeys } from "../../routes/routes";
 
-import CartItem from "./CartItem";
-import { Button } from "../../common/styles/componentsStyles";
-import { StyledCartList } from "./CartListStyles";
+import { calcCartTotalAmount } from "../../common/helpers";
 
-import { BtnsContainer } from "../../common/styles/componentsStyles";
+import CartItem from "./CartItem";
+
+import {
+  Button,
+  BtnsContainer,
+  PageHeading,
+  TotalAmountItem,
+} from "../../common/styles/componentsStyles";
+import { StyledCartList } from "./CartListStyles";
 
 const CartList = () => {
   const { cartItems } = useContext(UserContext);
 
-  const totalAmount = cartItems.reduce(
-    (acc, cur) => acc + cur.amount * cur.price,
-    0
-  );
+  const totalAmount = calcCartTotalAmount(cartItems);
 
   return (
     <StyledCartList>
-      {/* <CartHeading>Cart</CartHeading> */}
-      <h3>Cart</h3>
+      <PageHeading>Cart</PageHeading>
       {cartItems.length === 0 && (
         <p>Cart is empty. Please add sweets to cart first!</p>
       )}
@@ -36,7 +38,11 @@ const CartList = () => {
             image={item.image}
           ></CartItem>
         ))}
-      {cartItems && <p>Total Amount: {totalAmount} zł</p>}
+      {cartItems.length !== 0 && (
+        <TotalAmountItem>
+          <p>Total Amount:</p> <strong>{totalAmount} zł</strong>
+        </TotalAmountItem>
+      )}
       {cartItems.length !== 0 && (
         <BtnsContainer>
           <NavLink to={navKeys.main}>

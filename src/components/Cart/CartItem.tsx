@@ -6,7 +6,9 @@ import { Delete } from "../../assets/icons";
 import StyledCartItem, {
   BtnsAddRemoveContainer,
   ButtonDelete,
+  CartImage,
 } from "./CartItemStyles";
+
 import { ButtonLittle } from "../../common/styles/componentsStyles";
 
 import { CartItemObject } from "../../common/types/common.types";
@@ -53,17 +55,17 @@ const CandyItem = (props: CartItemObject) => {
 
   return (
     <StyledCartItem>
-      <img alt="" src={props.image} />
+      <CartImage alt="" src={props.image} />
       <h3 className="cart-item__title">{props.name}</h3>
       <p className="item__price">{props.price} zł</p>
-      <p className="cart-item--signs"> x </p>
+      <strong> x </strong>
       <BtnsAddRemoveContainer>
         <ButtonLittle onClick={btnCartMinusHandler}>-</ButtonLittle>
         <p>{amount}</p>
         <ButtonLittle onClick={btnCartPlusHandler}>+</ButtonLittle>
       </BtnsAddRemoveContainer>
-      <p className="cart-item--signs"> = </p>
-      <p className="item__price-total">{props.price * amount} zł</p>
+      <strong> = </strong>
+      <strong className="item__price-total">{props.price * amount} zł</strong>
       <ButtonDelete onClick={btnDeleteHandler}>
         <Delete />
       </ButtonDelete>

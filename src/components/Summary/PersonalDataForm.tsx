@@ -1,10 +1,6 @@
-import {
-  Label,
-  Input,
-  LabelInputContainer,
-} from "../../common/styles/componentsStyles";
+import { Label, Input, VFlexBox } from "../../common/styles/componentsStyles";
 
-import { FormContainer } from "../../common/styles/componentsStyles";
+import { FormContainer, FormItem } from "./PersonalDataFormStyles";
 
 import { FormikProps } from "formik";
 import { PersonalDataFormInputsObject } from "../../common/types/common.types";
@@ -15,9 +11,9 @@ const PersonalDataForm = ({
   formik: FormikProps<PersonalDataFormInputsObject>;
 }) => {
   return (
-    <form>
+    <FormItem>
       <FormContainer>
-        <LabelInputContainer>
+        <VFlexBox>
           <Label htmlFor="firstName">First Name</Label>
           <Input
             id="firstName"
@@ -26,8 +22,8 @@ const PersonalDataForm = ({
             onChange={formik.handleChange}
             value={formik.values.firstName}
           />
-        </LabelInputContainer>
-        <LabelInputContainer>
+        </VFlexBox>
+        <VFlexBox>
           <Label htmlFor="lastName">Last Name</Label>
           <Input
             id="lastName"
@@ -36,8 +32,8 @@ const PersonalDataForm = ({
             onChange={formik.handleChange}
             value={formik.values.lastName}
           />
-        </LabelInputContainer>
-        <LabelInputContainer>
+        </VFlexBox>
+        <VFlexBox>
           <Label htmlFor="phoneNumber">Phone Number</Label>
           <Input
             id="phoneNumber"
@@ -46,10 +42,10 @@ const PersonalDataForm = ({
             onChange={formik.handleChange}
             value={formik.values.phoneNumber}
           />
-        </LabelInputContainer>
+        </VFlexBox>
       </FormContainer>
       <FormContainer>
-        <LabelInputContainer>
+        <VFlexBox>
           <Label htmlFor="street">Street</Label>
           <Input
             id="street"
@@ -58,8 +54,8 @@ const PersonalDataForm = ({
             onChange={formik.handleChange}
             value={formik.values.street}
           />
-        </LabelInputContainer>
-        <LabelInputContainer>
+        </VFlexBox>
+        <VFlexBox>
           <Label htmlFor="houseNumber">House Number</Label>
           <Input
             id="houseNumber"
@@ -68,8 +64,8 @@ const PersonalDataForm = ({
             onChange={formik.handleChange}
             value={formik.values.houseNumber}
           />
-        </LabelInputContainer>
-        <LabelInputContainer>
+        </VFlexBox>
+        <VFlexBox>
           <Label htmlFor="city">City</Label>
           <Input
             id="city"
@@ -78,8 +74,8 @@ const PersonalDataForm = ({
             onChange={formik.handleChange}
             value={formik.values.city}
           />
-        </LabelInputContainer>
-        <LabelInputContainer>
+        </VFlexBox>
+        <VFlexBox>
           <Label htmlFor="postCode">Post Code</Label>
           <Input
             id="postCode"
@@ -88,9 +84,9 @@ const PersonalDataForm = ({
             onChange={formik.handleChange}
             value={formik.values.postCode}
           />
-        </LabelInputContainer>
+        </VFlexBox>
       </FormContainer>
-    </form>
+    </FormItem>
   );
 };
 

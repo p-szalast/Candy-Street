@@ -5,10 +5,17 @@ import PersonalDataForm from "./PersonalDataForm";
 
 import Order from "../../models/order";
 
+import { calcCartTotalAmount } from "../../common/helpers";
+
 import { postOrder } from "../../common/service/common-service";
 
 import { StyledSummary } from "./SummaryStyles";
-import { BtnsContainer, Button } from "../../common/styles/componentsStyles";
+import {
+  BtnsContainer,
+  Button,
+  Item,
+  TotalAmountItem,
+} from "../../common/styles/componentsStyles";
 
 import {
   AddressObject,
@@ -19,15 +26,8 @@ import { navKeys } from "../../routes/routes";
 import { FormikProps, useFormik } from "formik";
 
 const Summary = () => {
-  const { cartItems, clearCart } = useContext(UserContext);
+  const { cartItems, clearCart, setAddress } = useContext(UserContext);
   const navigate = useNavigate();
-
-  const totalAmount = cartItems.reduce(
-    (acc, cur) => acc + cur.amount * cur.price,
-    0
-  );
-
-  const { setAddress } = useContext(UserContext);
 
   const confirmOrderHandler: (enteredAddress: AddressObject) => void = (
     enteredAddress
@@ -61,19 +61,21 @@ const Summary = () => {
       },
     });
 
+  const totalAmount = calcCartTotalAmount(cartItems);
+
   return (
-    <>
-      <StyledSummary>
-        <PersonalDataForm formik={formik} />
-        {cartItems && <p>Total Amount: {totalAmount} zł</p>}
-        <BtnsContainer>
-          <NavLink to={navKeys.cart}>
-            <Button>Back to Cart</Button>
-          </NavLink>
-          <Button onClick={formik.submitForm}>Confirm Order</Button>
-        </BtnsContainer>
-      </StyledSummary>
-    </>
+    <StyledSummary>
+      <PersonalDataForm formik={formik} />
+      <TotalAmountItem>
+        <p>Total Amount:</p> <strong>{totalAmount} zł</strong>
+      </TotalAmountItem>
+      <BtnsContainer>
+        <NavLink to={navKeys.cart}>
+          <Button>Back to Cart</Button>
+        </NavLink>
+        <Button onClick={formik.submitForm}>Confirm Order</Button>
+      </BtnsContainer>
+    </StyledSummary>
   );
 };
 
