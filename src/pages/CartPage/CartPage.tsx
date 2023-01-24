@@ -5,12 +5,10 @@ import CartList from "../../components/Cart/CartList";
 
 const CartPage = () => {
   return (
-    <div style={{ height: "100vh" }}>
-      <StyledPage>
-        <Hero />
-        <CartList />
-      </StyledPage>
-    </div>
+    <StyledPage>
+      <Hero />
+      <CartList />
+    </StyledPage>
   );
 };
 

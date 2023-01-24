@@ -1,31 +1,23 @@
 import styled from "styled-components";
 
-import { Container, Item } from "../../common/styles/componentsStyles";
+import { Item, VFlexBox } from "../../common/styles/componentsStyles";
 
-export const OrderContainer = styled.div`
-  display: flex;
+const StyledOrderItem = styled(Item)`
+  /* flex-direction: column; */
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  gap: 0.5rem;
 
   > p {
-    text-align: end;
-    flex-basis: 10rem;
+    /* text-align: end; */
+    /* flex-basis: 10rem; */
   }
 `;
 
-export const OrderDetailsContainer = styled(Container)`
-  display: flex;
-  flex-direction: column;
+export const OrderDetailsContainer = styled(VFlexBox)`
   align-items: flex-start;
   text-align: start;
-`;
-
-const StyledOrderItem = styled(Item)`
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 0.5rem;
+  width: 85%;
 `;
 
 export default StyledOrderItem;

@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import backgroundImage from "../../assets/background.png";
 
+import * as theme from "./theme";
+
 /// Page
 
 export const StyledPage = styled.main`
@@ -11,12 +13,12 @@ export const StyledPage = styled.main`
     ),
     url(${backgroundImage}) no-repeat top center fixed;
   background-size: cover;
-  height: 100vh;
+  height: calc(100vh - ${theme.FOOTER_HEIGHT} - ${theme.HEADER_HEIGHT});
   width: 100%;
-  min-width: 600px;
-  padding-bottom: 5rem;
+  padding-bottom: 1rem;
   overflow: auto;
   color: #fff;
+  min-width: 1000px;
 `;
 
 export const Item = styled.div`

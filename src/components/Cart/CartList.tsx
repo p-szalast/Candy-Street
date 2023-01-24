@@ -43,16 +43,17 @@ const CartList = () => {
           <p>Total Amount:</p> <strong>{totalAmount} zł</strong>
         </TotalAmountItem>
       )}
-      {cartItems.length !== 0 && (
-        <BtnsContainer>
-          <NavLink to={navKeys.main}>
-            <Button>Back</Button>
-          </NavLink>
+
+      <BtnsContainer>
+        <NavLink to={navKeys.main}>
+          <Button>Back</Button>
+        </NavLink>
+        {cartItems.length !== 0 && (
           <NavLink to={navKeys.summary}>
             <Button>Order</Button>
           </NavLink>
-        </BtnsContainer>
-      )}
+        )}
+      </BtnsContainer>
     </StyledCartList>
   );
 };

@@ -2,18 +2,13 @@ import { OrderInterface } from "../../common/types/common.types";
 
 import { calcCartTotalAmount } from "../../common/helpers";
 
-import StyledOrderItem, {
-  OrderContainer,
-  OrderDetailsContainer,
-} from "./OrderItemStyles";
+import StyledOrderItem, { OrderDetailsContainer } from "./OrderItemStyles";
 
 const OrderItem = (props: OrderInterface) => {
   //Formatting date
-  let formattedDate;
-  if (typeof props.date === "string") {
-    const date: Date = new Date(props.date);
-    formattedDate = date.toLocaleDateString();
-  }
+  let formattedDate: string;
+  const date: Date = new Date(props.date);
+  formattedDate = `${date.toLocaleDateString()} (${date.toLocaleTimeString()})`;
 
   //Formatting candy items text
   const orderedContent: string[] = props.orderedCandies.map(
@@ -26,14 +21,12 @@ const OrderItem = (props: OrderInterface) => {
 
   return (
     <StyledOrderItem>
-      <OrderContainer>
-        <OrderDetailsContainer>
-          <h3> {formattedDate}</h3>
-          <h4>{`${props.address.firstName} ${props.address.lastName} - ${props.address.street} ${props.address.houseNumber}, ${props.address.postCode} ${props.address.city}`}</h4>
-          <p>{orderedContentJoined}</p>
-        </OrderDetailsContainer>
-        <strong>{totalAmount} zł</strong>
-      </OrderContainer>
+      <OrderDetailsContainer>
+        <h3> {formattedDate}</h3>
+        <h4>{`${props.address.firstName} ${props.address.lastName} - ${props.address.street} ${props.address.houseNumber}, ${props.address.postCode} ${props.address.city}`}</h4>
+        <p>{orderedContentJoined}</p>
+      </OrderDetailsContainer>
+      <strong>{totalAmount}&nbsp;zł</strong>
     </StyledOrderItem>
   );
 };

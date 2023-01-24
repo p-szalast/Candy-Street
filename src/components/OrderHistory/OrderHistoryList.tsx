@@ -28,7 +28,7 @@ const OrderHistoryList = () => {
     <StyledOrderHistoryList>
       <BtnsContainer>
         <NavLink className="btn-go-to-cart__container" to={navKeys.main}>
-          <Button>Back to Sweets List</Button>
+          <Button>Back</Button>
         </NavLink>
       </BtnsContainer>
       <PageHeading>Order History</PageHeading>
