@@ -13,7 +13,6 @@ import { StyledSummary } from "./SummaryStyles";
 import {
   BtnsContainer,
   Button,
-  Item,
   TotalAmountItem,
 } from "../../common/styles/componentsStyles";
 

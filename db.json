@@ -238,6 +238,39 @@
       },
       "date": "Tue Jan 24 2023 16:10:47 GMT+0100 (Central European Standard Time)",
       "id": 8
+    },
+    {
+      "orderedCandies": [
+        {
+          "id": "c01",
+          "name": "Classic Chocolate Chip Cookies (20 pieces)",
+          "price": 8,
+          "amount": 33
+        },
+        {
+          "id": "c02",
+          "name": "Candy Canes (12 pieces)",
+          "price": 6.5,
+          "amount": 33
+        },
+        {
+          "id": "c03",
+          "name": "Moist Chocolate Muffins (4 pieces)",
+          "price": 12,
+          "amount": 21
+        }
+      ],
+      "address": {
+        "firstName": "Barbara",
+        "lastName": "Bryga",
+        "phoneNumber": "",
+        "street": "",
+        "houseNumber": "",
+        "city": "",
+        "postCode": ""
+      },
+      "date": "Tue Jan 24 2023 17:12:43 GMT+0100 (Central European Standard Time)",
+      "id": 9
     }
   ]
 }

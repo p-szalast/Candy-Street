@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { Container, Item, Image } from "../../common/styles/componentsStyles";
+import { Container, Item } from "../../common/styles/componentsStyles";
 
 const StyledCandyItem = styled(Item)`
   gap: 1rem;
