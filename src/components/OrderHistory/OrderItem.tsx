@@ -33,7 +33,7 @@ const OrderItem = (props: OrderInterface) => {
           <h4>{`${props.address.firstName} ${props.address.lastName} - ${props.address.street} ${props.address.houseNumber}, ${props.address.postCode} ${props.address.city}`}</h4>
           <p>{orderedContentJoined}</p>
         </OrderDetailsContainer>
-        <p>{totalAmount} zł</p>
+        <strong>{totalAmount} zł</strong>
       </OrderContainer>
     </StyledOrderItem>
   );
