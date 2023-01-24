@@ -47,6 +47,6 @@ export type PersonalDataFormInputsObject = {
 export interface OrderInterface {
   orderedCandies: CartItemObject[];
   address: AddressObject;
-  date: String;
-  key?: String;
+  date: string;
+  key?: string;
 }

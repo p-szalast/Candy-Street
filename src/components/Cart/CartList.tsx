@@ -6,9 +6,9 @@ import { navKeys } from "../../routes/routes";
 
 import CartItem from "./CartItem";
 import { Button } from "../../common/styles/componentsStyles";
-import { BtnsContainer } from "./CartListStyles";
-
 import { StyledCartList } from "./CartListStyles";
+
+import { BtnsContainer } from "../../common/styles/componentsStyles";
 
 const CartList = () => {
   const { cartItems } = useContext(UserContext);
