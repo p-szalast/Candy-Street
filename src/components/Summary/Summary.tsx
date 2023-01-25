@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { UserContext } from "../../store/user-context";
-import { NavLink, useNavigate } from "react-router-dom";
+import { emptyAddressObject, UserContext } from "../../store/user-context";
+import { useNavigate } from "react-router-dom";
 import { navKeys } from "../../routes/routes";
 
 import { FormikProps, useFormik } from "formik";
-import * as Yup from "yup";
+import { personalDataFormYupValidationSchema } from "../../common/helpers";
 
 import PersonalDataForm from "./PersonalDataForm";
 
@@ -28,7 +28,7 @@ import {
 } from "../../common/types/common.types";
 
 const Summary = () => {
-  const { cartItems, clearCart, setAddress } = useContext(UserContext);
+  const { cartItems, clearCart, address, setAddress } = useContext(UserContext);
   const navigate = useNavigate();
 
   const confirmOrderHandler: (enteredAddress: AddressObject) => void = (
@@ -46,31 +46,27 @@ const Summary = () => {
   const formik: FormikProps<PersonalDataFormInputsObject> =
     useFormik<PersonalDataFormInputsObject>({
       initialValues: {
-        firstName: "",
-        lastName: "",
-        phoneNumber: "",
-        street: "",
-        houseNumber: "",
-        city: "",
-        postCode: "",
+        firstName: address.firstName,
+        lastName: address.lastName,
+        phoneNumber: address.phoneNumber,
+        street: address.street,
+        houseNumber: address.houseNumber,
+        city: address.city,
+        postCode: address.postCode,
       },
-      validationSchema: Yup.object({
-        firstName: Yup.string().required("Required"),
-        lastName: Yup.string().required("Required"),
-        phoneNumber: Yup.string()
-          .min(9, "Phone Number must be at least 9digits")
-          .required("Required"),
-        street: Yup.string().required("Required"),
-        houseNumber: Yup.string().required("Required"),
-        city: Yup.string().required("Required"),
-      }),
+      validationSchema: personalDataFormYupValidationSchema,
 
       onSubmit: (values) => {
-        setAddress(values);
+        setAddress(emptyAddressObject);
         confirmOrderHandler(values);
         navigate(navKeys.main);
       },
     });
+
+  const handleBackToCart = () => {
+    setAddress(formik.values);
+    navigate(navKeys.cart);
+  };
 
   const totalAmount = calcCartTotalAmount(cartItems);
 
@@ -81,10 +77,10 @@ const Summary = () => {
         <p>Total Amount:</p> <strong>{totalAmount} zł</strong>
       </TotalAmountItem>
       <BtnsContainer>
-        <NavLink to={navKeys.cart}>
-          <Button>Back to Cart</Button>
-        </NavLink>
-        <Button onClick={formik.submitForm}>Confirm Order</Button>
+        <Button onClick={handleBackToCart}>Back to Cart</Button>
+        <Button disabled={!formik.dirty} onClick={formik.submitForm}>
+          Confirm Order
+        </Button>
       </BtnsContainer>
     </StyledSummary>
   );

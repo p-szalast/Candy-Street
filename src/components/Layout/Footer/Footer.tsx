@@ -3,7 +3,7 @@ import StyledFooter from "./FooterStyles";
 const Footer = () => {
   return (
     <StyledFooter>
-      © 2022 | Przemysław Szalast for Capgemini React Academy | All Rights
+      © 2023 | Przemysław Szalast for Capgemini React Academy | All Rights
       Reserved.
     </StyledFooter>
   );

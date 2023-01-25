@@ -1,8 +1,14 @@
 import axios from "axios";
 
-import { CandyItemObject, OrderInterface } from "../types/common.types";
+import {
+  CandyItemObject,
+  OrderInterface,
+  SortTypes,
+} from "../types/common.types";
 
 import { BASE_URL } from "../config";
+
+/// Server
 
 export const getAvailableCandies = async () => {
   return axios
@@ -20,4 +26,29 @@ export const fetchOrderHistory = async () => {
   return axios
     .get<OrderInterface[]>(`${BASE_URL}/orders`)
     .then((response) => response.data);
+};
+
+/// Local storage
+
+export const setLocalStorageSortType: (sortType: SortTypes) => void = (
+  sortType
+) => {
+  localStorage.setItem("sortType", sortType);
+};
+
+//FIXME:
+export const getLocalStorageSortType: () => SortTypes = () => {
+  const stringSortType: string | null = localStorage.getItem("sortType");
+
+  //FIXME: check if stringSortType is SortTypes
+  if (
+    stringSortType === SortTypes.ALFABETICAL_ASC ||
+    stringSortType === SortTypes.ALFABETICAL_DSC ||
+    stringSortType === SortTypes.BY_PRICE_ASC ||
+    stringSortType === SortTypes.BY_PRICE_DSC
+  ) {
+    return stringSortType;
+  } else {
+    return SortTypes.ALFABETICAL_ASC;
+  }
 };
