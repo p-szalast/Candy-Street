@@ -1,26 +1,14 @@
 import styled from "styled-components";
-import { Container, ButtonLittle } from "../../common/styles/componentsStyles";
+import {
+  Container,
+  Item,
+  Image,
+  ButtonLittle,
+} from "../../common/styles/componentsStyles";
 
-const StyledCartItem = styled.div`
-  display: flex;
+const StyledCartItem = styled(Item)`
   align-items: center;
   justify-content: space-between;
-  margin: 1rem;
-
-  padding: 1rem 1rem;
-  background: #fff;
-  opacity: 90%;
-  border: 0px solid #fff;
-  border-radius: 10px;
-  color: black;
-
-  & img {
-    object-fit: cover;
-    height: 4rem;
-    width: 4rem;
-    border: 0px solid #fff;
-    border-radius: 10px;
-  }
 
   & .cart-item__title {
     font-size: 1.5rem;
@@ -33,14 +21,14 @@ const StyledCartItem = styled.div`
     min-width: 2.5rem;
   }
 
-  & .cart-item--signs {
-    font-weight: bold;
-  }
-
   & .item__price-total {
     width: 3.5rem;
-    font-weight: bold;
   }
+`;
+
+export const CartImage = styled(Image)`
+  height: 4rem;
+  width: 4rem;
 `;
 
 export const BtnsAddRemoveContainer = styled(Container)`

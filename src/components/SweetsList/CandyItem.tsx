@@ -1,12 +1,13 @@
 import { useState, useContext } from "react";
-import { CandyItemObject } from "../../common/types/common.types";
-import { ButtonLittle } from "../../common/styles/componentsStyles";
+import {
+  CandyItemObject,
+  CartItemObject,
+} from "../../common/types/common.types";
+import { ButtonLittle, Image } from "../../common/styles/componentsStyles";
 
 import { UserContext } from "../../store/user-context";
 
 import StyledCandyItem, { BtnsMainAddRemoveContainer } from "./CandyItemStyles";
-
-import { CartItemObject } from "../../common/types/common.types";
 
 const CandyItem = (props: CandyItemObject) => {
   const { cartItems, addItem, removeItem } = useContext(UserContext);
@@ -59,11 +60,11 @@ const CandyItem = (props: CandyItemObject) => {
 
   return (
     <StyledCandyItem>
-      <img alt="" src={props.image} />
-      <div className="item__text">
-        <h3 className="item__title">{props.name}</h3>
+      <Image alt="" src={props.image} />
+      <div className="item__details">
+        <h2 className="item__title">{props.name}</h2>
         <p className="item__description">{props.description}</p>
-        <p className="item__price">{props.price} zł</p>
+        <strong className="item__price">{props.price} zł</strong>
       </div>
       <BtnsMainAddRemoveContainer>
         <ButtonLittle onClick={btnMinusHandler}>-</ButtonLittle>

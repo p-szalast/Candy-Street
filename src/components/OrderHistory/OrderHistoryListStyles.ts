@@ -11,6 +11,6 @@ export const StyledOrderHistoryList = styled.div`
 `;
 
 export const BtnsContainer = styled(Container)`
-  margin: auto 2rem;
-  justify-content: end;
+  margin: 1rem 2rem 2rem 2rem;
+  justify-content: start;
 `;

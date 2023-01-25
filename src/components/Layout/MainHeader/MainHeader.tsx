@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { navKeys } from "../../../routes/routes";
 
 import { StyledMainHeader, MainHeadingBrandName } from "./MainHeaderStyles";
-import { Button } from "../../../common/styles/componentsStyles";
+import { Button, Container } from "../../../common/styles/componentsStyles";
 
 import logo from "../../../assets/logo.png";
 import { Cart } from "../../../assets/icons";
@@ -13,8 +13,8 @@ const MainHeader = () => {
       <NavLink to="/">
         <img className="logo" alt="" src={logo} />
       </NavLink>
-      <MainHeadingBrandName>Candy Street</MainHeadingBrandName>
-      <div className="nav">
+      <MainHeadingBrandName>Candy&nbsp;Street</MainHeadingBrandName>
+      <Container>
         <NavLink to={navKeys.history}>
           <Button>Order History</Button>
         </NavLink>
@@ -24,7 +24,7 @@ const MainHeader = () => {
             Cart
           </Button>
         </NavLink>
-      </div>
+      </Container>
     </StyledMainHeader>
   );
 };
