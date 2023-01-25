@@ -28,7 +28,7 @@ export const Item = styled.div`
   background: #fff;
   opacity: 90%;
   gap: 0.5rem;
-  border: 0px solid #fff;
+  border: 1px solid #fff;
   border-radius: 10px;
   color: black;
 `;
@@ -50,7 +50,6 @@ export const Image = styled.img`
   object-fit: cover;
   height: 10rem;
   width: 10rem;
-  border: 0px solid #fff;
   border-radius: 10px;
 `;
 
