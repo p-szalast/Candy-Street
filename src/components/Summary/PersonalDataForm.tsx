@@ -1,9 +1,9 @@
 import { Label, Input, VFlexBox } from "../../common/styles/componentsStyles";
-
 import { FormContainer, FormItem } from "./PersonalDataFormStyles";
 
-import { FormikProps } from "formik";
 import { PersonalDataFormInputsObject } from "../../common/types/common.types";
+
+import { FormikProps } from "formik";
 
 const PersonalDataForm = ({
   formik,
@@ -17,72 +17,59 @@ const PersonalDataForm = ({
           <Label htmlFor="firstName">First Name</Label>
           <Input
             id="firstName"
-            name="firstName"
             type="text"
-            onChange={formik.handleChange}
-            value={formik.values.firstName}
+            {...formik.getFieldProps("firstName")}
           />
+          {formik.touched.firstName && formik.errors.firstName && (
+            <div>{formik.errors.firstName}</div>
+          )}
         </VFlexBox>
         <VFlexBox>
           <Label htmlFor="lastName">Last Name</Label>
           <Input
             id="lastName"
-            name="lastName"
             type="text"
-            onChange={formik.handleChange}
-            value={formik.values.lastName}
+            {...formik.getFieldProps("lastName")}
           />
+          {formik.touched.lastName && formik.errors.lastName && (
+            <div>{formik.errors.lastName}</div>
+          )}
         </VFlexBox>
         <VFlexBox>
           <Label htmlFor="phoneNumber">Phone Number</Label>
           <Input
             id="phoneNumber"
-            name="phoneNumber"
             type="text"
-            onChange={formik.handleChange}
-            value={formik.values.phoneNumber}
+            {...formik.getFieldProps("phoneNumber")}
           />
+          {formik.touched.phoneNumber && formik.errors.phoneNumber && (
+            <div>{formik.errors.phoneNumber}</div>
+          )}
         </VFlexBox>
       </FormContainer>
       <FormContainer>
         <VFlexBox>
           <Label htmlFor="street">Street</Label>
-          <Input
-            id="street"
-            name="street"
-            type="text"
-            onChange={formik.handleChange}
-            value={formik.values.street}
-          />
+          <Input id="street" type="text" {...formik.getFieldProps("street")} />
         </VFlexBox>
         <VFlexBox>
           <Label htmlFor="houseNumber">House Number</Label>
           <Input
             id="houseNumber"
-            name="houseNumber"
             type="text"
-            onChange={formik.handleChange}
-            value={formik.values.houseNumber}
+            {...formik.getFieldProps("houseNumber")}
           />
         </VFlexBox>
         <VFlexBox>
           <Label htmlFor="city">City</Label>
-          <Input
-            id="city"
-            name="city"
-            type="text"
-            onChange={formik.handleChange}
-            value={formik.values.city}
-          />
+          <Input id="city" type="text" {...formik.getFieldProps("city")} />
         </VFlexBox>
         <VFlexBox>
           <Label htmlFor="postCode">Post Code</Label>
           <Input
             id="postCode"
-            name="postCode"
             type="text"
-            onChange={formik.handleChange}
-            value={formik.values.postCode}
+            {...formik.getFieldProps("postCode")}
           />
         </VFlexBox>
       </FormContainer>
