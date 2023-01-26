@@ -1,5 +1,9 @@
 import React, { useReducer, PropsWithChildren } from "react";
-import { CartItemObject, AddressObject } from "../common/types/common.types";
+import {
+  CartItemObject,
+  AddressObject,
+  SortTypes,
+} from "../common/types/common.types";
 import {
   CartActions,
   CartTypes,
@@ -8,15 +12,28 @@ import {
   UserContextObject,
 } from "./user-context-types";
 
+import { getLocalStorageSortType } from "../common/service/common-service";
+
+export const emptyAddressObject = {
+  firstName: "",
+  lastName: "",
+  phoneNumber: "",
+  street: "",
+  houseNumber: "",
+  postCode: "",
+  city: "",
+};
+
 // Creating default context state object
 const defaultUserState: UserContextObject = {
   cartItems: [],
-  address: null,
-  sortType: "",
+  address: emptyAddressObject,
+  sortType: getLocalStorageSortType(),
   addItem: () => {},
   removeItem: () => {},
   clearCart: () => {},
   setAddress: () => {},
+  setSortType: () => {},
 };
 
 // Creating context
@@ -102,6 +119,15 @@ const userReducer = (
     return updatedState;
   }
 
+  if (action.type === UserTypes.SET_SORT_TYPE) {
+    const updatedState = {
+      ...state,
+      sortType: action.payload.sortType,
+    };
+
+    return updatedState;
+  }
+
   return state;
 };
 
@@ -153,16 +179,26 @@ const UserContextProvider = (props: PropsWithChildren) => {
     });
   };
 
+  const setSortTypeHandler = (sortType: SortTypes) => {
+    dispatchUserAction({
+      type: UserTypes.SET_SORT_TYPE,
+      payload: {
+        sortType,
+      },
+    });
+  };
+
   ///////////////////////////////////////
 
   const contextValue: UserContextObject = {
     cartItems: userState.cartItems,
     address: userState.address,
-    sortType: "",
+    sortType: userState.sortType,
     addItem: addItemHandler,
     removeItem: removeItemHandler,
     clearCart: clearCartHandler,
     setAddress: setAddressHandler,
+    setSortType: setSortTypeHandler,
   };
 
   return (

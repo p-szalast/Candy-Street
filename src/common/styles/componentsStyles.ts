@@ -53,7 +53,7 @@ export const Image = styled.img`
   border-radius: 10px;
 `;
 
-/// Label/Input
+/// Labels/Inputs
 
 export const Label = styled.label`
   font-family: Rubik, sans-serif;
@@ -70,6 +70,12 @@ export const Input = styled.input`
   width: 14rem;
   height: 2rem;
   padding: 0.5rem;
+`;
+
+export const Select = styled.select`
+  font-family: Rubik, sans-serif;
+  padding: 0.5rem 1rem;
+  border-radius: 10px; ;
 `;
 
 ///Buttons

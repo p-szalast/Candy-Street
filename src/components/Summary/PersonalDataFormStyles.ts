@@ -12,4 +12,8 @@ export const FormContainer = styled(Container)`
   padding: 1rem 12rem 0 12rem;
   gap: 1rem;
   margin-bottom: 2rem;
+
+  & .error-message {
+    color: red;
+  }
 `;

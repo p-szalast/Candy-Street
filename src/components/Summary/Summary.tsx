@@ -1,14 +1,19 @@
 import { useContext } from "react";
-import { UserContext } from "../../store/user-context";
+import { emptyAddressObject, UserContext } from "../../store/user-context";
+import { useNavigate } from "react-router-dom";
+import { navKeys } from "../../routes/routes";
+
+import { FormikProps, useFormik } from "formik";
+import { personalDataFormYupValidationSchema } from "../../common/helpers";
 
 import PersonalDataForm from "./PersonalDataForm";
 
 import Order from "../../models/order";
 
 import { calcCartTotalAmount } from "../../common/helpers";
-
 import { postOrder } from "../../common/service/common-service";
 
+//Styles
 import { StyledSummary } from "./SummaryStyles";
 import {
   BtnsContainer,
@@ -16,16 +21,14 @@ import {
   TotalAmountItem,
 } from "../../common/styles/componentsStyles";
 
+//Types
 import {
   AddressObject,
   PersonalDataFormInputsObject,
 } from "../../common/types/common.types";
-import { NavLink, useNavigate } from "react-router-dom";
-import { navKeys } from "../../routes/routes";
-import { FormikProps, useFormik } from "formik";
 
 const Summary = () => {
-  const { cartItems, clearCart, setAddress } = useContext(UserContext);
+  const { cartItems, clearCart, address, setAddress } = useContext(UserContext);
   const navigate = useNavigate();
 
   const confirmOrderHandler: (enteredAddress: AddressObject) => void = (
@@ -43,22 +46,27 @@ const Summary = () => {
   const formik: FormikProps<PersonalDataFormInputsObject> =
     useFormik<PersonalDataFormInputsObject>({
       initialValues: {
-        firstName: "",
-        lastName: "",
-        phoneNumber: "",
-        street: "",
-        houseNumber: "",
-        city: "",
-        postCode: "",
+        firstName: address.firstName,
+        lastName: address.lastName,
+        phoneNumber: address.phoneNumber,
+        street: address.street,
+        houseNumber: address.houseNumber,
+        city: address.city,
+        postCode: address.postCode,
       },
+      validationSchema: personalDataFormYupValidationSchema,
 
-      //TODO: move Buttons to Summary.tsx
       onSubmit: (values) => {
-        setAddress(values);
+        setAddress(emptyAddressObject);
         confirmOrderHandler(values);
         navigate(navKeys.main);
       },
     });
+
+  const handleBackToCart = () => {
+    setAddress(formik.values);
+    navigate(navKeys.cart);
+  };
 
   const totalAmount = calcCartTotalAmount(cartItems);
 
@@ -69,10 +77,10 @@ const Summary = () => {
         <p>Total Amount:</p> <strong>{totalAmount} zł</strong>
       </TotalAmountItem>
       <BtnsContainer>
-        <NavLink to={navKeys.cart}>
-          <Button>Back to Cart</Button>
-        </NavLink>
-        <Button onClick={formik.submitForm}>Confirm Order</Button>
+        <Button onClick={handleBackToCart}>Back to Cart</Button>
+        <Button disabled={!formik.dirty} onClick={formik.submitForm}>
+          Confirm Order
+        </Button>
       </BtnsContainer>
     </StyledSummary>
   );

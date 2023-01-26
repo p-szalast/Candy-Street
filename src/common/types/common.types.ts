@@ -11,6 +11,13 @@ export type CandyItemObject = {
   children?: React.ReactNode;
 };
 
+export enum SortTypes {
+  ALFABETICAL_ASC = "ALFABETICAL_ASC",
+  ALFABETICAL_DSC = "ALFABETICAL_DSC",
+  BY_PRICE_ASC = "BY_PRICE_ASC",
+  BY_PRICE_DSC = "BY_PRICE_DSC",
+}
+
 /// Context exports ////
 
 export type CartItemObject = {
@@ -24,6 +31,7 @@ export type CartItemObject = {
 export type AddressObject = {
   firstName: string;
   lastName: string;
+  phoneNumber: string;
   street: string;
   houseNumber: string;
   postCode: string;
