@@ -5,6 +5,8 @@ import {
 } from "./types/common.types";
 import * as Yup from "yup";
 
+import { theme } from "./styles/theme";
+
 export const calcCartTotalAmount: (cartItems: CartItemObject[]) => number = (
   cartItems
 ) => {
@@ -16,33 +18,44 @@ export const sortCandies: (
   sortType: SortTypes
 ) => CandyItemObject[] = (candies, sortType) => {
   switch (sortType) {
-    case "ALFABETICAL_ASC":
+    case SortTypes.ALFABETICAL_ASC:
       return candies.sort((a, b) => (a.name > b.name ? 1 : -1));
-    case "ALFABETICAL_DSC":
+    case SortTypes.ALFABETICAL_DSC:
       return candies.sort((a, b) => (a.name < b.name ? 1 : -1));
-    case "BY_PRICE_ASC":
+    case SortTypes.BY_PRICE_ASC:
       return candies.sort((a, b) => (a.price > b.price ? 1 : -1));
-    case "BY_PRICE_DSC":
+    case SortTypes.BY_PRICE_DSC:
       return candies.sort((a, b) => (a.price < b.price ? 1 : -1));
     default:
       return candies;
   }
 };
 
+// Media querries helpers
+export const mediaQuery = (key: keyof typeof theme.screens) => {
+  return (style: TemplateStringsArray | String) =>
+    `@media (max-width: ${theme.screens[key]}px) { ${style} }`;
+};
+
+export const getWindowDimensions = () => {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height,
+  };
+};
+
 // Form Validation
+
+const validateLettersPattern =
+  /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
 
 export const personalDataFormYupValidationSchema = Yup.object({
   firstName: Yup.string()
-    .matches(
-      /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u,
-      "First name must contain letters only"
-    )
+    .matches(validateLettersPattern, "First name must contain letters only")
     .required("Required"),
   lastName: Yup.string()
-    .matches(
-      /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u,
-      "Last name must contain letters only"
-    )
+    .matches(validateLettersPattern, "Last name must contain letters only")
     .required("Required"),
   phoneNumber: Yup.string()
     .min(9, "Phone Number must be at least 9 digits")
@@ -61,10 +74,12 @@ export const personalDataFormYupValidationSchema = Yup.object({
     .matches(/^[a-zA-Z0-9/ -]+$/u, "House number in wrong format")
     .required("Required"),
   city: Yup.string()
-    .matches(
-      /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u,
-      "City must contain letters only"
-    )
+    .matches(validateLettersPattern, "City must contain letters only")
     .required("Required"),
   postCode: Yup.string().matches(/^[0-9-]+$/u, "Post code in wrong format"),
 });
+
+// Typescipt guard
+export const isSortType = (value: string): value is SortTypes => {
+  return value in SortTypes;
+};

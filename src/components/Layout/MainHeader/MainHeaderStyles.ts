@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { Button } from "../../../common/styles/componentsStyles";
 
-import * as theme from "../../../common/styles/theme";
+import { mediaQuery } from "../../../common/helpers";
 
 export const StyledMainHeader = styled.header`
   display: flex;
@@ -8,12 +9,11 @@ export const StyledMainHeader = styled.header`
   top: 0;
   left: 0;
   width: 100%;
-  height: ${theme.HEADER_HEIGHT};
+  height: ${({ theme }) => theme.heights.header};
   align-items: center;
   justify-content: space-between;
   padding: 0 1rem;
   background-color: #fff;
-  min-width: 1000px;
 
   & .logo {
     height: 3rem;
@@ -22,11 +22,38 @@ export const StyledMainHeader = styled.header`
 
 export const MainHeadingBrandName = styled.div`
   position: absolute;
+  text-align: center;
   left: 50%;
   transform: translateX(-50%);
   font-size: 3.5rem;
   font-weight: normal;
   font-family: "Rubik Puddles", cursive;
   word-spacing: 0.5rem;
-  min-width: 400px;
+  /* min-width: 400px; */
+
+  @media (max-width: 420px) {
+    font-size: 2.5rem;
+  }
+`;
+
+export const CartButton = styled(Button)`
+  @media (max-width: 1200px) {
+    width: auto;
+  }
+
+  //TODO: Media Query function
+  ${mediaQuery("medium")`
+      width: auto;
+  `}
+`;
+
+export const OrderHistoryButton = styled(Button)`
+  @media (max-width: 900px) {
+    width: auto;
+  }
+
+  //TODO: Media Query function
+  ${mediaQuery("medium")`
+      width: auto;
+  `}
 `;

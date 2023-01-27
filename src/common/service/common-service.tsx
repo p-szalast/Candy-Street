@@ -7,6 +7,7 @@ import {
 } from "../types/common.types";
 
 import { BASE_URL } from "../config";
+import { isSortType } from "../helpers";
 
 /// Server
 
@@ -29,24 +30,16 @@ export const fetchOrderHistory = async () => {
 };
 
 /// Local storage
-
 export const setLocalStorageSortType: (sortType: SortTypes) => void = (
   sortType
 ) => {
   localStorage.setItem("sortType", sortType);
 };
 
-//FIXME:
 export const getLocalStorageSortType: () => SortTypes = () => {
   const stringSortType: string | null = localStorage.getItem("sortType");
 
-  //FIXME: check if stringSortType is SortTypes
-  if (
-    stringSortType === SortTypes.ALFABETICAL_ASC ||
-    stringSortType === SortTypes.ALFABETICAL_DSC ||
-    stringSortType === SortTypes.BY_PRICE_ASC ||
-    stringSortType === SortTypes.BY_PRICE_DSC
-  ) {
+  if (stringSortType && isSortType(stringSortType)) {
     return stringSortType;
   } else {
     return SortTypes.ALFABETICAL_ASC;

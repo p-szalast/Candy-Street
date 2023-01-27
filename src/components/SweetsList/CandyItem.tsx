@@ -9,6 +9,8 @@ import { UserContext } from "../../store/user-context";
 
 import StyledCandyItem, { BtnsMainAddRemoveContainer } from "./CandyItemStyles";
 
+import toast from "react-hot-toast";
+
 const CandyItem = (props: CandyItemObject) => {
   const { cartItems, addItem, removeItem } = useContext(UserContext);
 
@@ -56,6 +58,8 @@ const CandyItem = (props: CandyItemObject) => {
       amount: 1,
       image: props.image,
     });
+
+    toast("Item added");
   };
 
   return (

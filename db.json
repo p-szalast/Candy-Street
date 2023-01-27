@@ -271,6 +271,47 @@
       },
       "date": "Tue Jan 24 2023 17:12:43 GMT+0100 (Central European Standard Time)",
       "id": 9
+    },
+    {
+      "orderedCandies": [
+        {
+          "id": "c04",
+          "name": "Christmas Tree Lolipops (10 piesces)",
+          "price": 4.5,
+          "amount": 3
+        },
+        {
+          "id": "c01",
+          "name": "Classic Chocolate Chip Cookies (20 pieces)",
+          "price": 8,
+          "amount": 3
+        }
+      ],
+      "address": {
+        "firstName": "dfgdfg",
+        "lastName": "fdgdfg",
+        "phoneNumber": "345345345345",
+        "street": "5345",
+        "houseNumber": "345",
+        "city": "dfvgdfgdfgdgf",
+        "postCode": ""
+      },
+      "date": "Thu Jan 26 2023 13:51:27 GMT+0100 (Central European Standard Time)",
+      "id": 10
+    },
+    {
+      "orderedCandies": [],
+      "address": {
+        "firstName": "TEST NAME",
+        "lastName": "xcxcv",
+        "phoneNumber": "345345345345",
+        "street": "xcv",
+        "houseNumber": "dwe3453",
+        "city": "wadowice",
+        "postCode": "69-2137"
+      },
+      "date": "Thu Jan 26 2023 16:06:54 GMT+0100 (Central European Standard Time)",
+      "id": 11
     }
   ]
 }
