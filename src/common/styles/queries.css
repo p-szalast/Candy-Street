@@ -20,8 +20,8 @@
 }
 
 @media (max-width: 540px) {
-  /* TODO: */
   html {
-    /* font-size: 0px; */
   }
 }
+
+/* to check: seeing breakpoints in browser */

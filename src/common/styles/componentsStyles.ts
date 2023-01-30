@@ -79,6 +79,10 @@ export const Input = styled.input`
   width: 14rem;
   height: 2rem;
   padding: 0.5rem;
+
+  @media (max-width: 540px) {
+    padding: 0.5rem 0;
+  } ;
 `;
 
 export const Select = styled.select`

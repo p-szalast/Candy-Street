@@ -4,6 +4,10 @@ import { Container, Item } from "../../common/styles/componentsStyles";
 export const FormItem = styled(Item)`
   flex-direction: column;
   margin: 0 1rem;
+
+  @media (max-width: 540px) {
+    padding: 1rem 0 0 0;
+  } ;
 `;
 
 export const FormContainer = styled(Container)`
@@ -13,7 +17,8 @@ export const FormContainer = styled(Container)`
   gap: 1rem;
   margin-bottom: 2rem;
 
-  /* & .error-message {
-    color: red;
-  } */
+  @media (max-width: 540px) {
+    grid-template-columns: 1fr;
+    padding: 1rem 0 0 0;
+  } ;
 `;

@@ -11,12 +11,19 @@ export const StyledMobileMenu = styled.ul`
   top: 5rem;
   left: 0;
   width: 100%;
-  //TODO: choose delete or save
+  //TODO: after z-index fix: choose delete or save
   /* height: 100vh; */
   padding: 0;
   gap: 0.16rem;
   padding-top: 0.1rem;
   border: 1px solid #ddd;
+
+  /* TODO: transition */
+  /* menu closed : */
+  /* transform: translateX(100%); */
+  /* menu opened */
+  /* transform: translateX(0%); */
+  /* transition: all 0.5s ease-in-out*/
   z-index: 10;
 
   opacity: 0.9;

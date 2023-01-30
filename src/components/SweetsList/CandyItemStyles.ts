@@ -19,6 +19,10 @@ const StyledCandyItem = styled(Item)`
         font-size: 1.2rem;
       }
 
+      & p {
+        font-size: 0.8rem;
+      }
+
       & strong {
         font-size: 1.1rem;
       }

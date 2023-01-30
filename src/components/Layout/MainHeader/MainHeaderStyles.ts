@@ -31,7 +31,7 @@ export const MainHeadingBrandName = styled.div`
   word-spacing: 0.5rem;
 
   @media (max-width: 540px) {
-    font-size: 2.8rem;
+    font-size: 2rem;
   }
 `;
 

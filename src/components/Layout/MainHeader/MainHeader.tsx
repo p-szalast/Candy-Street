@@ -6,6 +6,7 @@ import { navKeys } from "../../../routes/routes";
 import logo from "../../../assets/logo.png";
 import {
   CartIcon,
+  CloseIcon,
   MobileMenuIcon,
   OrderHistoryIcon,
 } from "../../../assets/icons";
@@ -55,7 +56,7 @@ const MainHeader = () => {
     navButtons = (
       <Container>
         <ResponsiveButton onClick={toggleMenuHandler}>
-          <MobileMenuIcon />
+          {menuVisible ? <CloseIcon /> : <MobileMenuIcon />}
         </ResponsiveButton>
       </Container>
     );
