@@ -1,33 +1,44 @@
+import { useState } from "react";
+
 import { NavLink } from "react-router-dom";
 import { navKeys } from "../../../routes/routes";
 
 import logo from "../../../assets/logo.png";
-import { CartIcon, OrderHistoryIcon } from "../../../assets/icons";
+import {
+  CartIcon,
+  MobileMenuIcon,
+  OrderHistoryIcon,
+} from "../../../assets/icons";
 
 import {
   StyledMainHeader,
   MainHeadingBrandName,
   CartButton,
-  OrderHistoryButton,
+  ResponsiveButton,
 } from "./MainHeaderStyles";
 import { Container } from "../../../common/styles/componentsStyles";
 
 import useWindowDimensions from "../../../hooks/useWindowDimensions";
+import MobileMenu from "./MobileMenu";
 
 const MainHeader = () => {
   const { width } = useWindowDimensions();
+  const [menuVisible, setMenuVisible] = useState<boolean>(false);
 
-  return (
-    <StyledMainHeader>
-      <NavLink to="/">
-        <img className="logo" alt="" src={logo} />
-      </NavLink>
-      <MainHeadingBrandName>Candy&nbsp;Street</MainHeadingBrandName>
+  const toggleMenuHandler = () => {
+    setMenuVisible((prevState: boolean) => !prevState);
+  };
+
+  let navButtons;
+
+  //desktop and tablet versions
+  if (width >= 540) {
+    navButtons = (
       <Container>
         <NavLink to={navKeys.history}>
-          <OrderHistoryButton>
-            {width > 900 ? <span>OrderHistory</span> : <OrderHistoryIcon />}
-          </OrderHistoryButton>
+          <ResponsiveButton>
+            {width > 920 ? <span>OrderHistory</span> : <OrderHistoryIcon />}
+          </ResponsiveButton>
         </NavLink>
         <NavLink to={navKeys.cart}>
           <CartButton>
@@ -36,6 +47,30 @@ const MainHeader = () => {
           </CartButton>
         </NavLink>
       </Container>
+    );
+  }
+
+  //mobile version
+  if (width < 540) {
+    navButtons = (
+      <Container>
+        <ResponsiveButton onClick={toggleMenuHandler}>
+          <MobileMenuIcon />
+        </ResponsiveButton>
+      </Container>
+    );
+  }
+
+  return (
+    <StyledMainHeader>
+      <NavLink to="/">
+        <img className="logo" alt="" src={logo} />
+      </NavLink>
+      <MainHeadingBrandName>Candy&nbsp;Street</MainHeadingBrandName>
+      {navButtons}
+      {width < 540 && menuVisible && (
+        <MobileMenu toggleMenu={toggleMenuHandler} />
+      )}
     </StyledMainHeader>
   );
 };

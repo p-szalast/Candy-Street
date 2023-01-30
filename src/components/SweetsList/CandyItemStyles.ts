@@ -4,6 +4,8 @@ import { Container, Item } from "../../common/styles/componentsStyles";
 
 const StyledCandyItem = styled(Item)`
   gap: 1rem;
+  //FIXME:
+  /* z-index: auto; */
 
   & .item__details {
     display: flex;
@@ -11,6 +13,16 @@ const StyledCandyItem = styled(Item)`
     gap: 0.5rem;
     text-align: left;
     width: 65%;
+
+    @media (max-width: 710px) {
+      & h2 {
+        font-size: 1.2rem;
+      }
+
+      & strong {
+        font-size: 1.1rem;
+      }
+    }
   }
 `;
 

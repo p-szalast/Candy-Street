@@ -29,10 +29,9 @@ export const MainHeadingBrandName = styled.div`
   font-weight: normal;
   font-family: "Rubik Puddles", cursive;
   word-spacing: 0.5rem;
-  /* min-width: 400px; */
 
-  @media (max-width: 420px) {
-    font-size: 2.5rem;
+  @media (max-width: 540px) {
+    font-size: 2.8rem;
   }
 `;
 
@@ -47,9 +46,14 @@ export const CartButton = styled(Button)`
   `}
 `;
 
-export const OrderHistoryButton = styled(Button)`
-  @media (max-width: 900px) {
+export const ResponsiveButton = styled(Button)`
+  @media (max-width: 920px) {
     width: auto;
+  }
+
+  @media (max-width: 540px) {
+    width: auto;
+    border: none;
   }
 
   //TODO: Media Query function

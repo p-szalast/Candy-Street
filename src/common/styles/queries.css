@@ -1,26 +1,27 @@
 @media (max-width: 1200px) {
+}
+
+@media (max-width: 1024px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 920px) {
   html {
     font-size: 14px;
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 710px) {
   html {
     font-size: 12px;
   }
 }
 
-@media (max-width: 710px) {
+@media (max-width: 540px) {
+  /* TODO: */
   html {
-    font-size: 10px;
+    /* font-size: 0px; */
   }
-}
-
-@media (max-width: 600px) {
-  html {
-    font-size: 9px;
-  }
-}
-
-@media (max-width: 420px) {
 }

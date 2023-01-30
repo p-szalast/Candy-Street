@@ -66,9 +66,9 @@ const CandyItem = (props: CandyItemObject) => {
     <StyledCandyItem>
       <Image alt="" src={props.image} />
       <div className="item__details">
-        <h2 className="item__title">{props.name}</h2>
-        <p className="item__description">{props.description}</p>
-        <strong className="item__price">{props.price} zł</strong>
+        <h2>{props.name}</h2>
+        <p>{props.description}</p>
+        <strong>{props.price} zł</strong>
       </div>
       <BtnsMainAddRemoveContainer>
         <ButtonLittle onClick={btnMinusHandler}>-</ButtonLittle>

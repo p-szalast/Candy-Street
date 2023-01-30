@@ -20,6 +20,7 @@ export const StyledPage = styled.main`
   overflow: auto;
   color: #fff;
   min-width: 300px;
+  z-index: 1;
 `;
 
 export const Item = styled.div`
@@ -32,6 +33,7 @@ export const Item = styled.div`
   border: 1px solid #fff;
   border-radius: 10px;
   color: black;
+  z-index: 1;
 `;
 
 export const TotalAmountItem = styled(Item)`
@@ -53,6 +55,11 @@ export const Image = styled.img`
   width: 10rem;
   aspect-ratio: 1 / 1;
   border-radius: 10px;
+
+  @media (max-width: 710px) {
+    height: 8rem;
+    width: 8rem;
+  }
 `;
 
 /// Labels/Inputs
@@ -77,10 +84,10 @@ export const Input = styled.input`
 export const Select = styled.select`
   font-family: Rubik, sans-serif;
   font-size: 1.2rem;
-  padding: 0.2rem 0.4rem;
+  padding: 0.1rem 0.2rem;
   border-radius: 10px;
 
-  @media (max-width: 600px) {
+  @media (max-width: 710px) {
     padding: 0;
   }
 `;
@@ -100,6 +107,7 @@ export const ButtonLittle = styled.button`
 
   &:hover {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
   }
 `;
 
@@ -120,6 +128,7 @@ export const Button = styled.button`
 
   &:hover {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
   }
 `;
 
