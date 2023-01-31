@@ -15,11 +15,12 @@ import CandyItem from "./CandyItem";
 
 import { CartIcon } from "../../assets/icons";
 
-import { Button, Label, Select } from "../../common/styles/componentsStyles";
+import { Label, Select } from "../../common/styles/componentsStyles";
 import { ContainerEnd, StyledSweetsList } from "./SweetsListStyles";
 import { CartButton } from "../Layout/MainHeader/MainHeaderStyles";
 
 import { CandyItemObject, SortTypes } from "../../common/types/common.types";
+import { theme } from "../../common/styles/theme";
 
 const SweetsList = () => {
   const [sweets, setSweets] = useState<CandyItemObject[]>([]);
@@ -79,7 +80,7 @@ const SweetsList = () => {
       )}
       <NavLink className="btn-go-to-cart__container" to={navKeys.cart}>
         <CartButton>
-          {width > 1200 ? <span>Go to Cart</span> : <CartIcon />}
+          {width > theme.screens.large ? <span>Go to Cart</span> : <CartIcon />}
         </CartButton>
       </NavLink>
     </StyledSweetsList>

@@ -10,6 +10,7 @@ import { UserContext } from "../../store/user-context";
 import StyledCandyItem, { BtnsMainAddRemoveContainer } from "./CandyItemStyles";
 
 import toast from "react-hot-toast";
+import { MAX_ORDER_ITEM_AMOUNT } from "../../common/config";
 
 const CandyItem = (props: CandyItemObject) => {
   const { cartItems, addItem, removeItem } = useContext(UserContext);
@@ -45,11 +46,11 @@ const CandyItem = (props: CandyItemObject) => {
   };
   const btnPlusHandler = () => {
     setAmount((prevState) => {
-      return prevState >= 99 ? prevState : ++prevState;
+      return prevState >= MAX_ORDER_ITEM_AMOUNT ? prevState : ++prevState;
     });
 
     //guard clause
-    if (amount >= 99) return;
+    if (amount >= MAX_ORDER_ITEM_AMOUNT) return;
 
     addItem({
       id: props.id,

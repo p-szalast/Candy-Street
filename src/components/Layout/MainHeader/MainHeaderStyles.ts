@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Button } from "../../../common/styles/componentsStyles";
 
 import { mediaQuery } from "../../../common/helpers";
+import { theme } from "../../../common/styles/theme";
 
 export const StyledMainHeader = styled.header`
   display: flex;
@@ -36,28 +37,17 @@ export const MainHeadingBrandName = styled.div`
 `;
 
 export const CartButton = styled(Button)`
-  @media (max-width: 1200px) {
+  @media only screen and ${theme.devices.desktopXL} {
     width: auto;
   }
-
-  //TODO: Media Query function
-  ${mediaQuery("medium")`
-      width: auto;
-  `}
 `;
 
 export const ResponsiveButton = styled(Button)`
-  @media (max-width: 920px) {
+  @media only screen and ${theme.devices.tabletM} {
     width: auto;
   }
 
-  @media (max-width: 540px) {
-    width: auto;
+  @media only screen and ${theme.devices.tabletS} {
     border: none;
   }
-
-  //TODO: Media Query function
-  ${mediaQuery("medium")`
-      width: auto;
-  `}
 `;

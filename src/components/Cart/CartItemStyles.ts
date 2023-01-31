@@ -5,13 +5,14 @@ import {
   Image,
   ButtonLittle,
 } from "../../common/styles/componentsStyles";
+import { theme } from "../../common/styles/theme";
 
 const StyledCartItem = styled(Item)`
   align-items: center;
   justify-content: space-between;
 
   //TODO:
-  @media (max-width: 540px) {
+  @media only screen and ${theme.devices.mobileXS} {
     /* GRID MOBILE*/
   }
 
@@ -20,7 +21,7 @@ const StyledCartItem = styled(Item)`
     text-align: left;
     width: 40%;
 
-    @media (max-width: 540px) {
+    @media only screen and ${theme.devices.mobileXS} {
       font-size: 1.2rem;
       width: 30%;
     }
@@ -46,7 +47,7 @@ export const BtnsAddRemoveContainer = styled(Container)`
   gap: 0.5rem;
   width: 2rem;
 
-  @media (max-width: 540px) {
+  @media only screen and ${theme.devices.mobileXS} {
     padding: 0 2.5rem;
     gap: 0.2rem;
   }

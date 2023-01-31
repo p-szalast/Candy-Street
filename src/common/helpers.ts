@@ -33,7 +33,7 @@ export const sortCandies: (
 
 // Media querries helpers
 export const mediaQuery = (key: keyof typeof theme.screens) => {
-  return (style: TemplateStringsArray | String) =>
+  return (style: string) =>
     `@media (max-width: ${theme.screens[key]}px) { ${style} }`;
 };
 

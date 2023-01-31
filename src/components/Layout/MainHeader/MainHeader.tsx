@@ -21,6 +21,7 @@ import { Container } from "../../../common/styles/componentsStyles";
 
 import useWindowDimensions from "../../../hooks/useWindowDimensions";
 import MobileMenu from "./MobileMenu";
+import { theme } from "../../../common/styles/theme";
 
 const MainHeader = () => {
   const { width } = useWindowDimensions();
@@ -33,18 +34,22 @@ const MainHeader = () => {
   let navButtons;
 
   //desktop and tablet versions
-  if (width >= 540) {
+  if (width >= theme.screens.small) {
     navButtons = (
       <Container>
         <NavLink to={navKeys.history}>
           <ResponsiveButton>
-            {width > 920 ? <span>OrderHistory</span> : <OrderHistoryIcon />}
+            {width > theme.screens.medium ? (
+              <span>OrderHistory</span>
+            ) : (
+              <OrderHistoryIcon />
+            )}
           </ResponsiveButton>
         </NavLink>
         <NavLink to={navKeys.cart}>
           <CartButton>
             <CartIcon />
-            {width > 1200 ? <span>Cart</span> : null}
+            {width > theme.screens.large ? <span>Cart</span> : null}
           </CartButton>
         </NavLink>
       </Container>
@@ -52,7 +57,7 @@ const MainHeader = () => {
   }
 
   //mobile version
-  if (width < 540) {
+  if (width < theme.screens.small) {
     navButtons = (
       <Container>
         <ResponsiveButton onClick={toggleMenuHandler}>
@@ -69,7 +74,7 @@ const MainHeader = () => {
       </NavLink>
       <MainHeadingBrandName>Candy&nbsp;Street</MainHeadingBrandName>
       {navButtons}
-      {width < 540 && menuVisible && (
+      {width < theme.screens.small && menuVisible && (
         <MobileMenu toggleMenu={toggleMenuHandler} />
       )}
     </StyledMainHeader>

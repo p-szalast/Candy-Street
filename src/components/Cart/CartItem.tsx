@@ -12,6 +12,7 @@ import StyledCartItem, {
 import { ButtonLittle } from "../../common/styles/componentsStyles";
 
 import { CartItemObject } from "../../common/types/common.types";
+import { MAX_ORDER_ITEM_AMOUNT } from "../../common/config";
 
 const CandyItem = (props: CartItemObject) => {
   const [amount, setAmount] = useState(props.amount);
@@ -35,11 +36,11 @@ const CandyItem = (props: CartItemObject) => {
   };
   const btnCartPlusHandler = () => {
     setAmount((prevState) => {
-      return prevState >= 99 ? prevState : ++prevState;
+      return prevState >= MAX_ORDER_ITEM_AMOUNT ? prevState : ++prevState;
     });
 
     //guard clause
-    if (amount >= 99) return;
+    if (amount >= MAX_ORDER_ITEM_AMOUNT) return;
 
     addItem({
       id: props.id,
