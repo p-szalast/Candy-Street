@@ -13,6 +13,8 @@ import Order from "../../models/order";
 import { calcCartTotalAmount } from "../../common/helpers";
 import { postOrder } from "../../common/service/common-service";
 
+import toast from "react-hot-toast";
+
 //Styles
 import { StyledSummary } from "./SummaryStyles";
 import {
@@ -37,6 +39,7 @@ const Summary = () => {
     const newOrder = new Order(cartItems, enteredAddress);
     postOrder(newOrder);
 
+    toast("Your order has been sent successfully!");
     //TODO:delete
     console.log(newOrder);
 

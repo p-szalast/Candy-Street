@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledMobileMenu = styled.ul`
-  background: #eee;
+  background: ${({ theme }) => theme.colors.backgroundDark};
   display: flex;
   flex-direction: column;
   align-items: center;
