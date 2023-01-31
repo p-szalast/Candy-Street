@@ -31,7 +31,7 @@ export const MainHeadingBrandName = styled.div`
   font-family: "Rubik Puddles", cursive;
   word-spacing: 0.5rem;
 
-  @media (max-width: 540px) {
+  @media only screen and ${theme.devices.mobileXS} {
     font-size: 2rem;
   }
 `;

@@ -50,6 +50,12 @@ export const getWindowDimensions = () => {
 const validateLettersPattern =
   /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
 
+const validateStreetPattern =
+  /^[a-zA-Z0-9àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
+
+const validatePhoneNumberpattern =
+  /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/g;
+
 export const personalDataFormYupValidationSchema = Yup.object({
   firstName: Yup.string()
     .matches(validateLettersPattern, "First name must contain letters only")
@@ -60,15 +66,12 @@ export const personalDataFormYupValidationSchema = Yup.object({
   phoneNumber: Yup.string()
     .min(9, "Phone Number must be at least 9 digits")
     .matches(
-      /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/g,
+      validatePhoneNumberpattern,
       "Phone number must containg digits only"
     )
     .required("Required"),
   street: Yup.string()
-    .matches(
-      /^[a-zA-Z0-9àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u,
-      "Street name in wrong format"
-    )
+    .matches(validateStreetPattern, "Street name in wrong format")
     .required("Required"),
   houseNumber: Yup.string()
     .matches(/^[a-zA-Z0-9/ -]+$/u, "House number in wrong format")

@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import backgroundImage from "../../assets/background.png";
+import { theme } from "./theme";
 
 /// Page
 
@@ -56,7 +57,7 @@ export const Image = styled.img`
   aspect-ratio: 1 / 1;
   border-radius: 10px;
 
-  @media (max-width: 710px) {
+  @media only screen and ${theme.devices.tabletS} {
     height: 8rem;
     width: 8rem;
   }
@@ -80,7 +81,7 @@ export const Input = styled.input`
   height: 2rem;
   padding: 0.5rem;
 
-  @media (max-width: 540px) {
+  @media only screen and ${theme.devices.mobileXS} {
     padding: 0.5rem 0;
   } ;
 `;
@@ -91,7 +92,7 @@ export const Select = styled.select`
   padding: 0.1rem 0.2rem;
   border-radius: 10px;
 
-  @media (max-width: 710px) {
+  @media only screen and ${theme.devices.tabletS} {
     padding: 0;
   }
 `;
