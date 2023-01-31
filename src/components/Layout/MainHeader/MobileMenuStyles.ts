@@ -7,30 +7,20 @@ export const StyledMobileMenu = styled.ul`
   align-items: center;
   text-align: center;
   position: absolute;
-  font-size: 1.5rem;
+  font-size: ${({ theme }) => theme.fontSize.big};
   top: 5rem;
   left: 0;
   width: 100%;
-  //TODO: after z-index fix: choose delete or save
-  /* height: 100vh; */
   padding: 0;
   gap: 0.16rem;
   padding-top: 0.1rem;
-  border: 1px solid #ddd;
-
-  /* TODO: transition */
-  /* menu closed : */
-  /* transform: translateX(100%); */
-  /* menu opened */
-  /* transform: translateX(0%); */
-  /* transition: all 0.5s ease-in-out*/
-  z-index: 10;
-
-  opacity: 0.9;
+  border: 1px solid ${({ theme }) => theme.colors.backgroundDark};
+  /* TODO: transition */ /* menu closed : */
+  /* transform: translateX(100%); */ /* menu opened */
+  /* transform: translateX(0%); */ /* transition: all 0.5s ease-in-out; */
 
   & li {
-    background: #fff;
-    opacity: 0.9;
+    background: ${({ theme }) => theme.colors.backgroundDark};
     list-style: none;
     width: 100%;
   }
@@ -41,8 +31,10 @@ export const MobileMenuBtn = styled.button`
   height: 100%;
   background: transparent;
   font-family: inherit;
-  font-size: 1.5rem;
-  //FIXME: Z-index of items
-  /* than add paddings */
-  /* padding: 2rem; */
+  font-size: ${({ theme }) => theme.fontSize.big};
+  padding: 2rem;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;

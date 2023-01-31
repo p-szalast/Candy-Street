@@ -1,12 +1,9 @@
 import styled from "styled-components";
 
 import { Container, Item } from "../../common/styles/componentsStyles";
-import { theme } from "../../common/styles/theme";
 
 const StyledCandyItem = styled(Item)`
   gap: 1rem;
-  //FIXME:
-  /* z-index: auto; */
 
   & .item__details {
     display: flex;
@@ -15,9 +12,9 @@ const StyledCandyItem = styled(Item)`
     text-align: left;
     width: 65%;
 
-    @media only screen and ${theme.devices.tabletS} {
+    @media only screen and ${({ theme }) => theme.devices.tabletS} {
       & h2 {
-        font-size: 1.2rem;
+        ${({ theme }) => theme.fontSize.enlarged};
       }
 
       & p {

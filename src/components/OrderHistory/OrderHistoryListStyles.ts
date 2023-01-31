@@ -7,7 +7,7 @@ export const StyledOrderHistoryList = styled.div`
   margin: 1rem auto;
   max-width: 60rem;
   text-align: center;
-  border-radius: 20px;
+  border-radius: ${({ theme }) => theme.borderRadius.buttons};
 `;
 
 export const BtnsContainer = styled(Container)`

@@ -1,12 +1,3 @@
-//TODO: delete
-// export const screens = {
-//   little: 540,
-//   small: 710,
-//   medium: 920,
-//   big: 1024,
-//   large: 1200,
-// };
-
 export const theme = {
   heights: {
     header: "5rem",
@@ -14,17 +5,39 @@ export const theme = {
   },
 
   colors: {
-    colorMain: "#ffffff",
-    colorMainDark: "#cecece",
-    colorMainDarker: "#a2a0a0",
-    colorPrimary: "#cfbbcb",
-    colorPrimaryLight: "#e5dfe4",
-    colorPrimaryDark: "#ae8ca7",
-    colorPrimaryDarker: "#99658f",
-    colorSecondary: "#dae9d2",
-    colorTertiary: "#fffde6",
+    primary: "#cfbbcb",
+    primaryLight: "#e5dfe4",
+    primaryDark: "#ae8ca7",
+    primaryDarker: "#99658f",
 
-    error: "#D2122E",
+    secondary: "#dae9d2",
+
+    tertiary: "#fffde6",
+
+    background: "#fff",
+    backgroundDark: "#faf8fa",
+    backgroundDarker: "#f5f1f5",
+
+    text: "#151314",
+
+    grey: "#3e383d",
+
+    error: "#DB0B30",
+    errorDark: "#B00020",
+
+    success: "#604379",
+  },
+
+  borderRadius: {
+    items: "10px",
+    buttons: "20px",
+    buttonsLittle: "100px",
+  },
+
+  fontSize: {
+    regular: "1rem",
+    enlarged: "1.2rem",
+    big: "1.5rem",
   },
 
   screens: {

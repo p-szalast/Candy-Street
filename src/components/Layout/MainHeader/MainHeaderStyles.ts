@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { Button } from "../../../common/styles/componentsStyles";
 
 import { mediaQuery } from "../../../common/helpers";
-import { theme } from "../../../common/styles/theme";
 
 export const StyledMainHeader = styled.header`
   display: flex;
@@ -14,7 +13,8 @@ export const StyledMainHeader = styled.header`
   align-items: center;
   justify-content: space-between;
   padding: 0 1rem;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.colors.background};
+  z-index: 1;
 
   & .logo {
     height: 3rem;
@@ -31,23 +31,23 @@ export const MainHeadingBrandName = styled.div`
   font-family: "Rubik Puddles", cursive;
   word-spacing: 0.5rem;
 
-  @media only screen and ${theme.devices.mobileXS} {
+  @media only screen and ${({ theme }) => theme.devices.mobileXS} {
     font-size: 2rem;
   }
 `;
 
 export const CartButton = styled(Button)`
-  @media only screen and ${theme.devices.desktopXL} {
+  @media only screen and ${({ theme }) => theme.devices.desktopXL} {
     width: auto;
   }
 `;
 
 export const ResponsiveButton = styled(Button)`
-  @media only screen and ${theme.devices.tabletM} {
+  @media only screen and ${({ theme }) => theme.devices.tabletM} {
     width: auto;
   }
 
-  @media only screen and ${theme.devices.tabletS} {
+  @media only screen and ${({ theme }) => theme.devices.tabletS} {
     border: none;
   }
 `;

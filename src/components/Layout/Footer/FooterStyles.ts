@@ -10,7 +10,7 @@ const StyledFooter = styled.footer`
   align-items: center;
   justify-content: center;
   padding: 0 1rem;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.colors.background};
 `;
 
 export default StyledFooter;
