@@ -1,2 +1,70 @@
-export const HEADER_HEIGHT = "5rem";
-export const FOOTER_HEIGHT = "2rem";
+export const theme = {
+  heights: {
+    header: "5rem",
+    footer: "2rem",
+  },
+
+  colors: {
+    primary: "#cfbbcb",
+    primaryLight: "#e5dfe4",
+    primaryDark: "#ae8ca7",
+    primaryDarker: "#99658f",
+
+    secondary: "#dae9d2",
+
+    tertiary: "#fffde6",
+
+    background: "#fff",
+    backgroundDark: "#faf8fa",
+    backgroundDarker: "#f5f1f5",
+
+    text: "#151314",
+
+    grey: "#3e383d",
+
+    error: "#DB0B30",
+    errorDark: "#B00020",
+
+    success: "#604379",
+  },
+
+  borderRadius: {
+    items: "10px",
+    buttons: "20px",
+    buttonsLittle: "100px",
+  },
+
+  fontSize: {
+    regular: "1rem",
+    enlarged: "1.2rem",
+    big: "1.5rem",
+  },
+
+  screens: {
+    little: 540,
+    small: 710,
+    medium: 920,
+    big: 1024,
+    large: 1200,
+  },
+
+  devices: {
+    get mobileXS() {
+      return `(max-width: ${theme.screens.little}px)`;
+    },
+    get tabletS() {
+      return `(max-width: ${theme.screens.small}px)`;
+    },
+    get tabletM() {
+      return `(max-width: ${theme.screens.medium}px)`;
+    },
+    get desktopL() {
+      return `(max-width: ${theme.screens.big}px)`;
+    },
+    get desktopXL() {
+      return `(max-width: ${theme.screens.large}px)`;
+    },
+  },
+};
+
+export type ThemeType = typeof theme;

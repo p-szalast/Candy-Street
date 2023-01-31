@@ -11,6 +11,20 @@ const StyledCandyItem = styled(Item)`
     gap: 0.5rem;
     text-align: left;
     width: 65%;
+
+    @media only screen and ${({ theme }) => theme.devices.tabletS} {
+      & h2 {
+        ${({ theme }) => theme.fontSize.enlarged};
+      }
+
+      & p {
+        font-size: 0.8rem;
+      }
+
+      & strong {
+        font-size: 1.1rem;
+      }
+    }
   }
 `;
 

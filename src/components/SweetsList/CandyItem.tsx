@@ -9,6 +9,9 @@ import { UserContext } from "../../store/user-context";
 
 import StyledCandyItem, { BtnsMainAddRemoveContainer } from "./CandyItemStyles";
 
+import toast from "react-hot-toast";
+import { MAX_ORDER_ITEM_AMOUNT } from "../../common/config";
+
 const CandyItem = (props: CandyItemObject) => {
   const { cartItems, addItem, removeItem } = useContext(UserContext);
 
@@ -43,11 +46,11 @@ const CandyItem = (props: CandyItemObject) => {
   };
   const btnPlusHandler = () => {
     setAmount((prevState) => {
-      return prevState >= 99 ? prevState : ++prevState;
+      return prevState >= MAX_ORDER_ITEM_AMOUNT ? prevState : ++prevState;
     });
 
     //guard clause
-    if (amount >= 99) return;
+    if (amount >= MAX_ORDER_ITEM_AMOUNT) return;
 
     addItem({
       id: props.id,
@@ -56,15 +59,17 @@ const CandyItem = (props: CandyItemObject) => {
       amount: 1,
       image: props.image,
     });
+
+    toast("Item added");
   };
 
   return (
     <StyledCandyItem>
       <Image alt="" src={props.image} />
       <div className="item__details">
-        <h2 className="item__title">{props.name}</h2>
-        <p className="item__description">{props.description}</p>
-        <strong className="item__price">{props.price} zł</strong>
+        <h2>{props.name}</h2>
+        <p>{props.description}</p>
+        <strong>{props.price} zł</strong>
       </div>
       <BtnsMainAddRemoveContainer>
         <ButtonLittle onClick={btnMinusHandler}>-</ButtonLittle>

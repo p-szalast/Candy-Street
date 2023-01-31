@@ -3,11 +3,10 @@ import styled from "styled-components";
 import { Container } from "../../common/styles/componentsStyles";
 
 export const StyledCartList = styled.div`
-  display: block;
   margin: 1rem auto;
   max-width: 60rem;
   text-align: center;
-  border-radius: 20px;
+  border-radius: ${({ theme }) => theme.borderRadius.items};
 `;
 
 export const BtnsContainer = styled(Container)`

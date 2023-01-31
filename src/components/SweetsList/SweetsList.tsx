@@ -3,28 +3,30 @@ import { UserContext } from "../../store/user-context";
 import { NavLink } from "react-router-dom";
 import { navKeys } from "../../routes/routes";
 
+import useWindowDimensions from "../../hooks/useWindowDimensions";
+
 import {
   getAvailableCandies,
   setLocalStorageSortType,
 } from "../../common/service/common-service";
-import { sortCandies } from "../../common/helpers";
+import { isSortType, sortCandies } from "../../common/helpers";
 
 import CandyItem from "./CandyItem";
 
-import {
-  Button,
-  Container,
-  Label,
-  Select,
-} from "../../common/styles/componentsStyles";
+import { CartIcon } from "../../assets/icons";
+
+import { Label, Select } from "../../common/styles/componentsStyles";
 import { ContainerEnd, StyledSweetsList } from "./SweetsListStyles";
+import { CartButton } from "../Layout/MainHeader/MainHeaderStyles";
 
 import { CandyItemObject, SortTypes } from "../../common/types/common.types";
+import { theme } from "../../common/styles/theme";
 
 const SweetsList = () => {
   const [sweets, setSweets] = useState<CandyItemObject[]>([]);
 
   const { sortType, setSortType } = useContext(UserContext);
+  const { width } = useWindowDimensions();
 
   useEffect(() => {
     const fetchCandies = async () => {
@@ -36,25 +38,13 @@ const SweetsList = () => {
     fetchCandies();
   }, [sortType]);
 
-  // //Sorting
-  // useEffect(() => {
-  //   if (sweets.length > 0) {
-  //     setSortedSweets(sortCandies(sweets, sortType));
-  //   }
-  // }, [sweets, sortType, sortedSweets]);
-
   const sortTypeChangeHandler = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    //FIXME: check if event.target.value is SosrtTypes
-    if (
-      event.target.value === SortTypes.ALFABETICAL_ASC ||
-      event.target.value === SortTypes.ALFABETICAL_DSC ||
-      event.target.value === SortTypes.BY_PRICE_ASC ||
-      event.target.value === SortTypes.BY_PRICE_DSC
-    ) {
-      setSortType(event.target.value);
-      setLocalStorageSortType(event.target.value);
+    const sortValue = event.target.value;
+    if (isSortType(sortValue)) {
+      setSortType(sortValue);
+      setLocalStorageSortType(sortValue);
     }
   };
 
@@ -89,7 +79,9 @@ const SweetsList = () => {
         <p>No sweets available at this moment. Please try Again later.</p>
       )}
       <NavLink className="btn-go-to-cart__container" to={navKeys.cart}>
-        <Button>Go to Cart</Button>
+        <CartButton>
+          {width > theme.screens.large ? <span>Go to Cart</span> : <CartIcon />}
+        </CartButton>
       </NavLink>
     </StyledSweetsList>
   );
