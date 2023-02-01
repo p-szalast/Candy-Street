@@ -79,7 +79,9 @@ export const personalDataFormYupValidationSchema = Yup.object({
   city: Yup.string()
     .matches(validateLettersPattern, "City must contain letters only")
     .required("Required"),
-  postCode: Yup.string().matches(/^[0-9-]+$/u, "Post code in wrong format"),
+  postCode: Yup.string()
+    .required("Required")
+    .matches(/^[0-9-]+$/u, "Post code in wrong format"),
 });
 
 // Typescipt guard

@@ -36,14 +36,18 @@ const Summary = () => {
   const confirmOrderHandler: (enteredAddress: AddressObject) => void = (
     enteredAddress
   ) => {
+    if (cartItems.length === 0) {
+      toast.error("Please add sweets to cart first!");
+      return;
+    }
+
     const newOrder = new Order(cartItems, enteredAddress);
     postOrder(newOrder);
 
+    //clearing
+    navigate(navKeys.main);
     toast.success("Your order has been sent successfully!");
-
-    //TODO:delete
-    console.log(newOrder);
-
+    setAddress(emptyAddressObject);
     clearCart();
   };
 
@@ -61,9 +65,7 @@ const Summary = () => {
       validationSchema: personalDataFormYupValidationSchema,
 
       onSubmit: (values) => {
-        setAddress(emptyAddressObject);
         confirmOrderHandler(values);
-        navigate(navKeys.main);
       },
     });
 
@@ -82,7 +84,11 @@ const Summary = () => {
       </TotalAmountItem>
       <BtnsContainer>
         <Button onClick={handleBackToCart}>Back to Cart</Button>
-        <Button disabled={!formik.dirty} onClick={formik.submitForm}>
+        <Button
+          className="call-to-action"
+          disabled={!formik.dirty}
+          onClick={formik.submitForm}
+        >
           Confirm Order
         </Button>
       </BtnsContainer>

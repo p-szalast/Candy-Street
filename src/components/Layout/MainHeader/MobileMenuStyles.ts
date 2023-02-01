@@ -17,14 +17,14 @@ export const StyledMobileMenu = styled.ul`
   border: 1px solid ${({ theme }) => theme.colors.backgroundDark};
   transition: all 0.5s ease-in-out;
 
-  /* FIXME: transition */
+  /* TODO: transition */
   /* menu closed : */
   /* transform: translateX(50%); */
 
   /* menu opened */
-  & .opened {
+  /* & .opened {
     transform: translateX(0%);
-  }
+  } */
 
   & li {
     background: ${({ theme }) => theme.colors.backgroundDark};

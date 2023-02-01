@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../../store/user-context";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { navKeys } from "../../routes/routes";
 
 import useWindowDimensions from "../../hooks/useWindowDimensions";
@@ -15,26 +15,51 @@ import CandyItem from "./CandyItem";
 
 import { CartIcon } from "../../assets/icons";
 
-import { Label, Select } from "../../common/styles/componentsStyles";
+import {
+  Container,
+  EmptyListMsg,
+  Label,
+  Select,
+  VFlexBox,
+} from "../../common/styles/componentsStyles";
 import { ContainerEnd, StyledSweetsList } from "./SweetsListStyles";
 import { CartButton } from "../Layout/MainHeader/MainHeaderStyles";
 
 import { CandyItemObject, SortTypes } from "../../common/types/common.types";
 import { theme } from "../../common/styles/theme";
+import Loader from "../../common/styles/loader";
+import { toast } from "react-hot-toast";
 
 const SweetsList = () => {
   const [sweets, setSweets] = useState<CandyItemObject[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const { sortType, setSortType } = useContext(UserContext);
   const { width } = useWindowDimensions();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCandies = async () => {
+      setIsLoading(true);
+
       const data = await getAvailableCandies();
-      if (!data) return;
+
+      if (!data) {
+        setIsLoading(false);
+        return;
+      }
+
       const sortedCandies = sortCandies(data, sortType);
       setSweets(sortedCandies);
+      setIsLoading(false);
     };
+
+    //TODO: error when failed to fetch data
+    // toast.promise(fetchCandies, {
+    //   success: "Sweets loaded!",
+    //   error: "Error when fetching sweets",
+    // });
+
     fetchCandies();
   }, [sortType]);
 
@@ -46,6 +71,10 @@ const SweetsList = () => {
       setSortType(sortValue);
       setLocalStorageSortType(sortValue);
     }
+  };
+
+  const handleNavToCart = () => {
+    navigate(navKeys.cart);
   };
 
   return (
@@ -75,14 +104,22 @@ const SweetsList = () => {
             image={item.image}
           />
         ))}
-      {sweets.length === 0 && (
-        <p>No sweets available at this moment. Please try Again later.</p>
+      {isLoading && (
+        <VFlexBox>
+          <p>Loading...</p>
+          <Loader className="loader"></Loader>
+        </VFlexBox>
       )}
-      <NavLink className="btn-go-to-cart__container" to={navKeys.cart}>
-        <CartButton>
+      {sweets.length === 0 && !isLoading && (
+        <EmptyListMsg>
+          No sweets available at this moment. Please try Again later.
+        </EmptyListMsg>
+      )}
+      <Container className="btn-go-to-cart__container">
+        <CartButton className="call-to-action" onClick={handleNavToCart}>
           {width > theme.screens.large ? <span>Go to Cart</span> : <CartIcon />}
         </CartButton>
-      </NavLink>
+      </Container>
     </StyledSweetsList>
   );
 };

@@ -16,7 +16,7 @@ export const StyledSweetsList = styled.section`
 `;
 
 export const ContainerEnd = styled(Container)`
-  margin-right: 1rem;
+  margin-right: ${({ theme }) => theme.spacing.basic};
   justify-content: flex-end;
 
   & Label {

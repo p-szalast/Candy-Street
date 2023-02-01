@@ -27,8 +27,8 @@ function App() {
         </Routes>
         <Footer />
         <Toaster
-          //TODO: Message Toast styles
           position="bottom-center"
+          containerStyle={{ marginBottom: "8rem" }}
           toastOptions={toastOptionsObject}
         />
       </UserContextProvider>

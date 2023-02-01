@@ -6,8 +6,8 @@ import backgroundImage from "../../assets/background.png";
 export const StyledPage = styled.main`
   margin-top: ${({ theme }) => theme.heights.header};
   background: linear-gradient(
-      rgba(207, 187, 203, 0.81),
-      rgba(207, 187, 203, 0.81)
+      ${({ theme }) => theme.colors.primaryWithAlpha},
+      ${({ theme }) => theme.colors.primaryWithAlpha}
     ),
     url(${backgroundImage}) no-repeat top center fixed;
   background-size: cover;
@@ -44,6 +44,11 @@ export const PageHeading = styled.h2`
   text-align: left;
   margin-left: ${({ theme }) => theme.spacing.basicEnlarged};
   font-weight: 300;
+`;
+
+export const EmptyListMsg = styled.p`
+  margin: ${({ theme }) => theme.spacing.two};
+  font-size: ${({ theme }) => theme.fontSize.enlarged};
 `;
 
 ///Image
@@ -113,6 +118,7 @@ export const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: Rubik, sans-serif;
   gap: ${({ theme }) => theme.spacing.quarter};
   width: 8rem;
   height: 2.5rem;
@@ -121,13 +127,17 @@ export const Button = styled.button`
   border-radius: ${({ theme }) => theme.borderRadius.buttons};
   padding: ${({ theme }) => theme.spacing.half}
     ${({ theme }) => theme.spacing.basic};
-  font-weight: bold;
+  font-weight: regular;
   font-size: ${({ theme }) => theme.fontSize.regular};
   text-decoration: none;
 
   &:hover {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
     cursor: pointer;
+  }
+
+  &.call-to-action {
+    font-weight: bold;
   }
 `;
 

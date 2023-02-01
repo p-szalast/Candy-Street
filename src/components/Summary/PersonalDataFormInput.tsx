@@ -1,5 +1,4 @@
 import { FieldInputProps } from "formik";
-import React from "react";
 import { Input, Label, VFlexBox } from "../../common/styles/componentsStyles";
 
 const PersonalDataFormInput = ({

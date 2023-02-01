@@ -9,6 +9,7 @@ export const theme = {
     primaryLight: "#e5dfe4",
     primaryDark: "#ae8ca7",
     primaryDarker: "#99658f",
+    primaryWithAlpha: "rgba(207, 187, 203, 0.81)",
 
     secondary: "#dae9d2",
 

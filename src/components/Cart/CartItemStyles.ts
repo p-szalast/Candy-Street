@@ -16,10 +16,6 @@ const StyledCartItem = styled(Item)`
     align-content: center;
     justify-items: center;
 
-    & h3 {
-
-    }
-
     & .btnDelete {
       grid-row: 1;
       grid-column: 5;

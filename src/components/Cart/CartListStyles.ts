@@ -7,6 +7,10 @@ export const StyledCartList = styled.div`
   max-width: 60rem;
   text-align: center;
   border-radius: ${({ theme }) => theme.borderRadius.items};
+
+  & .empty-cart-msg {
+    margin: ${({ theme }) => theme.spacing.basicEnlarged};
+  }
 `;
 
 export const BtnsContainer = styled(Container)`
