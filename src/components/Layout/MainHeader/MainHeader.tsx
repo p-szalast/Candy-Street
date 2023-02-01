@@ -75,8 +75,11 @@ const MainHeader = () => {
       <MainHeadingBrandName>Candy&nbsp;Street</MainHeadingBrandName>
       {navButtons}
       {width < theme.screens.small && menuVisible && (
-        <MobileMenu toggleMenu={toggleMenuHandler} />
+        <MobileMenu toggleMenu={toggleMenuHandler} menuVisible={menuVisible} />
       )}
+      {/* {width < theme.screens.small && (
+        <MobileMenu toggleMenu={toggleMenuHandler} menuVisible={menuVisible} />
+      )} */}
     </StyledMainHeader>
   );
 };

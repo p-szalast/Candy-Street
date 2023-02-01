@@ -4,7 +4,13 @@ import { navKeys } from "../../../routes/routes";
 
 import { StyledMobileMenu, MobileMenuBtn } from "./MobileMenuStyles";
 
-const MobileMenu = ({ toggleMenu }: { toggleMenu: () => void }) => {
+const MobileMenu = ({
+  toggleMenu,
+  menuVisible,
+}: {
+  toggleMenu: () => void;
+  menuVisible: boolean;
+}) => {
   const navigate = useNavigate();
 
   const navToHandler = (path: string) => {
@@ -13,7 +19,7 @@ const MobileMenu = ({ toggleMenu }: { toggleMenu: () => void }) => {
   };
 
   return (
-    <StyledMobileMenu>
+    <StyledMobileMenu className={menuVisible ? "opened" : ""}>
       <li>
         <MobileMenuBtn onClick={() => navToHandler(navKeys.main)}>
           Sweets List

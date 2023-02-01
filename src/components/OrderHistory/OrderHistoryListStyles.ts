@@ -4,13 +4,15 @@ import { Container } from "../../common/styles/componentsStyles";
 
 export const StyledOrderHistoryList = styled.div`
   display: block;
-  margin: 1rem auto;
+  margin: ${({ theme }) => theme.spacing.basic} auto;
   max-width: 60rem;
   text-align: center;
   border-radius: ${({ theme }) => theme.borderRadius.buttons};
 `;
 
 export const BtnsContainer = styled(Container)`
-  margin: 1rem 2rem 2rem 2rem;
+  margin: ${({ theme }) => theme.spacing.basic}
+    ${({ theme }) => theme.spacing.two} ${({ theme }) => theme.spacing.two}
+    ${({ theme }) => theme.spacing.two};
   justify-content: start;
 `;

@@ -12,7 +12,7 @@ export const StyledMainHeader = styled.header`
   height: ${({ theme }) => theme.heights.header};
   align-items: center;
   justify-content: space-between;
-  padding: 0 1rem;
+  padding: 0 ${({ theme }) => theme.spacing.basic};
   background-color: ${({ theme }) => theme.colors.background};
   z-index: 1;
 
@@ -26,13 +26,13 @@ export const MainHeadingBrandName = styled.div`
   text-align: center;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 3.5rem;
+  font-size: ${({ theme }) => theme.fontSize.threeAndHalf};
   font-weight: normal;
   font-family: "Rubik Puddles", cursive;
   word-spacing: 0.5rem;
 
   @media only screen and ${({ theme }) => theme.devices.mobileXS} {
-    font-size: 2rem;
+    font-size: ${({ theme }) => theme.fontSize.two};
   }
 `;
 

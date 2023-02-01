@@ -26,7 +26,7 @@
       "name": "Christmas Tree Lolipops (10 piesces)",
       "price": 4.5,
       "image": "https://cdn.shopify.com/s/files/1/1371/3393/products/41862HPQRML._SL1000.jpg",
-      "description": "Great for Holiday Gifts. Great stocking stuffers"
+      "description": "Great for Holiday Gifts. Perfect for tucking in a holiday candy dish or stocking! Mixed fruit flavor. Individually wrapped. Fat-free."
     },
     {
       "id": "c05",
@@ -345,6 +345,27 @@
       },
       "date": "Tue Jan 31 2023 16:31:26 GMT+0100 (Central European Standard Time)",
       "id": 12
+    },
+    {
+      "orderedCandies": [
+        {
+          "id": "c03",
+          "name": "Moist Chocolate Muffins (4 pieces)",
+          "price": 12,
+          "amount": 6
+        }
+      ],
+      "address": {
+        "firstName": "dfgdfgd",
+        "lastName": "fgdfg",
+        "phoneNumber": "3245345345",
+        "street": "dfgdfg",
+        "houseNumber": "df3453",
+        "city": "dfgdfgdfg",
+        "postCode": ""
+      },
+      "date": "Tue Jan 31 2023 16:58:41 GMT+0100 (Central European Standard Time)",
+      "id": 13
     }
   ]
 }

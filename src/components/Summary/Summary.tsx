@@ -39,7 +39,8 @@ const Summary = () => {
     const newOrder = new Order(cartItems, enteredAddress);
     postOrder(newOrder);
 
-    toast("Your order has been sent successfully!");
+    toast.success("Your order has been sent successfully!");
+
     //TODO:delete
     console.log(newOrder);
 

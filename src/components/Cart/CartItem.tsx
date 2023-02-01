@@ -67,7 +67,7 @@ const CandyItem = (props: CartItemObject) => {
       </BtnsAddRemoveContainer>
       <strong> = </strong>
       <strong className="item__price-total">{props.price * amount} zł</strong>
-      <ButtonDelete onClick={btnDeleteHandler}>
+      <ButtonDelete className="btnDelete" onClick={btnDeleteHandler}>
         <Delete />
       </ButtonDelete>
     </StyledCartItem>

@@ -10,24 +10,37 @@ const StyledCartItem = styled(Item)`
   align-items: center;
   justify-content: space-between;
 
-  //TODO:
   @media only screen and ${({ theme }) => theme.devices.mobileXS} {
-    /* GRID MOBILE*/
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-content: center;
+    justify-items: center;
+
+    & h3 {
+
+    }
+
+    & .btnDelete {
+      grid-row: 1;
+      grid-column: 5;
+    }
   }
 
   & .cart-item__title {
-    font-size: ${({ theme }) => theme.fontSize.big}
+    font-size: ${({ theme }) => theme.fontSize.oneAndHalf}
     text-align: left;
     width: 40%;
 
     @media only screen and ${({ theme }) => theme.devices.mobileXS} {
+      grid-column: 2 / span 3;
+      text-align: center;
+      width: 100%;
       font-size: ${({ theme }) => theme.fontSize.enlarged}
-      width: 30%;
     }
   }
 
   & .item__price {
-    width: 2.5rem;
+    width: ${({ theme }) => theme.spacing.twoEnlarged}
     min-width: 2.5rem;
   }
 
@@ -42,13 +55,13 @@ export const CartImage = styled(Image)`
 `;
 
 export const BtnsAddRemoveContainer = styled(Container)`
-  padding: 0 4rem;
-  gap: 0.5rem;
+  padding: 0 ${({ theme }) => theme.spacing.four};
+  gap: ${({ theme }) => theme.spacing.half};
   width: 2rem;
 
   @media only screen and ${({ theme }) => theme.devices.mobileXS} {
-    padding: 0 2.5rem;
-    gap: 0.2rem;
+    padding: 0 ${({ theme }) => theme.spacing.twoEnlarged};
+    gap: ${({ theme }) => theme.spacing.half};
   }
 `;
 
