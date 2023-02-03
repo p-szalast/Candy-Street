@@ -21,11 +21,14 @@ import { Container } from "../../../common/styles/componentsStyles";
 
 import useWindowDimensions from "../../../hooks/useWindowDimensions";
 import MobileMenu from "./MobileMenu";
-import { theme } from "../../../common/styles/theme";
+
+import { useTheme } from "styled-components";
 
 const MainHeader = () => {
   const { width } = useWindowDimensions();
   const navigate = useNavigate();
+
+  const theme = useTheme();
 
   const [menuVisible, setMenuVisible] = useState<boolean>(false);
 

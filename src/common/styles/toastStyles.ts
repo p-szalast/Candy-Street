@@ -13,7 +13,9 @@ export const toastOptionsObject = {
     duration: 5000,
   },
   error: {
+    duration: 3000,
     style: {
+      color: theme.colors.backgroundDarker,
       backgroundColor: theme.colors.errorDark,
     },
   },
