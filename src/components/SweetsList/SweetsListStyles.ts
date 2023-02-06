@@ -2,20 +2,21 @@ import styled from "styled-components";
 import { Container } from "../../common/styles/componentsStyles";
 
 export const StyledSweetsList = styled.section`
-  margin: 1rem auto;
+  margin: ${({ theme }) => theme.spacing.basic} auto;
   max-width: 60rem;
   text-align: center;
   border-radius: ${({ theme }) => theme.borderRadius.buttons};
 
   & .btn-go-to-cart__container {
-    margin: 1rem 2rem;
+    margin: ${({ theme }) => theme.spacing.basic}
+      ${({ theme }) => theme.spacing.two};
     display: flex;
     justify-content: end;
   }
 `;
 
 export const ContainerEnd = styled(Container)`
-  margin-right: 1rem;
+  margin-right: ${({ theme }) => theme.spacing.basic};
   justify-content: flex-end;
 
   & Label {

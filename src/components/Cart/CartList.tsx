@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../store/user-context";
 
 import { navKeys } from "../../routes/routes";
@@ -13,19 +13,31 @@ import {
   BtnsContainer,
   PageHeading,
   TotalAmountItem,
+  EmptyListMsg,
 } from "../../common/styles/componentsStyles";
 import { StyledCartList } from "./CartListStyles";
 
 const CartList = () => {
   const { cartItems } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const totalAmount = calcCartTotalAmount(cartItems);
+
+  const hadnleBackToSweetsList = () => {
+    navigate(navKeys.main);
+  };
+
+  const orderHandler = () => {
+    navigate(navKeys.summary);
+  };
 
   return (
     <StyledCartList>
       <PageHeading>Cart</PageHeading>
       {cartItems.length === 0 && (
-        <p>Cart is empty. Please add sweets to cart first!</p>
+        <EmptyListMsg>
+          Cart is empty. Please add sweets to cart first!
+        </EmptyListMsg>
       )}
       {cartItems &&
         cartItems.map((item) => (
@@ -45,13 +57,11 @@ const CartList = () => {
       )}
 
       <BtnsContainer>
-        <NavLink to={navKeys.main}>
-          <Button>Back</Button>
-        </NavLink>
+        <Button onClick={hadnleBackToSweetsList}>Back</Button>
         {cartItems.length !== 0 && (
-          <NavLink to={navKeys.summary}>
-            <Button>Order</Button>
-          </NavLink>
+          <Button className="call-to-action" onClick={orderHandler}>
+            Order
+          </Button>
         )}
       </BtnsContainer>
     </StyledCartList>

@@ -1,23 +1,30 @@
 import styled from "styled-components";
 
 export const StyledMobileMenu = styled.ul`
-  background: ${({ theme }) => theme.colors.backgroundDark};
+  background: ${({ theme }) => theme.colors.backgroundDarker};
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   position: absolute;
-  font-size: ${({ theme }) => theme.fontSize.big};
-  top: 5rem;
+  font-size: ${({ theme }) => theme.fontSize.oneAndHalf};
+  top: ${({ theme }) => theme.heights.header};
   left: 0;
   width: 100%;
   padding: 0;
   gap: 0.16rem;
   padding-top: 0.1rem;
   border: 1px solid ${({ theme }) => theme.colors.backgroundDark};
-  /* TODO: transition */ /* menu closed : */
-  /* transform: translateX(100%); */ /* menu opened */
-  /* transform: translateX(0%); */ /* transition: all 0.5s ease-in-out; */
+  transition: all 0.5s ease-in-out;
+
+  /* TODO: transition */
+  /* menu closed : */
+  /* transform: translateX(50%); */
+
+  /* menu opened */
+  /* & .opened {
+    transform: translateX(0%);
+  } */
 
   & li {
     background: ${({ theme }) => theme.colors.backgroundDark};
@@ -31,8 +38,8 @@ export const MobileMenuBtn = styled.button`
   height: 100%;
   background: transparent;
   font-family: inherit;
-  font-size: ${({ theme }) => theme.fontSize.big};
-  padding: 2rem;
+  font-size: ${({ theme }) => theme.fontSize.oneAndHalf};
+  padding: ${({ theme }) => theme.spacing.two};
 
   &:hover {
     cursor: pointer;

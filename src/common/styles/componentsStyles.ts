@@ -6,8 +6,8 @@ import backgroundImage from "../../assets/background.png";
 export const StyledPage = styled.main`
   margin-top: ${({ theme }) => theme.heights.header};
   background: linear-gradient(
-      rgba(207, 187, 203, 0.81),
-      rgba(207, 187, 203, 0.81)
+      ${({ theme }) => theme.colors.primaryWithAlpha},
+      ${({ theme }) => theme.colors.primaryWithAlpha}
     ),
     url(${backgroundImage}) no-repeat top center fixed;
   background-size: cover;
@@ -16,20 +16,20 @@ export const StyledPage = styled.main`
       ${({ theme }) => theme.heights.header}
   );
   width: 100%;
-  padding-bottom: 1rem;
+  padding-bottom: ${({ theme }) => theme.spacing.basic};
   overflow: auto;
   color: ${({ theme }) => theme.colors.background};
-  min-width: 300px;
+  min-width: ${({ theme }) => theme.minPageWidth};
   z-index: 1;
 `;
 
 export const Item = styled.div`
   display: flex;
-  margin: 1rem;
-  padding: 1rem;
+  margin: ${({ theme }) => theme.spacing.basic};
+  padding: ${({ theme }) => theme.spacing.basic};
   opacity: 0.9;
   background: ${({ theme }) => theme.colors.background};
-  gap: 0.5rem;
+  gap: ${({ theme }) => theme.spacing.half};
   border: 1px solid ${({ theme }) => theme.colors.background};
   border-radius: ${({ theme }) => theme.borderRadius.items};
   color: ${({ theme }) => theme.colors.text};
@@ -42,8 +42,13 @@ export const TotalAmountItem = styled(Item)`
 //// Text
 export const PageHeading = styled.h2`
   text-align: left;
-  margin-left: 1.5rem;
+  margin-left: ${({ theme }) => theme.spacing.basicEnlarged};
   font-weight: 300;
+`;
+
+export const EmptyListMsg = styled.p`
+  margin: ${({ theme }) => theme.spacing.two};
+  font-size: ${({ theme }) => theme.fontSize.enlarged};
 `;
 
 ///Image
@@ -77,22 +82,17 @@ export const Input = styled.input`
   color: ${({ theme }) => theme.colors.grey};
   width: 14rem;
   height: 2rem;
-  padding: 0.5rem;
+  padding: ${({ theme }) => theme.spacing.half};
 
   @media only screen and ${({ theme }) => theme.devices.mobileXS} {
-    padding: 0.5rem 0;
+    padding: ${({ theme }) => theme.spacing.half}; 0;
   } ;
 `;
 
 export const Select = styled.select`
   font-family: Rubik, sans-serif;
   font-size: ${({ theme }) => theme.fontSize.enlarged};
-  padding: 0.1rem 0.2rem;
   border-radius: ${({ theme }) => theme.borderRadius.items};
-
-  @media only screen and ${({ theme }) => theme.devices.tabletS} {
-    padding: 0;
-  }
 `;
 
 ///Buttons
@@ -118,20 +118,26 @@ export const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.25rem;
+  font-family: Rubik, sans-serif;
+  gap: ${({ theme }) => theme.spacing.quarter};
   width: 8rem;
   height: 2.5rem;
   background: ${({ theme }) => theme.colors.background};
   border: 1px solid ${({ theme }) => theme.colors.background};
   border-radius: ${({ theme }) => theme.borderRadius.buttons};
-  padding: 0.5rem 1rem;
-  font-weight: bold;
-  font-size: 1rem;
+  padding: ${({ theme }) => theme.spacing.half}
+    ${({ theme }) => theme.spacing.basic};
+  font-weight: regular;
+  font-size: ${({ theme }) => theme.fontSize.regular};
   text-decoration: none;
 
   &:hover {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
     cursor: pointer;
+  }
+
+  &.call-to-action {
+    font-weight: bold;
   }
 `;
 
@@ -139,7 +145,7 @@ export const Button = styled.button`
 
 export const Container = styled.div`
   display: flex;
-  gap: 0.5rem;
+  gap: ${({ theme }) => theme.spacing.half};
   align-items: center;
   justify-content: center;
 `;
@@ -155,6 +161,6 @@ export const VFlexBox = styled(Container)<{ $hasError?: boolean }>`
 `;
 
 export const BtnsContainer = styled(Container)`
-  margin: auto 2rem;
+  margin: auto ${({ theme }) => theme.spacing.two};
   justify-content: end;
 `;

@@ -9,6 +9,7 @@ export const theme = {
     primaryLight: "#e5dfe4",
     primaryDark: "#ae8ca7",
     primaryDarker: "#99658f",
+    primaryWithAlpha: "rgba(207, 187, 203, 0.81)",
 
     secondary: "#dae9d2",
 
@@ -16,7 +17,7 @@ export const theme = {
 
     background: "#fff",
     backgroundDark: "#faf8fa",
-    backgroundDarker: "#f5f1f5",
+    backgroundDarker: "#f1ebef",
 
     text: "#151314",
 
@@ -28,6 +29,18 @@ export const theme = {
     success: "#604379",
   },
 
+  spacing: {
+    quarter: "0.25rem",
+    half: "0.5rem",
+    basic: "1rem",
+    basicEnlarged: "1.5rem",
+    two: "2rem",
+    twoEnlarged: "2.5rem",
+    three: "3rem",
+    threeEnlarged: "3.5rem",
+    four: "4rem",
+  },
+
   borderRadius: {
     items: "10px",
     buttons: "20px",
@@ -37,7 +50,11 @@ export const theme = {
   fontSize: {
     regular: "1rem",
     enlarged: "1.2rem",
-    big: "1.5rem",
+    oneAndHalf: "1.5rem",
+    two: "2rem",
+    twoAndHalf: "2.5rem",
+    three: "3rem",
+    threeAndHalf: "3.5rem",
   },
 
   screens: {
@@ -65,6 +82,7 @@ export const theme = {
       return `(max-width: ${theme.screens.large}px)`;
     },
   },
+  minPageWidth: "320px",
 };
 
 export type ThemeType = typeof theme;

@@ -10,7 +10,6 @@ import { BASE_URL } from "../config";
 import { isSortType } from "../helpers";
 
 /// Server
-
 export const getAvailableCandies = async () => {
   return axios
     .get<CandyItemObject[]>(`${BASE_URL}/candies`)
