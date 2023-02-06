@@ -1,5 +1,5 @@
 import { calcCartTotalAmount } from "./helpers";
-import { mockedCart } from "./test-data";
+import { mockedCart } from "../mocks/test-data";
 
 describe("helper functions", () => {
   test("calcs total amount", () => {

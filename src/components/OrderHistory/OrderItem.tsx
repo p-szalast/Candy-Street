@@ -20,14 +20,16 @@ const OrderItem = (props: OrderInterface) => {
   const totalAmount = calcCartTotalAmount(props.orderedCandies);
 
   return (
-    <StyledOrderItem>
-      <OrderDetailsContainer>
-        <h3> {formattedDate}</h3>
-        <h4>{`${props.address.firstName} ${props.address.lastName} - ${props.address.street} ${props.address.houseNumber}, ${props.address.postCode} ${props.address.city}`}</h4>
-        <p>{orderedContentJoined}</p>
-      </OrderDetailsContainer>
-      <strong>{totalAmount}&nbsp;zł</strong>
-    </StyledOrderItem>
+    <li>
+      <StyledOrderItem>
+        <OrderDetailsContainer>
+          <h3> {formattedDate}</h3>
+          <h4>{`${props.address.firstName} ${props.address.lastName} - ${props.address.street} ${props.address.houseNumber}, ${props.address.postCode} ${props.address.city}`}</h4>
+          <p>{orderedContentJoined}</p>
+        </OrderDetailsContainer>
+        <strong>{totalAmount}&nbsp;zł</strong>
+      </StyledOrderItem>
+    </li>
   );
 };
 

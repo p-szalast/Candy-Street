@@ -199,27 +199,6 @@
       },
       "date": "Wed Feb 01 2023 15:44:07 GMT+0100 (Central European Standard Time)",
       "id": 15
-    },
-    {
-      "orderedCandies": [
-        {
-          "id": "c02",
-          "name": "Candy Canes (12 pieces)",
-          "price": 6.5,
-          "amount": 3
-        }
-      ],
-      "address": {
-        "firstName": "TEST NAME",
-        "lastName": "Szalast",
-        "phoneNumber": "345345ertert",
-        "street": "edfgdfg",
-        "houseNumber": "345",
-        "city": "dfdfgdfgdf",
-        "postCode": "345346"
-      },
-      "date": "Wed Feb 01 2023 15:52:26 GMT+0100 (Central European Standard Time)",
-      "id": 16
     }
   ]
 }
