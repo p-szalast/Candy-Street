@@ -67,7 +67,11 @@ const CartItem = (props: CartItemObject) => {
       </BtnsAddRemoveContainer>
       <strong> = </strong>
       <strong className="item__price-total">{props.price * amount} zł</strong>
-      <ButtonDelete className="btnDelete" onClick={btnDeleteHandler}>
+      <ButtonDelete
+        aria-label="delete"
+        className="btnDelete"
+        onClick={btnDeleteHandler}
+      >
         <Delete />
       </ButtonDelete>
     </StyledCartItem>

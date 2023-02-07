@@ -10,4 +10,6 @@ describe("common-service", () => {
 
     expect(candies).toMatchObject(mockedSweets);
   });
+
+  //TODO: test local storage
 });

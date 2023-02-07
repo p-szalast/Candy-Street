@@ -7,4 +7,10 @@ describe("MainHeader component", () => {
     const mainHeading = screen.getByText(/candy street/i);
     expect(mainHeading).toBeInTheDocument();
   });
+
+  test("renders buttons", () => {
+    render(<MainHeader />);
+    const navBtns = screen.getAllByRole("button");
+    expect(navBtns).not.toHaveLength(0);
+  });
 });

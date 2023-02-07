@@ -11,10 +11,8 @@ describe("SweetsList component", () => {
   test("renders images", async () => {
     render(<SweetsList />);
 
-    //FIXME:
-    // const images: Promise<HTMLElement[]> = await screen.findAllByRole("img");
-    // const images = await screen.findAllByRole("img");
-    // expect(images).tohaveLenghth(2);
+    const images = await screen.findAllByRole("img");
+    expect(images).toHaveLength(2);
   });
 
   test("renders candy name", async () => {
