@@ -1,5 +1,7 @@
 import { theme } from "./theme";
 
+export const toasterPosition = "bottom-center"
+
 export const toastOptionsObject = {
   duration: 1000,
   style: {
@@ -20,3 +22,5 @@ export const toastOptionsObject = {
     },
   },
 };
+
+export const containerStyleObject = { marginBottom: "8rem" };

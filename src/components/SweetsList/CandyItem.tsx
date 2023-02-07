@@ -67,19 +67,21 @@ const CandyItem = (props: CandyItemObject) => {
   // const inCart = Boolean(!!itemAlreadyInCart);
 
   return (
-    <StyledCandyItem>
-      <Image alt="" src={props.image} />
-      <div className="item__details">
-        <h2>{props.name}</h2>
-        <p>{props.description}</p>
-        <strong>{props.price} zł</strong>
-      </div>
-      <BtnsMainAddRemoveContainer>
-        <ButtonLittle onClick={btnMinusHandler}>-</ButtonLittle>
-        <p>{amount}</p>
-        <ButtonLittle onClick={btnPlusHandler}>+</ButtonLittle>
-      </BtnsMainAddRemoveContainer>
-    </StyledCandyItem>
+    <li>
+      <StyledCandyItem>
+        <Image alt="" src={props.image} />
+        <div className="item__details">
+          <h2>{props.name}</h2>
+          <p>{props.description}</p>
+          <strong>{props.price} zł</strong>
+        </div>
+        <BtnsMainAddRemoveContainer>
+          <ButtonLittle onClick={btnMinusHandler}>-</ButtonLittle>
+          <p>{amount}</p>
+          <ButtonLittle onClick={btnPlusHandler}>+</ButtonLittle>
+        </BtnsMainAddRemoveContainer>
+      </StyledCandyItem>
+    </li>
   );
 };
 

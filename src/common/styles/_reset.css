@@ -21,3 +21,7 @@ button {
   padding: 0;
   outline: none;
 }
+
+li {
+  list-style: none;
+}

@@ -14,7 +14,7 @@ import { ButtonLittle } from "../../common/styles/componentsStyles";
 import { CartItemObject } from "../../common/types/common.types";
 import { MAX_ORDER_ITEM_AMOUNT } from "../../common/config";
 
-const CandyItem = (props: CartItemObject) => {
+const CartItem = (props: CartItemObject) => {
   const [amount, setAmount] = useState(props.amount);
   const { addItem, removeItem } = useContext(UserContext);
 
@@ -74,4 +74,4 @@ const CandyItem = (props: CartItemObject) => {
   );
 };
 
-export default CandyItem;
+export default CartItem;

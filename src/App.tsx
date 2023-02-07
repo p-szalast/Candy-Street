@@ -3,7 +3,11 @@ import UserContextProvider from "./store/user-context";
 import { navKeys } from "./routes/routes";
 
 import { Toaster } from "react-hot-toast";
-import { toastOptionsObject } from "./common/styles/toastStyles";
+import {
+  toastOptionsObject,
+  containerStyleObject,
+  toasterPosition,
+} from "./common/styles/toastStyles";
 
 import MainHeader from "./components/Layout/MainHeader/MainHeader";
 import MainPage from "./pages/MainPage/MainPage";
@@ -27,8 +31,8 @@ function App() {
         </Routes>
         <Footer />
         <Toaster
-          position="bottom-center"
-          containerStyle={{ marginBottom: "8rem" }}
+          position={toasterPosition}
+          containerStyle={containerStyleObject}
           toastOptions={toastOptionsObject}
         />
       </UserContextProvider>
