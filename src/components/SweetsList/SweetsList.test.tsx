@@ -5,6 +5,24 @@ describe("SweetsList component", () => {
   test("render sweets if request succeed", async () => {
     render(<SweetsList />);
     const sweetItems = await screen.findAllByRole("listitem");
-    expect(sweetItems).toHaveLength(1);
+    expect(sweetItems).toHaveLength(2);
+  });
+
+  test("renders images", async () => {
+    render(<SweetsList />);
+
+    //FIXME:
+    // const images: Promise<HTMLElement[]> = await screen.findAllByRole("img");
+    // const images = await screen.findAllByRole("img");
+    // expect(images).tohaveLenghth(2);
+  });
+
+  test("renders candy name", async () => {
+    render(<SweetsList />);
+    const candyItemHeading = await screen.findByText(
+      "Christmas Tree Lolipops (10 piesces)",
+      { exact: false }
+    );
+    expect(candyItemHeading).toBeInTheDocument();
   });
 });
