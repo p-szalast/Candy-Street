@@ -1,4 +1,4 @@
-import { render, screen } from "../../../common/test-utils";
+import { render, screen } from "../../../test-utils";
 import Hero from "./Hero";
 
 test("renders hero", () => {

@@ -13,6 +13,7 @@ import {
 } from "./user-context-types";
 
 import { getLocalStorageSortType } from "../common/service/common-service";
+import useUserContextProviderValue from "./useUserContextProviderValue";
 
 export const emptyAddressObject = {
   firstName: "",
@@ -25,7 +26,7 @@ export const emptyAddressObject = {
 };
 
 // Creating default context state object
-const defaultUserState: UserContextObject = {
+export const defaultUserState: UserContextObject = {
   cartItems: [],
   address: emptyAddressObject,
   sortType: getLocalStorageSortType(),
@@ -42,7 +43,7 @@ export const UserContext =
 UserContext.displayName = "UserContext";
 
 // Creating reducer function
-const userReducer = (
+export const userReducer = (
   state: UserContextObject,
   action: CartActions | UserActions
 ) => {
@@ -133,76 +134,10 @@ const userReducer = (
 
 //Creating context state
 const UserContextProvider = (props: PropsWithChildren) => {
-  const [userState, dispatchUserAction] = useReducer(
-    userReducer,
-    defaultUserState
-  );
-
-  ///////////////////////
-  ///// CART ACTIONS /////
-  ////////////////////////
-
-  const addItemHandler = (item: CartItemObject) => {
-    dispatchUserAction({
-      type: CartTypes.ADD_ITEM,
-      payload: {
-        item,
-      },
-    });
-  };
-
-  const removeItemHandler = (id: string) => {
-    dispatchUserAction({
-      type: CartTypes.REMOVE_ITEM,
-      payload: {
-        id,
-      },
-    });
-  };
-
-  const clearCartHandler = () => {
-    dispatchUserAction({
-      type: CartTypes.CLEAR_CART,
-    });
-  };
-
-  ///////////////////////
-  ///// USER ACTIONS /////
-  ////////////////////////
-
-  const setAddressHandler = (address: AddressObject) => {
-    dispatchUserAction({
-      type: UserTypes.SET_ADDRESS,
-      payload: {
-        address,
-      },
-    });
-  };
-
-  const setSortTypeHandler = (sortType: SortTypes) => {
-    dispatchUserAction({
-      type: UserTypes.SET_SORT_TYPE,
-      payload: {
-        sortType,
-      },
-    });
-  };
-
-  ///////////////////////////////////////
-
-  const contextValue: UserContextObject = {
-    cartItems: userState.cartItems,
-    address: userState.address,
-    sortType: userState.sortType,
-    addItem: addItemHandler,
-    removeItem: removeItemHandler,
-    clearCart: clearCartHandler,
-    setAddress: setAddressHandler,
-    setSortType: setSortTypeHandler,
-  };
-
   return (
-    <UserContext.Provider value={contextValue}>
+    <UserContext.Provider
+      value={useUserContextProviderValue(userReducer, defaultUserState)}
+    >
       {props.children}
     </UserContext.Provider>
   );

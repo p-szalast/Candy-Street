@@ -68,7 +68,7 @@ const CartItem = (props: CartItemObject) => {
       <strong> = </strong>
       <strong className="item__price-total">{props.price * amount} zł</strong>
       <ButtonDelete
-        aria-label="delete"
+        data-testid="delete-btn"
         className="btnDelete"
         onClick={btnDeleteHandler}
       >

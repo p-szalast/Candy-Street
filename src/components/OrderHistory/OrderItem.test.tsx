@@ -1,4 +1,4 @@
-import { render, screen } from "../../common/test-utils";
+import { render, screen } from "../../test-utils";
 import OrderItem from "./OrderItem";
 import { mockedOrders } from "../../mocks/test-data";
 

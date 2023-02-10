@@ -1,5 +1,9 @@
-import { render, screen } from "../../common/test-utils";
+import { cleanup, render, screen } from "../../test-utils";
 import SweetsList from "./SweetsList";
+
+beforeEach(() => {
+  cleanup();
+});
 
 describe("SweetsList component", () => {
   test("render sweets if request succeed", async () => {

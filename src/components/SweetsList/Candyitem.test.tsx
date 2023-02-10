@@ -1,4 +1,4 @@
-import { render, screen } from "../../common/test-utils";
+import { render, screen } from "../../test-utils";
 import CandyItem from "./CandyItem";
 import userEvent from "@testing-library/user-event";
 

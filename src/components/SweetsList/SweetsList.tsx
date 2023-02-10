@@ -50,7 +50,9 @@ const SweetsList = () => {
       }
 
       const sortedCandies = sortCandies(data, sortType);
+
       setSweets(sortedCandies);
+
       setIsLoading(false);
     };
 
@@ -116,7 +118,11 @@ const SweetsList = () => {
         </EmptyListMsg>
       )}
       <Container className="btn-go-to-cart__container">
-        <CartButton className="call-to-action" onClick={handleNavToCart}>
+        <CartButton
+          data-testid="cartBtn"
+          className="call-to-action"
+          onClick={handleNavToCart}
+        >
           {width > theme.screens.large ? <span>Go to Cart</span> : <CartIcon />}
         </CartButton>
       </Container>

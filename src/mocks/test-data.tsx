@@ -68,3 +68,24 @@ export const mockedOrders: OrderInterface[] = [
     date: "Sat Nov 25 2023 10:22:03 GMT+0100 (Central European Standard Time)",
   },
 ];
+
+export const newOrder: OrderInterface = {
+  orderedCandies: [
+    {
+      id: "c05",
+      name: "Fruit Slices Candy (25 pieces)",
+      price: 9.5,
+      amount: 1,
+    },
+  ],
+  address: {
+    firstName: "Dominik",
+    lastName: "Dziekan",
+    phoneNumber: "+48306102144",
+    street: "Samochodowa",
+    houseNumber: "9",
+    city: "Warszawa",
+    postCode: "01-203",
+  },
+  date: "Thu Jan 09 2023 10:22:03 GMT+0100 (Central European Standard Time)",
+};
