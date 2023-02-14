@@ -1,4 +1,5 @@
 import {
+  AddressObject,
   CandyItemObject,
   CartItemObject,
   OrderInterface,
@@ -88,4 +89,14 @@ export const newOrder: OrderInterface = {
     postCode: "01-203",
   },
   date: "Thu Jan 09 2023 10:22:03 GMT+0100 (Central European Standard Time)",
+};
+
+export const mockedAddress: AddressObject = {
+  firstName: "Dominik",
+  lastName: "Dziekan",
+  phoneNumber: "+48306102144",
+  street: "Samochodowa",
+  houseNumber: "9",
+  city: "Warszawa",
+  postCode: "01-203",
 };

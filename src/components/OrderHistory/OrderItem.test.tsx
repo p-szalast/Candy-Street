@@ -33,11 +33,15 @@ describe("OrderItem component", () => {
     );
     const totalAmount = await screen.findByText(/51.5 zł/i);
 
-    expect(orderItemPersonalDataHeading).toBeInTheDocument();
-    expect(orderDay).toBeInTheDocument();
-    expect(orderMonth).toBeInTheDocument();
-    expect(orderYear).toBeInTheDocument();
-    expect(orderCandiesText).toBeInTheDocument();
-    expect(totalAmount).toBeInTheDocument();
+    const elements = [
+      orderItemPersonalDataHeading,
+      orderDay,
+      orderMonth,
+      orderYear,
+      orderCandiesText,
+      totalAmount,
+    ];
+
+    elements.forEach((el) => expect(el).toBeInTheDocument());
   });
 });

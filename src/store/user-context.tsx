@@ -1,9 +1,5 @@
-import React, { useReducer, PropsWithChildren } from "react";
-import {
-  CartItemObject,
-  AddressObject,
-  SortTypes,
-} from "../common/types/common.types";
+import React, { PropsWithChildren } from "react";
+import { CartItemObject } from "../common/types/common.types";
 import {
   CartActions,
   CartTypes,
@@ -75,8 +71,6 @@ export const userReducer = (
       //if item does not exist
       updatedCartItems = state.cartItems.concat(action.payload.item);
     }
-
-    //TODO: update local storage
 
     //updating app state with changed CartItems
     const updatedState = {

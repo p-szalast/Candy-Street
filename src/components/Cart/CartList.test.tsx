@@ -1,7 +1,6 @@
 import userEvent from "@testing-library/user-event";
-import { act, render, screen } from "../../test-utils";
+import { render, screen } from "../../test-utils";
 import { mockedCart } from "../../mocks/test-data";
-import CartItem from "./CartItem";
 import CartList from "./CartList";
 import {
   defaultUserState,
@@ -9,6 +8,19 @@ import {
   userReducer,
 } from "../../store/user-context";
 import useUserContextProviderValue from "../../store/useUserContextProviderValue";
+
+const Wrapper = () => {
+  const value = useUserContextProviderValue(userReducer, {
+    ...defaultUserState,
+    cartItems: mockedCart,
+  });
+
+  return (
+    <UserContext.Provider value={value}>
+      <CartList />
+    </UserContext.Provider>
+  );
+};
 
 describe("cart list", () => {
   test("renders cart heading and total amount", () => {
@@ -21,24 +33,6 @@ describe("cart list", () => {
     expect(emptyCartText).toBeInTheDocument();
   });
 
-  const Wrapper = () => {
-    const value = useUserContextProviderValue(userReducer, {
-      ...defaultUserState,
-      cartItems: mockedCart,
-    });
-
-    // mock = () => items.filter (....)
-
-    // value = {cartitems: MockedCart, removeItem: mock}
-
-    return (
-      <UserContext.Provider value={value}>
-        <CartList />
-      </UserContext.Provider>
-    );
-  };
-
-  //FIXME:
   test("delete button removes item", async () => {
     render(<Wrapper />);
 
@@ -46,29 +40,26 @@ describe("cart list", () => {
       "Classic Chocolate Chip Cookies (20 pieces)",
       { exact: false }
     );
-    expect(item1Heading).toBeInTheDocument();
-
     const item2Heading = screen.queryByText(
       "Moist Chocolate Muffins (4 pieces)",
       { exact: false }
     );
 
+    expect(item1Heading).toBeInTheDocument();
     expect(item2Heading).toBeInTheDocument();
 
     const delBtns = screen.getAllByTestId("delete-btn");
     const firstDelBtn = delBtns[0];
-    const secondDelBtn = delBtns[1];
-
-    await userEvent.click(firstDelBtn);
+    userEvent.click(firstDelBtn);
     expect(item1Heading).not.toBeInTheDocument();
 
+    const secondDelBtn = delBtns[1];
     userEvent.click(secondDelBtn);
     expect(item2Heading).not.toBeInTheDocument();
 
-    const cartItems = screen.queryAllByRole("listitem");
-    expect(cartItems).toHaveLength(0);
-
     const itemImages = screen.queryAllByRole("img");
+    const cartItems = screen.queryAllByRole("listitem");
     expect(itemImages).toHaveLength(0);
+    expect(cartItems).toHaveLength(0);
   });
 });

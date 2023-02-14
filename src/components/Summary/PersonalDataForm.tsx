@@ -1,33 +1,33 @@
 import { FormContainer, FormItem } from "./PersonalDataFormStyles";
 
-import { PersonalDataFormInputsObject } from "../../common/types/common.types";
+import { FormInputsObject } from "../../common/types/common.types";
 
 import { FormikProps } from "formik";
-import PersonalDataFormInput from "./PersonalDataFormInput";
+import FormInput from "./FormInput";
 
 const PersonalDataForm = ({
   formik,
 }: {
-  formik: FormikProps<PersonalDataFormInputsObject>;
+  formik: FormikProps<FormInputsObject>;
 }) => {
   return (
     <FormItem>
       <FormContainer>
-        <PersonalDataFormInput
+        <FormInput
           fieldName="firstName"
           error={formik.errors.firstName}
           touched={formik.touched.firstName}
           fieldInputProps={formik.getFieldProps("firstName")}
           label="First Name"
         />
-        <PersonalDataFormInput
+        <FormInput
           fieldName="lastName"
           error={formik.errors.lastName}
           touched={formik.touched.lastName}
           fieldInputProps={formik.getFieldProps("lastName")}
           label="Last Name"
         />
-        <PersonalDataFormInput
+        <FormInput
           fieldName="phoneNumber"
           error={formik.errors.phoneNumber}
           touched={formik.touched.phoneNumber}
@@ -36,7 +36,7 @@ const PersonalDataForm = ({
         />
       </FormContainer>
       <FormContainer>
-        <PersonalDataFormInput
+        <FormInput
           fieldName="street"
           error={formik.errors.street}
           touched={formik.touched.street}
@@ -44,7 +44,7 @@ const PersonalDataForm = ({
           label="Street"
         />
 
-        <PersonalDataFormInput
+        <FormInput
           fieldName="houseNumber"
           error={formik.errors.houseNumber}
           touched={formik.touched.houseNumber}
@@ -52,7 +52,7 @@ const PersonalDataForm = ({
           label="House Number"
         />
 
-        <PersonalDataFormInput
+        <FormInput
           fieldName="city"
           error={formik.errors.city}
           touched={formik.touched.city}
@@ -60,12 +60,12 @@ const PersonalDataForm = ({
           label="City"
         />
 
-        <PersonalDataFormInput
+        <FormInput
           fieldName="postCode"
           error={formik.errors.postCode}
           touched={formik.touched.postCode}
           fieldInputProps={formik.getFieldProps("postCode")}
-          label="Postal code"
+          label="Post Code"
         />
       </FormContainer>
     </FormItem>

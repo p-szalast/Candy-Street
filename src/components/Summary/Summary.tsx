@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { emptyAddressObject, UserContext } from "../../store/user-context";
 import { useNavigate } from "react-router-dom";
 import { navKeys } from "../../routes/routes";
@@ -27,7 +27,7 @@ import {
 //Types
 import {
   AddressObject,
-  PersonalDataFormInputsObject,
+  FormInputsObject,
 } from "../../common/types/common.types";
 
 const Summary = () => {
@@ -54,26 +54,33 @@ const Summary = () => {
       toast.success("Your order has been sent successfully!");
       setAddress(emptyAddressObject);
       clearCart();
-    } catch (error) {}
+    } catch (error) {
+      toast.success("Unable to send order");
+    }
   };
 
-  const formik: FormikProps<PersonalDataFormInputsObject> =
-    useFormik<PersonalDataFormInputsObject>({
-      initialValues: {
-        firstName: address.firstName,
-        lastName: address.lastName,
-        phoneNumber: address.phoneNumber,
-        street: address.street,
-        houseNumber: address.houseNumber,
-        city: address.city,
-        postCode: address.postCode,
-      },
-      validationSchema: personalDataFormYupValidationSchema,
+  const formik: FormikProps<FormInputsObject> = useFormik<FormInputsObject>({
+    initialValues: {
+      firstName: address.firstName,
+      lastName: address.lastName,
+      phoneNumber: address.phoneNumber,
+      street: address.street,
+      houseNumber: address.houseNumber,
+      city: address.city,
+      postCode: address.postCode,
+    },
+    enableReinitialize: true,
+    validationSchema: personalDataFormYupValidationSchema,
 
-      onSubmit: (values) => {
-        confirmOrderHandler(values);
-      },
-    });
+    onSubmit: (values) => {
+      confirmOrderHandler(values);
+    },
+  });
+
+  useEffect(() => {
+    formik.validateForm();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formik.validateForm]);
 
   const handleBackToCart = () => {
     setAddress(formik.values);
@@ -86,7 +93,8 @@ const Summary = () => {
     <StyledSummary>
       <PersonalDataForm formik={formik} />
       <TotalAmountItem>
-        <p>Total Amount:</p> <strong>{totalAmount} zł</strong>
+        <p data-testid="totalAmountTile">Total Amount:</p>{" "}
+        <strong>{totalAmount} zł</strong>
       </TotalAmountItem>
       {emptyCartError && (
         <EmptyListMsg>Please add sweets to cart first!</EmptyListMsg>
@@ -95,7 +103,7 @@ const Summary = () => {
         <Button onClick={handleBackToCart}>Back to Cart</Button>
         <Button
           className="call-to-action"
-          // disabled={!formik.dirty}
+          disabled={!formik.isValid}
           data-testid="confirm-btn"
           onClick={formik.submitForm}
         >
