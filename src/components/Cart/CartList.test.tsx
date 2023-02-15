@@ -36,26 +36,26 @@ describe("cart list", () => {
   test("delete button removes item", async () => {
     render(<Wrapper />);
 
-    const item1Heading = screen.queryByText(
+    const firstItemHeading = screen.queryByText(
       "Classic Chocolate Chip Cookies (20 pieces)",
       { exact: false }
     );
-    const item2Heading = screen.queryByText(
+    const secondItemHeading = screen.queryByText(
       "Moist Chocolate Muffins (4 pieces)",
       { exact: false }
     );
 
-    expect(item1Heading).toBeInTheDocument();
-    expect(item2Heading).toBeInTheDocument();
+    expect(firstItemHeading).toBeInTheDocument();
+    expect(secondItemHeading).toBeInTheDocument();
 
     const delBtns = screen.getAllByTestId("delete-btn");
     const firstDelBtn = delBtns[0];
     await userEvent.click(firstDelBtn);
-    expect(item1Heading).not.toBeInTheDocument();
+    expect(firstItemHeading).not.toBeInTheDocument();
 
     const secondDelBtn = delBtns[1];
     await userEvent.click(secondDelBtn);
-    expect(item2Heading).not.toBeInTheDocument();
+    expect(secondItemHeading).not.toBeInTheDocument();
 
     const itemImages = screen.queryAllByRole("img");
     const cartItems = screen.queryAllByRole("listitem");

@@ -3,9 +3,10 @@ import userEvent from "@testing-library/user-event";
 
 import App from "./App";
 
-// beforeEach(() => {
-//   cleanup();
-// });  //compared to sweetslist ???
+beforeEach(() => {
+  //returning to the default page
+  window.history.pushState({}, "Home", "/");
+});
 
 describe("App", () => {
   test("renders hero heading", async () => {
@@ -19,7 +20,6 @@ describe("App", () => {
 
   test("navigates to Cart Page", async () => {
     render(<App />);
-    //TODO: sort
     const heroHeading = screen.getByText(/Order our delicious sweets now/i);
     expect(heroHeading).toBeInTheDocument();
 
@@ -33,6 +33,4 @@ describe("App", () => {
       expect(cartMessage).toBeInTheDocument();
     });
   });
-
-  // test("saves address after going back from summary", async () => {});
 });

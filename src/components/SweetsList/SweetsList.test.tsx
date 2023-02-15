@@ -30,19 +30,16 @@ describe("SweetsList component", () => {
     expect(candyItemHeading).toBeInTheDocument();
   });
 
-  // test("sets sort type", async () => {
-  // render(<SweetsList />);
+  test("sets sort type", async () => {
+    render(<SweetsList />);
 
-  // const mockedType = SortTypes.ALFABETICAL_DSC as string;
+    const mockedType = SortTypes.ALFABETICAL_DSC as string;
 
-  //   const sweetItems = await screen.findAllByRole("listitem");
-  //   expect(sweetItems).toHaveLength(2);
+    const sortSelect = screen.getByTestId("sortSelect");
+    const options = screen.getAllByTestId("sortOption");
 
-  //   const sortSelect = screen.getByTestId("sortSelect");
-  //   userEvent.selectOptions(sortSelect, {
-  //     target: { value: mockedType },
-  //   });
+    userEvent.selectOptions(sortSelect, mockedType);
 
-  //   let options = screen.getAllByTestId("select-option");
-  // });
+    expect(options[0] as HTMLOptionElement).toBeTruthy();
+  });
 });

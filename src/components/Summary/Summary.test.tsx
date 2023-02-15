@@ -15,10 +15,7 @@ import { mockedAddress, mockedCart } from "../../mocks/test-data";
 const Wrapper = () => {
   return (
     <UserContext.Provider
-      value={useUserContextProviderValue(userReducer, {
-        ...defaultUserState,
-        // cartItems: [],
-      })}
+      value={useUserContextProviderValue(userReducer, defaultUserState)}
     >
       <Summary />
     </UserContext.Provider>
@@ -97,55 +94,19 @@ describe("Summary", () => {
     const confirmButton = screen.getByTestId("confirm-btn");
     await user.click(confirmButton);
 
-    // const requiredMsg = screen.queryByText("Required", {
-    //   exact: false,
-    // });
-    // const errorMsgMust = screen.queryByText("must", {
-    //   exact: false,
-    // });
-    // const errorMsgWrong = screen.queryByText("wrong", {
-    //   exact: false,
-    // });
-    // expect(requiredMsg).not.toBeInTheDocument();
-    // expect(errorMsgMust).not.toBeInTheDocument();
-    // expect(errorMsgWrong).not.toBeInTheDocument();
+    const requiredMsg = screen.queryByText("Required", {
+      exact: false,
+    });
+    const errorMsgMust = screen.queryByText("must", {
+      exact: false,
+    });
+    const errorMsgWrong = screen.queryByText("wrong", {
+      exact: false,
+    });
+    expect(requiredMsg).not.toBeInTheDocument();
+    expect(errorMsgMust).not.toBeInTheDocument();
+    expect(errorMsgWrong).not.toBeInTheDocument();
   });
-
-  //   //////////////////////////////////
-
-  //   // const spy = jest.spyOn(Summary.prototype, "confirmOrderHandler");
-
-  //   // // console.log(confirmButton);
-  //   // // confirmButton.setAttribute("onClick", mockedPostOrder);
-
-  //   // expect(spy).toHaveBeenCalled();
-
-  //   // const spyOn = jest.spyOn(confirmButton, "onClick");
-
-  //   // await waitFor(() => {
-  //   //   const toast = screen.getByText("Your order has been sent successfully!", {
-  //   //     exact: false,
-  //   //   });
-
-  //   // const mainPageElement = screen.getByText("sort", {
-  //   //   exact: false,
-  //   // });
-  //   //   expect(toast).toBeInTheDocument();
-  //   // });
-
-  //   // expect(spyOn).toHaveBeedCalledWith({
-  //   //   cartItems: mockedCart,
-  //   //   address: {
-  //   //     firstName: "Mariusz",
-  //   //     lastName: "Gębala",
-  //   //     phoneNumber: "667552938",
-  //   //     street: "Morwowa",
-  //   //     houseNumber: "19",
-  //   //     postCode: "Mrągowo",
-  //   //     city: "20-161",
-  //   //   },
-
-  //   // });
 
   const WrapperWithAddress = () => {
     return (

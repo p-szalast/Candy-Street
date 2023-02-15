@@ -28,7 +28,6 @@ import { CartButton } from "../Layout/MainHeader/MainHeaderStyles";
 import { CandyItemObject, SortTypes } from "../../common/types/common.types";
 import { theme } from "../../common/styles/theme";
 import Loader from "../../common/styles/loader";
-import { toast } from "react-hot-toast";
 
 const SweetsList = () => {
   const [sweets, setSweets] = useState<CandyItemObject[]>([]);
