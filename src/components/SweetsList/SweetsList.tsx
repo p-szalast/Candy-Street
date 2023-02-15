@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useCallback } from "react";
 import { UserContext } from "../../store/user-context";
 import { useNavigate } from "react-router-dom";
 import { navKeys } from "../../routes/routes";
@@ -26,21 +26,27 @@ import { ContainerEnd, StyledSweetsList } from "./SweetsListStyles";
 import { CartButton } from "../Layout/MainHeader/MainHeaderStyles";
 
 import { CandyItemObject, SortTypes } from "../../common/types/common.types";
-import { theme } from "../../common/styles/theme";
+
+import { useTheme } from "styled-components";
+
 import Loader from "../../common/styles/loader";
 
 const SweetsList = () => {
   const [sweets, setSweets] = useState<CandyItemObject[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
 
   const { sortType, setSortType } = useContext(UserContext);
   const { width } = useWindowDimensions();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchCandies = async () => {
-      setIsLoading(true);
+  const theme = useTheme();
 
+  const fetchCandies = useCallback(async () => {
+    setIsLoading(true);
+    setError(false);
+
+    try {
       const data = await getAvailableCandies();
 
       if (!data) {
@@ -50,19 +56,18 @@ const SweetsList = () => {
 
       const sortedCandies = sortCandies(data, sortType);
 
-      setSweets(sortedCandies);
-
       setIsLoading(false);
-    };
-
-    //TODO: error when failed to fetch data
-    // toast.promise(fetchCandies, {
-    //   success: "Sweets loaded!",
-    //   error: "Error when fetching sweets",
-    // });
-
-    fetchCandies();
+      setSweets(sortedCandies);
+    } catch (e: any) {
+      toast.error(`Failed to fetch sweets (${e.message})`);
+      setIsLoading(false);
+      setError(true);
+    }
   }, [sortType]);
+
+  useEffect(() => {
+    fetchCandies();
+  }, [fetchCandies]);
 
   const sortTypeChangeHandler = (
     event: React.ChangeEvent<HTMLSelectElement>
@@ -108,17 +113,23 @@ const SweetsList = () => {
             image={item.image}
           />
         ))}
-      {isLoading && (
+      {error && !isLoading && (
+        <VFlexBox $hasError={error}>
+          <div className="error-message">Failed to load sweets</div>
+        </VFlexBox>
+      )}
+      {isLoading && !error && (
         <VFlexBox>
           <p>Loading...</p>
           <Loader className="loader"></Loader>
         </VFlexBox>
       )}
-      {sweets.length === 0 && !isLoading && (
+      {sweets.length === 0 && !isLoading && !error && (
         <EmptyListMsg>
           No sweets available at this moment. Please try Again later.
         </EmptyListMsg>
       )}
+
       <Container className="btn-go-to-cart__container">
         <CartButton
           data-testid="cartBtn"
