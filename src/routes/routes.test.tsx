@@ -19,12 +19,10 @@ describe("App (routes)", () => {
 
     const cartBtn = screen.getByTestId("cartBtn");
 
-    userEvent.click(cartBtn);
+    await userEvent.click(cartBtn);
 
-    await act(() => {
-      expect(mockUseNavigate).toHaveBeenCalled();
-      expect(mockUseNavigate).toHaveBeenCalledTimes(1);
-      expect(mockUseNavigate).toHaveBeenCalledWith("/cart");
-    });
+    expect(mockUseNavigate).toHaveBeenCalled();
+    expect(mockUseNavigate).toHaveBeenCalledTimes(1);
+    expect(mockUseNavigate).toHaveBeenCalledWith("/cart");
   });
 });

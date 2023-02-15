@@ -86,11 +86,14 @@ const SweetsList = () => {
         <Select
           name="sortType"
           id="sortType"
+          data-testid="sortSelect"
           value={sortType}
           onChange={sortTypeChangeHandler}
         >
           <option value={SortTypes.ALFABETICAL_ASC}>Afabetical &darr;</option>
-          <option value={SortTypes.ALFABETICAL_DSC}>Afabetical &uarr;</option>
+          <option value={SortTypes.ALFABETICAL_DSC} data-testid="sortOption">
+            Afabetical &uarr;
+          </option>
           <option value={SortTypes.BY_PRICE_ASC}>By price &darr;</option>
           <option value={SortTypes.BY_PRICE_DSC}>By price &uarr;</option>
         </Select>

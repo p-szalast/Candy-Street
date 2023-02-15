@@ -1,3 +1,5 @@
+import userEvent from "@testing-library/user-event";
+import { SortTypes } from "../../common/types/common.types";
 import { cleanup, render, screen } from "../../test-utils";
 import SweetsList from "./SweetsList";
 
@@ -27,4 +29,20 @@ describe("SweetsList component", () => {
     );
     expect(candyItemHeading).toBeInTheDocument();
   });
+
+  // test("sets sort type", async () => {
+  // render(<SweetsList />);
+
+  // const mockedType = SortTypes.ALFABETICAL_DSC as string;
+
+  //   const sweetItems = await screen.findAllByRole("listitem");
+  //   expect(sweetItems).toHaveLength(2);
+
+  //   const sortSelect = screen.getByTestId("sortSelect");
+  //   userEvent.selectOptions(sortSelect, {
+  //     target: { value: mockedType },
+  //   });
+
+  //   let options = screen.getAllByTestId("select-option");
+  // });
 });

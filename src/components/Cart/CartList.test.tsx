@@ -50,11 +50,11 @@ describe("cart list", () => {
 
     const delBtns = screen.getAllByTestId("delete-btn");
     const firstDelBtn = delBtns[0];
-    userEvent.click(firstDelBtn);
+    await userEvent.click(firstDelBtn);
     expect(item1Heading).not.toBeInTheDocument();
 
     const secondDelBtn = delBtns[1];
-    userEvent.click(secondDelBtn);
+    await userEvent.click(secondDelBtn);
     expect(item2Heading).not.toBeInTheDocument();
 
     const itemImages = screen.queryAllByRole("img");

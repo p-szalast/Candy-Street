@@ -5,26 +5,26 @@ import userEvent from "@testing-library/user-event";
 import { mockedSweets } from "../../mocks/test-data";
 
 describe("candy item", () => {
-  test("adds to cart", () => {
+  test("adds to cart", async () => {
     render(
       <CandyItem id={""} name={""} price={0} image={""} description={""} />
     );
     const addBtn = screen.getByText("+");
-    userEvent.click(addBtn);
-    userEvent.click(addBtn);
+    await userEvent.click(addBtn);
+    await userEvent.click(addBtn);
     const itemAmount = screen.getByText("2");
     expect(itemAmount).toBeInTheDocument();
   });
 
-  test("adds to cart and subtracts", () => {
+  test("adds to cart and subtracts", async () => {
     render(
       <CandyItem id={""} name={""} price={0} image={""} description={""} />
     );
     const addBtn = screen.getByText("+");
     const subBtn = screen.getByText("-");
-    userEvent.click(addBtn);
-    userEvent.click(addBtn);
-    userEvent.click(subBtn);
+    await userEvent.click(addBtn);
+    await userEvent.click(addBtn);
+    await userEvent.click(subBtn);
     const itemAmount = screen.getByText("1");
     expect(itemAmount).toBeInTheDocument();
   });

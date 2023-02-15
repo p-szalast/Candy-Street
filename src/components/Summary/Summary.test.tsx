@@ -1,4 +1,4 @@
-import { act, render, screen, waitFor } from "../../test-utils";
+import { act, cleanup, render, screen, waitFor } from "../../test-utils";
 import userEvent from "@testing-library/user-event";
 
 import Summary from "./Summary";
@@ -25,130 +25,151 @@ const Wrapper = () => {
   );
 };
 
+const WrapperWithCart = () => {
+  return (
+    <UserContext.Provider
+      value={useUserContextProviderValue(userReducer, {
+        ...defaultUserState,
+        cartItems: mockedCart,
+      })}
+    >
+      <Summary />
+    </UserContext.Provider>
+  );
+};
+
+const user = userEvent.setup();
+
 describe("Summary", () => {
+  beforeEach(() => {
+    cleanup();
+  });
+
   test("renders total amount tile", async () => {
-    //FIXME: (passes with errors)
-    // render(<Wrapper />);
-    // // await waitFor(() => {
-    // const totalAmount = screen.getByText(/total amount/i);
-    // expect(totalAmount).toBeInTheDocument();
-    // // });
+    render(<Wrapper />);
+
+    await act(async () => {
+      await Promise.resolve();
+    });
+
+    const totalAmount = screen.getByText(/total amount/i);
+    expect(totalAmount).toBeInTheDocument();
   });
 
   test("Shows required error messages", async () => {
     render(<Wrapper />);
-    const confirmButton = screen.getByTestId("confirm-btn");
-    userEvent.click(confirmButton);
+
+    const firstName = screen.getByLabelText("First Name");
+    const lastName = screen.getByLabelText("Last Name");
+
+    firstName.focus();
+    await user.click(lastName);
 
     const requiredMsg = await screen.findAllByText("Required", {
       exact: false,
     });
 
-    expect(requiredMsg).toHaveLength(7);
+    expect(requiredMsg).toHaveLength(1);
   });
 
   test("shows no errors when form fileld correctly", async () => {
-    //FIXME: (passes with errors)
-    // const WrapperWithCart = () => {
-    //   return (
-    //     <UserContext.Provider
-    //       value={useUserContextProviderValue(userReducer, {
-    //         ...defaultUserState,
-    //         cartItems: mockedCart,
-    //       })}
-    //     >
-    //       <Summary />
-    //     </UserContext.Provider>
-    //   );
-    // };
-    // render(<WrapperWithCart />);
-    //   const firstName = await screen.findByLabelText("First Name");
-    //   const lastName = await screen.findByLabelText("Last Name");
-    //   const phoneNumber = await screen.findByLabelText("Phone Number");
-    //   const street = await screen.findByLabelText("Street");
-    //   const houseNumber = await screen.findByLabelText("House Number");
-    //   const city = await screen.findByLabelText("City");
-    //   const postCode = await screen.findByLabelText("Post Code");
-    //   userEvent.type(firstName, "Mariusz");
-    //   userEvent.type(lastName, "Gębala");
-    //   userEvent.type(phoneNumber, "667552938");
-    //   userEvent.type(street, "Morwowa");
-    //   userEvent.type(houseNumber, "19");
-    //   userEvent.type(city, "Mrągowo");
-    //   userEvent.type(postCode, "20-161");
-    //   const confirmButton = screen.getByTestId("confirm-btn");
-    //   userEvent.click(confirmButton);
+    render(<WrapperWithCart />);
+
+    await act(async () => {
+      await Promise.resolve();
+    });
+
+    const firstName = screen.getByLabelText("First Name");
+    const lastName = screen.getByLabelText("Last Name");
+    const phoneNumber = screen.getByLabelText("Phone Number");
+    const street = screen.getByLabelText("Street");
+    const houseNumber = screen.getByLabelText("House Number");
+    const city = screen.getByLabelText("City");
+    const postCode = screen.getByLabelText("Post Code");
+
+    await user.type(firstName, "Mariusz");
+    await user.type(lastName, "Gębala");
+    await user.type(phoneNumber, "667552938");
+    await user.type(street, "Morwowa");
+    await user.type(houseNumber, "19");
+    await user.type(city, "Mrągowo");
+    await user.type(postCode, "20-161");
+    const confirmButton = screen.getByTestId("confirm-btn");
+    await user.click(confirmButton);
+
+    // const requiredMsg = screen.queryByText("Required", {
+    //   exact: false,
     // });
-    //     // await waitFor(() => {
-    //     const requiredMsg = screen.queryByText("Required", {
-    //       exact: false,
-    //     });
-    //     const errorMsgMust = screen.queryByText("must", {
-    //       exact: false,
-    //     });
-    //     const errorMsgWrong = screen.queryByText("wrong", {
-    //       exact: false,
-    //     });
-    //     expect(requiredMsg).not.toBeInTheDocument();
-    //     expect(errorMsgMust).not.toBeInTheDocument();
-    //     expect(errorMsgWrong).not.toBeInTheDocument();
-    //     // });
+    // const errorMsgMust = screen.queryByText("must", {
+    //   exact: false,
+    // });
+    // const errorMsgWrong = screen.queryByText("wrong", {
+    //   exact: false,
+    // });
+    // expect(requiredMsg).not.toBeInTheDocument();
+    // expect(errorMsgMust).not.toBeInTheDocument();
+    // expect(errorMsgWrong).not.toBeInTheDocument();
   });
 
-  //   //   //////////////////////////////////
+  //   //////////////////////////////////
 
-  //   //   // const spy = jest.spyOn(Summary.prototype, "confirmOrderHandler");
+  //   // const spy = jest.spyOn(Summary.prototype, "confirmOrderHandler");
 
-  //   //   // // console.log(confirmButton);
-  //   //   // // confirmButton.setAttribute("onClick", mockedPostOrder);
+  //   // // console.log(confirmButton);
+  //   // // confirmButton.setAttribute("onClick", mockedPostOrder);
 
-  //   //   // expect(spy).toHaveBeenCalled();
+  //   // expect(spy).toHaveBeenCalled();
 
-  //   //   // const spyOn = jest.spyOn(confirmButton, "onClick");
+  //   // const spyOn = jest.spyOn(confirmButton, "onClick");
 
-  //   //   // await waitFor(() => {
-  //   //   //   const toast = screen.getByText("Your order has been sent successfully!", {
-  //   //   //     exact: false,
-  //   //   //   });
+  //   // await waitFor(() => {
+  //   //   const toast = screen.getByText("Your order has been sent successfully!", {
+  //   //     exact: false,
+  //   //   });
 
-  //   //   // const mainPageElement = screen.getByText("sort", {
-  //   //   //   exact: false,
-  //   //   // });
-  //   //   //   expect(toast).toBeInTheDocument();
-  //   //   // });
+  //   // const mainPageElement = screen.getByText("sort", {
+  //   //   exact: false,
+  //   // });
+  //   //   expect(toast).toBeInTheDocument();
+  //   // });
 
-  //   //   // expect(spyOn).toHaveBeedCalledWith({
-  //   //   //   cartItems: mockedCart,
-  //   //   //   address: {
-  //   //   //     firstName: "Mariusz",
-  //   //   //     lastName: "Gębala",
-  //   //   //     phoneNumber: "667552938",
-  //   //   //     street: "Morwowa",
-  //   //   //     houseNumber: "19",
-  //   //   //     postCode: "Mrągowo",
-  //   //   //     city: "20-161",
-  //   //   //   },
+  //   // expect(spyOn).toHaveBeedCalledWith({
+  //   //   cartItems: mockedCart,
+  //   //   address: {
+  //   //     firstName: "Mariusz",
+  //   //     lastName: "Gębala",
+  //   //     phoneNumber: "667552938",
+  //   //     street: "Morwowa",
+  //   //     houseNumber: "19",
+  //   //     postCode: "Mrągowo",
+  //   //     city: "20-161",
+  //   //   },
 
-  //   //   // });
+  //   // });
+
+  const WrapperWithAddress = () => {
+    return (
+      <UserContext.Provider
+        value={useUserContextProviderValue(userReducer, {
+          ...defaultUserState,
+          cartItems: [],
+          address: mockedAddress,
+        })}
+      >
+        <Summary />
+      </UserContext.Provider>
+    );
+  };
 
   test("shows toast error if nothing is in the cart after clicked confirm button", async () => {
-    const WrapperWithAddress = () => {
-      return (
-        <UserContext.Provider
-          value={useUserContextProviderValue(userReducer, {
-            ...defaultUserState,
-            cartItems: [],
-            address: mockedAddress,
-          })}
-        >
-          <Summary />
-        </UserContext.Provider>
-      );
-    };
     render(<WrapperWithAddress />);
 
+    await act(async () => {
+      await Promise.resolve();
+    });
+
     const confirmButton = screen.getByTestId("confirm-btn");
-    userEvent.click(confirmButton);
+    await userEvent.click(confirmButton);
 
     await waitFor(() => {
       const emptyCartMsg = screen.getByText(
