@@ -1,4 +1,4 @@
-import { render, screen } from "../../../common/test-utils";
+import { render, screen } from "../../../test-utils";
 import MainHeader from "./MainHeader";
 
 describe("MainHeader component", () => {
@@ -6,5 +6,11 @@ describe("MainHeader component", () => {
     render(<MainHeader />);
     const mainHeading = screen.getByText(/candy street/i);
     expect(mainHeading).toBeInTheDocument();
+  });
+
+  test("renders buttons", () => {
+    render(<MainHeader />);
+    const navBtns = screen.getAllByRole("button");
+    expect(navBtns).not.toHaveLength(0);
   });
 });

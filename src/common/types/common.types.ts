@@ -1,5 +1,3 @@
-import React from "react";
-
 /// Sweets List exports ////
 
 export type CandyItemObject = {
@@ -40,7 +38,7 @@ export type AddressObject = {
 
 /// Personal Data Form exports ////
 
-export type PersonalDataFormInputsObject = {
+export type FormInputsObject = {
   firstName: string;
   lastName: string;
   phoneNumber: string;

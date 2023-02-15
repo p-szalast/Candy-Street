@@ -36,3 +36,11 @@ npm install msw --save-dev
 - ADD:
 
         "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!axios)/\"",
+
+///// zamiana np komponentu:
+
+                jest.mock('../tree/FileIcon', () => {
+                        return () => {
+                                return 'File Icon Component'
+                        }
+                })

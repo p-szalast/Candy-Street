@@ -30,7 +30,6 @@ import { CandyItemObject, SortTypes } from "../../common/types/common.types";
 import { useTheme } from "styled-components";
 
 import Loader from "../../common/styles/loader";
-import { toast } from "react-hot-toast";
 
 const SweetsList = () => {
   const [sweets, setSweets] = useState<CandyItemObject[]>([]);
@@ -56,12 +55,14 @@ const SweetsList = () => {
       }
 
       const sortedCandies = sortCandies(data, sortType);
+
+      setIsLoading(false);
       setSweets(sortedCandies);
     } catch (e: any) {
       toast.error(`Failed to fetch sweets (${e.message})`);
+      setIsLoading(false);
       setError(true);
     }
-    setIsLoading(false);
   }, [sortType]);
 
   useEffect(() => {
@@ -89,11 +90,14 @@ const SweetsList = () => {
         <Select
           name="sortType"
           id="sortType"
+          data-testid="sortSelect"
           value={sortType}
           onChange={sortTypeChangeHandler}
         >
           <option value={SortTypes.ALFABETICAL_ASC}>Afabetical &darr;</option>
-          <option value={SortTypes.ALFABETICAL_DSC}>Afabetical &uarr;</option>
+          <option value={SortTypes.ALFABETICAL_DSC} data-testid="sortOption">
+            Afabetical &uarr;
+          </option>
           <option value={SortTypes.BY_PRICE_ASC}>By price &darr;</option>
           <option value={SortTypes.BY_PRICE_DSC}>By price &uarr;</option>
         </Select>
@@ -127,7 +131,11 @@ const SweetsList = () => {
       )}
 
       <Container className="btn-go-to-cart__container">
-        <CartButton className="call-to-action" onClick={handleNavToCart}>
+        <CartButton
+          data-testid="cartBtn"
+          className="call-to-action"
+          onClick={handleNavToCart}
+        >
           {width > theme.screens.large ? <span>Go to Cart</span> : <CartIcon />}
         </CartButton>
       </Container>

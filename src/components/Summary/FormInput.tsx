@@ -1,7 +1,7 @@
 import { FieldInputProps } from "formik";
 import { Input, Label, VFlexBox } from "../../common/styles/componentsStyles";
 
-const PersonalDataFormInput = ({
+const FormInput = ({
   fieldName,
   error,
   touched,
@@ -24,4 +24,4 @@ const PersonalDataFormInput = ({
   );
 };
 
-export default PersonalDataFormInput;
+export default FormInput;
