@@ -19,15 +19,15 @@ export const sortCandies: (
 ) => CandyItemObject[] = (candies, sortType) => {
   switch (sortType) {
     case SortTypes.ALFABETICAL_ASC:
-      return candies.sort((a, b) => (a.name > b.name ? 1 : -1));
+      return [...candies.sort((a, b) => (a.name > b.name ? 1 : -1))];
     case SortTypes.ALFABETICAL_DSC:
-      return candies.sort((a, b) => (a.name < b.name ? 1 : -1));
+      return [...candies.sort((a, b) => (a.name < b.name ? 1 : -1))];
     case SortTypes.BY_PRICE_ASC:
-      return candies.sort((a, b) => (a.price > b.price ? 1 : -1));
+      return [...candies.sort((a, b) => (a.price > b.price ? 1 : -1))];
     case SortTypes.BY_PRICE_DSC:
-      return candies.sort((a, b) => (a.price < b.price ? 1 : -1));
+      return [...candies.sort((a, b) => (a.price < b.price ? 1 : -1))];
     default:
-      return candies;
+      return [...candies];
   }
 };
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { navKeys } from "../../routes/routes";
 
@@ -19,28 +19,35 @@ import {
 
 import { OrderInterface } from "../../common/types/common.types";
 import Loader from "../../common/styles/loader";
+import toast from "react-hot-toast";
 
 const OrderHistoryList = () => {
   const [orders, setOrders] = useState<OrderInterface[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchOrders = async () => {
-      setIsLoading(true);
+  const fetchOrders = useCallback(async () => {
+    setIsLoading(true);
+    setError(false);
 
+    try {
       const data = await fetchOrderHistory();
-
       if (!data) {
-        setIsLoading(false);
-        return;
+        throw new Error("no order data available");
       }
-
       setOrders(data);
+    } catch (e: any) {
+      toast.error(`Failed to fetch orders (${e.message})`);
+      setError(true);
+    } finally {
       setIsLoading(false);
-    };
-    fetchOrders();
+    }
   }, []);
+
+  useEffect(() => {
+    fetchOrders();
+  }, [fetchOrders]);
 
   const hadnleBackToSweetsList = () => {
     navigate(navKeys.main);
@@ -63,13 +70,18 @@ const OrderHistoryList = () => {
             key={item.date}
           />
         ))}
-      {isLoading && (
+      {isLoading && !error && (
         <VFlexBox>
           <p>Loading...</p>
           <Loader className="loader"></Loader>
         </VFlexBox>
       )}
-      {orders.length === 0 && !isLoading && (
+      {error && !isLoading && (
+        <VFlexBox $hasError={error}>
+          <div className="error-message">Failed to load orders</div>
+        </VFlexBox>
+      )}
+      {orders.length === 0 && !isLoading && !error && (
         <EmptyListMsg>
           No orders. Please make your fisrt order to see history!
         </EmptyListMsg>

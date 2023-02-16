@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useCallback } from "react";
+import { useState, useEffect, useContext, useCallback, useMemo } from "react";
 import { UserContext } from "../../store/user-context";
 import { useNavigate } from "react-router-dom";
 import { navKeys } from "../../routes/routes";
@@ -32,10 +32,10 @@ import { useTheme } from "styled-components";
 
 import Loader from "../../common/styles/loader";
 import toast from "react-hot-toast";
+import { AxiosError } from "axios";
 
 const SweetsList = () => {
   const [sweets, setSweets] = useState<CandyItemObject[]>([]);
-  const [filteredSweets, setFilteredSweets] = useState<CandyItemObject[]>([]);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
@@ -47,6 +47,15 @@ const SweetsList = () => {
 
   const theme = useTheme();
 
+  const sortedSweets = useMemo(
+    () => sortCandies(sweets, sortType),
+    [sweets, sortType]
+  );
+  const filteredSweets = useMemo(
+    () => filterCandies(searchInputValue, sortedSweets),
+    [sortedSweets, searchInputValue]
+  );
+
   const fetchCandies = useCallback(async () => {
     setIsLoading(true);
     setError(false);
@@ -54,11 +63,15 @@ const SweetsList = () => {
     try {
       const data = await getAvailableCandies();
       if (!data) {
-        throw new Error("no data available");
+        throw new Error("no candies data available");
       }
       setSweets(data);
-    } catch (e: any) {
-      toast.error(`Failed to fetch sweets (${e.message})`);
+    } catch (e: unknown) {
+      if (e instanceof AxiosError || e instanceof Error) {
+        toast.error(`Failed to fetch sweets (${e.message})`);
+      } else {
+        toast.error(`Failed to fetch sweets (${JSON.stringify(e)})`);
+      }
       setError(true);
     } finally {
       setIsLoading(false);
@@ -69,23 +82,12 @@ const SweetsList = () => {
     fetchCandies();
   }, [fetchCandies]);
 
-  useEffect(() => {
-    const sortedCandies = sortCandies(sweets, sortType);
-    setSweets(sortedCandies);
-  }, [sweets, sortType]);
-
-  useEffect(() => {
-    const filteredCandies = filterCandies(searchInputValue, sweets);
-    setFilteredSweets(filteredCandies);
-  }, [sweets, sortType, searchInputValue]);
-
   const sortTypeChangeHandler = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     const sortValue = event.target.value;
     if (isSortType(sortValue)) {
       setSortType(sortValue);
-
       setLocalStorageSortType(sortValue);
     }
   };
@@ -95,9 +97,6 @@ const SweetsList = () => {
   ) => {
     const inputValue = event.target.value;
     setSearchInputValue(inputValue);
-
-    const filteredCandies = filterCandies(inputValue, sweets);
-    setFilteredSweets(filteredCandies);
   };
 
   const handleNavToCart = () => {
