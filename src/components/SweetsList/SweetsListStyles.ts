@@ -15,12 +15,31 @@ export const StyledSweetsList = styled.section`
   }
 `;
 
-export const ContainerEnd = styled(Container)`
+export const FilterSortContainer = styled(Container)`
   margin-right: ${({ theme }) => theme.spacing.basic};
   justify-content: space-between;
+
+  @media only screen and ${({ theme }) => theme.devices.mobileXS} {
+    flex-direction: column;
+  }
+
+  & div {
+    display: flex;
+    align-items: center;
+    gap: ${({ theme }) => theme.spacing.half};
+    margin: 0 0 0 ${({ theme }) => theme.spacing.basic};
+  }
 
   & Label {
     font-weight: normal;
     width: auto;
+  }
+
+  & Input {
+    font-size: ${({ theme }) => theme.fontSize.regular};
+    padding: ${({ theme }) => theme.spacing.quarter}
+      ${({ theme }) => theme.spacing.half};
+    border: none;
+    height: auto;
   }
 `;

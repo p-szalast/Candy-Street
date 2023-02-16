@@ -91,8 +91,10 @@ export const Input = styled.input`
 
 export const Select = styled.select`
   font-family: Rubik, sans-serif;
-  font-size: ${({ theme }) => theme.fontSize.enlarged};
+  font-size: ${({ theme }) => theme.fontSize.regular};
   border-radius: ${({ theme }) => theme.borderRadius.items};
+  border: none;
+  padding: ${({ theme }) => theme.spacing.quarter};
 `;
 
 ///Buttons

@@ -23,7 +23,7 @@ import {
   Select,
   VFlexBox,
 } from "../../common/styles/componentsStyles";
-import { ContainerEnd, StyledSweetsList } from "./SweetsListStyles";
+import { FilterSortContainer, StyledSweetsList } from "./SweetsListStyles";
 import { CartButton } from "../Layout/MainHeader/MainHeaderStyles";
 
 import { CandyItemObject, SortTypes } from "../../common/types/common.types";
@@ -106,7 +106,7 @@ const SweetsList = () => {
 
   return (
     <StyledSweetsList>
-      <ContainerEnd>
+      <FilterSortContainer>
         <div>
           <Label htmlFor="Search">Search:</Label>
           <Input
@@ -132,7 +132,7 @@ const SweetsList = () => {
             <option value={SortTypes.BY_PRICE_DSC}>By price &uarr;</option>
           </Select>
         </div>
-      </ContainerEnd>
+      </FilterSortContainer>
       {filteredSweets &&
         filteredSweets.map((item) => (
           <CandyItem

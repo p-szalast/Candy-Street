@@ -45,10 +45,14 @@ describe("Summary", () => {
   test("renders total amount tile", async () => {
     render(<Wrapper />);
 
-    //dummy function to avoid console.errors
+    //dummy function to avoid currently unresolveable "act()"" console.warnings
     await act(async () => {
       await Promise.resolve();
     });
+
+    //other option of dummy function
+    // const lastName = screen.getByLabelText("Last Name");
+    // await user.click(lastName);
 
     const totalAmount = screen.getByText(/total amount/i);
     expect(totalAmount).toBeInTheDocument();
