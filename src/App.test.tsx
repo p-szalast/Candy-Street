@@ -24,7 +24,7 @@ describe("App", () => {
     expect(heroHeading).toBeInTheDocument();
 
     const cartBtn = screen.getByTestId("cartBtn");
-    userEvent.click(cartBtn);
+    await userEvent.click(cartBtn);
 
     await waitFor(() => {
       const cartMessage = screen.getByText(

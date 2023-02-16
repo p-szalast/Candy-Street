@@ -31,6 +31,16 @@ export const sortCandies: (
   }
 };
 
+export const filterCandies: (
+  value: string,
+  candies: CandyItemObject[]
+) => CandyItemObject[] = (value, candies) =>
+  value
+    ? candies.filter((item) =>
+        item.name.toLowerCase().includes(value.toLowerCase())
+      )
+    : candies;
+
 // Media querries helpers
 export const mediaQuery = (key: keyof typeof theme.screens) => {
   return (style: string) =>

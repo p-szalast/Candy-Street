@@ -45,6 +45,7 @@ describe("Summary", () => {
   test("renders total amount tile", async () => {
     render(<Wrapper />);
 
+    //dummy function to avoid console.errors
     await act(async () => {
       await Promise.resolve();
     });

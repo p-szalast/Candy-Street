@@ -9,7 +9,7 @@ import {
   getAvailableCandies,
   setLocalStorageSortType,
 } from "../../common/service/common-service";
-import { isSortType, sortCandies } from "../../common/helpers";
+import { isSortType, sortCandies, filterCandies } from "../../common/helpers";
 
 import CandyItem from "./CandyItem";
 
@@ -18,6 +18,7 @@ import { CartIcon } from "../../assets/icons";
 import {
   Container,
   EmptyListMsg,
+  Input,
   Label,
   Select,
   VFlexBox,
@@ -30,11 +31,15 @@ import { CandyItemObject, SortTypes } from "../../common/types/common.types";
 import { useTheme } from "styled-components";
 
 import Loader from "../../common/styles/loader";
+import toast from "react-hot-toast";
 
 const SweetsList = () => {
   const [sweets, setSweets] = useState<CandyItemObject[]>([]);
+  const [filteredSweets, setFilteredSweets] = useState<CandyItemObject[]>([]);
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
+  const [searchInputValue, setSearchInputValue] = useState<string>("");
 
   const { sortType, setSortType } = useContext(UserContext);
   const { width } = useWindowDimensions();
@@ -48,26 +53,31 @@ const SweetsList = () => {
 
     try {
       const data = await getAvailableCandies();
-
       if (!data) {
-        setIsLoading(false);
-        return;
+        throw new Error("no data available");
       }
-
-      const sortedCandies = sortCandies(data, sortType);
-
-      setIsLoading(false);
-      setSweets(sortedCandies);
+      setSweets(data);
     } catch (e: any) {
       toast.error(`Failed to fetch sweets (${e.message})`);
-      setIsLoading(false);
       setError(true);
+    } finally {
+      setIsLoading(false);
     }
-  }, [sortType]);
+  }, []);
 
   useEffect(() => {
     fetchCandies();
   }, [fetchCandies]);
+
+  useEffect(() => {
+    const sortedCandies = sortCandies(sweets, sortType);
+    setSweets(sortedCandies);
+  }, [sweets, sortType]);
+
+  useEffect(() => {
+    const filteredCandies = filterCandies(searchInputValue, sweets);
+    setFilteredSweets(filteredCandies);
+  }, [sweets, sortType, searchInputValue]);
 
   const sortTypeChangeHandler = (
     event: React.ChangeEvent<HTMLSelectElement>
@@ -75,8 +85,19 @@ const SweetsList = () => {
     const sortValue = event.target.value;
     if (isSortType(sortValue)) {
       setSortType(sortValue);
+
       setLocalStorageSortType(sortValue);
     }
+  };
+
+  const searchInputChangeHandler = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const inputValue = event.target.value;
+    setSearchInputValue(inputValue);
+
+    const filteredCandies = filterCandies(inputValue, sweets);
+    setFilteredSweets(filteredCandies);
   };
 
   const handleNavToCart = () => {
@@ -86,24 +107,34 @@ const SweetsList = () => {
   return (
     <StyledSweetsList>
       <ContainerEnd>
-        <Label htmlFor="sortType">Sort:</Label>
-        <Select
-          name="sortType"
-          id="sortType"
-          data-testid="sortSelect"
-          value={sortType}
-          onChange={sortTypeChangeHandler}
-        >
-          <option value={SortTypes.ALFABETICAL_ASC}>Afabetical &darr;</option>
-          <option value={SortTypes.ALFABETICAL_DSC} data-testid="sortOption">
-            Afabetical &uarr;
-          </option>
-          <option value={SortTypes.BY_PRICE_ASC}>By price &darr;</option>
-          <option value={SortTypes.BY_PRICE_DSC}>By price &uarr;</option>
-        </Select>
+        <div>
+          <Label htmlFor="Search">Search:</Label>
+          <Input
+            id="search"
+            placeholder="Enter candy name..."
+            onChange={searchInputChangeHandler}
+          />
+        </div>
+        <div>
+          <Label htmlFor="sortType">Sort:</Label>
+          <Select
+            name="sortType"
+            id="sortType"
+            data-testid="sortSelect"
+            value={sortType}
+            onChange={sortTypeChangeHandler}
+          >
+            <option value={SortTypes.ALFABETICAL_ASC}>Afabetical &darr;</option>
+            <option value={SortTypes.ALFABETICAL_DSC} data-testid="sortOption">
+              Afabetical &uarr;
+            </option>
+            <option value={SortTypes.BY_PRICE_ASC}>By price &darr;</option>
+            <option value={SortTypes.BY_PRICE_DSC}>By price &uarr;</option>
+          </Select>
+        </div>
       </ContainerEnd>
-      {sweets &&
-        sweets.map((item) => (
+      {filteredSweets &&
+        filteredSweets.map((item) => (
           <CandyItem
             id={item.id}
             key={item.id}
@@ -129,6 +160,10 @@ const SweetsList = () => {
           No sweets available at this moment. Please try Again later.
         </EmptyListMsg>
       )}
+      {filteredSweets.length === 0 &&
+        sweets.length !== 0 &&
+        !isLoading &&
+        !error && <EmptyListMsg>No sweets match searching name.</EmptyListMsg>}
 
       <Container className="btn-go-to-cart__container">
         <CartButton
