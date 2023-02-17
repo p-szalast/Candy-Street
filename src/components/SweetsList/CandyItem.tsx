@@ -60,15 +60,14 @@ const CandyItem = (props: CandyItemObject) => {
       image: props.image,
     });
 
-    toast("Item added");
+    toast("Candy has been added to cart!");
   };
 
-  //TODO: passing props to styled somponents
-  // const inCart = Boolean(!!itemAlreadyInCart);
+  const inCart: boolean = !!amount;
 
   return (
     <li>
-      <StyledCandyItem>
+      <StyledCandyItem $inCart={inCart}>
         <Image alt="" src={props.image} />
         <div className="item__details">
           <h2>{props.name}</h2>

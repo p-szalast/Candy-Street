@@ -166,3 +166,7 @@ export const BtnsContainer = styled(Container)`
   margin: auto ${({ theme }) => theme.spacing.two};
   justify-content: end;
 `;
+
+export const LoadingBox = styled(VFlexBox)`
+  margin: ${({ theme }) => theme.spacing.two};
+`;

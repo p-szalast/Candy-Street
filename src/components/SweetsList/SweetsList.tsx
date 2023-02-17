@@ -20,6 +20,7 @@ import {
   EmptyListMsg,
   Input,
   Label,
+  LoadingBox,
   Select,
   VFlexBox,
 } from "../../common/styles/componentsStyles";
@@ -149,10 +150,10 @@ const SweetsList = () => {
         </VFlexBox>
       )}
       {isLoading && !error && (
-        <VFlexBox>
+        <LoadingBox>
           <p>Loading...</p>
           <Loader className="loader"></Loader>
-        </VFlexBox>
+        </LoadingBox>
       )}
       {sweets.length === 0 && !isLoading && !error && (
         <EmptyListMsg>

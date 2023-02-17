@@ -51,9 +51,13 @@ export const CartImage = styled(Image)`
 `;
 
 export const BtnsAddRemoveContainer = styled(Container)`
-  padding: 0 ${({ theme }) => theme.spacing.four};
+  padding: 0 ${({ theme }) => theme.spacing.two};
   gap: ${({ theme }) => theme.spacing.half};
-  width: 2rem;
+  width: 10rem;
+
+  & p {
+    width: 4rem;
+  }
 
   @media only screen and ${({ theme }) => theme.devices.mobileXS} {
     padding: 0 ${({ theme }) => theme.spacing.twoEnlarged};
