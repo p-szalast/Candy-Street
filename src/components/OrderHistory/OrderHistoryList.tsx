@@ -11,6 +11,7 @@ import {
   EmptyListMsg,
   PageHeading,
   VFlexBox,
+  LoadingBox,
 } from "../../common/styles/componentsStyles";
 import {
   BtnsContainer,
@@ -71,10 +72,10 @@ const OrderHistoryList = () => {
           />
         ))}
       {isLoading && !error && (
-        <VFlexBox>
+        <LoadingBox>
           <p>Loading...</p>
           <Loader className="loader"></Loader>
-        </VFlexBox>
+        </LoadingBox>
       )}
       {error && !isLoading && (
         <VFlexBox $hasError={error}>
