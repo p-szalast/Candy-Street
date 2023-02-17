@@ -46,7 +46,7 @@ const StyledCandyItem = styled(Item)<{ $inCart?: boolean }>`
       grid-row: span 2;
       grid-column: 2;
       width: 100%;
-      padding-left: 1rem;
+      padding-left: ${({ theme }) => theme.spacing.basic};
     }
   }
 `;
