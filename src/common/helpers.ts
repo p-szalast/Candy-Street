@@ -19,17 +19,27 @@ export const sortCandies: (
 ) => CandyItemObject[] = (candies, sortType) => {
   switch (sortType) {
     case SortTypes.ALFABETICAL_ASC:
-      return candies.sort((a, b) => (a.name > b.name ? 1 : -1));
+      return [...candies.sort((a, b) => (a.name > b.name ? 1 : -1))];
     case SortTypes.ALFABETICAL_DSC:
-      return candies.sort((a, b) => (a.name < b.name ? 1 : -1));
+      return [...candies.sort((a, b) => (a.name < b.name ? 1 : -1))];
     case SortTypes.BY_PRICE_ASC:
-      return candies.sort((a, b) => (a.price > b.price ? 1 : -1));
+      return [...candies.sort((a, b) => (a.price > b.price ? 1 : -1))];
     case SortTypes.BY_PRICE_DSC:
-      return candies.sort((a, b) => (a.price < b.price ? 1 : -1));
+      return [...candies.sort((a, b) => (a.price < b.price ? 1 : -1))];
     default:
-      return candies;
+      return [...candies];
   }
 };
+
+export const filterCandies: (
+  value: string,
+  candies: CandyItemObject[]
+) => CandyItemObject[] = (value, candies) =>
+  value
+    ? candies.filter((item) =>
+        item.name.toLowerCase().includes(value.toLowerCase())
+      )
+    : candies;
 
 // Media querries helpers
 export const mediaQuery = (key: keyof typeof theme.screens) => {

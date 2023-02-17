@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useCallback } from "react";
+import { useState, useEffect, useContext, useCallback, useMemo } from "react";
 import { UserContext } from "../../store/user-context";
 import { useNavigate } from "react-router-dom";
 import { navKeys } from "../../routes/routes";
@@ -9,7 +9,7 @@ import {
   getAvailableCandies,
   setLocalStorageSortType,
 } from "../../common/service/common-service";
-import { isSortType, sortCandies } from "../../common/helpers";
+import { isSortType, sortCandies, filterCandies } from "../../common/helpers";
 
 import CandyItem from "./CandyItem";
 
@@ -18,11 +18,12 @@ import { CartIcon } from "../../assets/icons";
 import {
   Container,
   EmptyListMsg,
+  Input,
   Label,
   Select,
   VFlexBox,
 } from "../../common/styles/componentsStyles";
-import { ContainerEnd, StyledSweetsList } from "./SweetsListStyles";
+import { FilterSortContainer, StyledSweetsList } from "./SweetsListStyles";
 import { CartButton } from "../Layout/MainHeader/MainHeaderStyles";
 
 import { CandyItemObject, SortTypes } from "../../common/types/common.types";
@@ -30,11 +31,15 @@ import { CandyItemObject, SortTypes } from "../../common/types/common.types";
 import { useTheme } from "styled-components";
 
 import Loader from "../../common/styles/loader";
+import toast from "react-hot-toast";
+import { AxiosError } from "axios";
 
 const SweetsList = () => {
   const [sweets, setSweets] = useState<CandyItemObject[]>([]);
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
+  const [searchInputValue, setSearchInputValue] = useState<string>("");
 
   const { sortType, setSortType } = useContext(UserContext);
   const { width } = useWindowDimensions();
@@ -42,28 +47,36 @@ const SweetsList = () => {
 
   const theme = useTheme();
 
+  const sortedSweets = useMemo(
+    () => sortCandies(sweets, sortType),
+    [sweets, sortType]
+  );
+  const filteredSweets = useMemo(
+    () => filterCandies(searchInputValue, sortedSweets),
+    [sortedSweets, searchInputValue]
+  );
+
   const fetchCandies = useCallback(async () => {
     setIsLoading(true);
     setError(false);
 
     try {
       const data = await getAvailableCandies();
-
       if (!data) {
-        setIsLoading(false);
-        return;
+        throw new Error("no candies data available");
       }
-
-      const sortedCandies = sortCandies(data, sortType);
-
-      setIsLoading(false);
-      setSweets(sortedCandies);
-    } catch (e: any) {
-      toast.error(`Failed to fetch sweets (${e.message})`);
-      setIsLoading(false);
+      setSweets(data);
+    } catch (e: unknown) {
+      if (e instanceof AxiosError || e instanceof Error) {
+        toast.error(`Failed to fetch sweets (${e.message})`);
+      } else {
+        toast.error(`Failed to fetch sweets (${JSON.stringify(e)})`);
+      }
       setError(true);
+    } finally {
+      setIsLoading(false);
     }
-  }, [sortType]);
+  }, []);
 
   useEffect(() => {
     fetchCandies();
@@ -79,31 +92,48 @@ const SweetsList = () => {
     }
   };
 
+  const searchInputChangeHandler = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const inputValue = event.target.value;
+    setSearchInputValue(inputValue);
+  };
+
   const handleNavToCart = () => {
     navigate(navKeys.cart);
   };
 
   return (
     <StyledSweetsList>
-      <ContainerEnd>
-        <Label htmlFor="sortType">Sort:</Label>
-        <Select
-          name="sortType"
-          id="sortType"
-          data-testid="sortSelect"
-          value={sortType}
-          onChange={sortTypeChangeHandler}
-        >
-          <option value={SortTypes.ALFABETICAL_ASC}>Afabetical &darr;</option>
-          <option value={SortTypes.ALFABETICAL_DSC} data-testid="sortOption">
-            Afabetical &uarr;
-          </option>
-          <option value={SortTypes.BY_PRICE_ASC}>By price &darr;</option>
-          <option value={SortTypes.BY_PRICE_DSC}>By price &uarr;</option>
-        </Select>
-      </ContainerEnd>
-      {sweets &&
-        sweets.map((item) => (
+      <FilterSortContainer>
+        <div>
+          <Label htmlFor="Search">Search:</Label>
+          <Input
+            id="search"
+            placeholder="Enter candy name..."
+            onChange={searchInputChangeHandler}
+          />
+        </div>
+        <div>
+          <Label htmlFor="sortType">Sort:</Label>
+          <Select
+            name="sortType"
+            id="sortType"
+            data-testid="sortSelect"
+            value={sortType}
+            onChange={sortTypeChangeHandler}
+          >
+            <option value={SortTypes.ALFABETICAL_ASC}>Afabetical &darr;</option>
+            <option value={SortTypes.ALFABETICAL_DSC} data-testid="sortOption">
+              Afabetical &uarr;
+            </option>
+            <option value={SortTypes.BY_PRICE_ASC}>By price &darr;</option>
+            <option value={SortTypes.BY_PRICE_DSC}>By price &uarr;</option>
+          </Select>
+        </div>
+      </FilterSortContainer>
+      {filteredSweets &&
+        filteredSweets.map((item) => (
           <CandyItem
             id={item.id}
             key={item.id}
@@ -129,6 +159,10 @@ const SweetsList = () => {
           No sweets available at this moment. Please try Again later.
         </EmptyListMsg>
       )}
+      {filteredSweets.length === 0 &&
+        sweets.length !== 0 &&
+        !isLoading &&
+        !error && <EmptyListMsg>No sweets match searching name.</EmptyListMsg>}
 
       <Container className="btn-go-to-cart__container">
         <CartButton

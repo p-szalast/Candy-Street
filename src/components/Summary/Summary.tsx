@@ -55,7 +55,7 @@ const Summary = () => {
       setAddress(emptyAddressObject);
       clearCart();
     } catch (error) {
-      toast.success("Unable to send order");
+      toast.error("Unable to send order");
     }
   };
 
