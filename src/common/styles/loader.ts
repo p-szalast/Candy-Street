@@ -6,7 +6,7 @@ const Loader = styled.span`
   height: 48px;
   display: inline-block;
   position: relative;
-  border: 4px solid #fff;
+  border: 4px solid ${({ theme }) => theme.colors.background};
   box-sizing: border-box;
   animation: fill 2s linear infinite alternate;
   color: ${({ theme }) => theme.colors.primaryDarker};
@@ -19,7 +19,7 @@ const Loader = styled.span`
     left: 100%;
     top: 50%;
     transform: translateY(-50%);
-    border: 4px solid #fff;
+    border: 4px solid ${({ theme }) => theme.colors.background};
     width: 20px;
     height: 25px;
     border-radius: 0 4px 4px 0;

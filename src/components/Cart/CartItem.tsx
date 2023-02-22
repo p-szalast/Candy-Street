@@ -58,7 +58,7 @@ const CartItem = (props: CartItemObject) => {
     <StyledCartItem>
       <CartImage alt="" src={props.image} />
       <h3 className="cart-item__title">{props.name}</h3>
-      <p className="item__price">{props.price} zł</p>
+      <span className="item__price">{props.price} zł</span>
       <strong> x </strong>
       <BtnsAddRemoveContainer>
         <ButtonLittle onClick={btnCartMinusHandler}>-</ButtonLittle>

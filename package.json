@@ -31,11 +31,24 @@
     "@babel/plugin-transform-runtime": "^7.14.5",
     "@babel/preset-env": "^7.14.5",
     "@babel/preset-typescript": "^7.18.6",
+    "@storybook/addon-actions": "^6.5.16",
+    "@storybook/addon-essentials": "^6.5.16",
+    "@storybook/addon-interactions": "^6.5.16",
+    "@storybook/addon-links": "^6.5.16",
+    "@storybook/builder-webpack5": "^6.5.16",
+    "@storybook/manager-webpack5": "^6.5.16",
+    "@storybook/node-logger": "^6.5.16",
+    "@storybook/preset-create-react-app": "^4.1.2",
+    "@storybook/react": "^6.5.16",
+    "@storybook/testing-library": "^0.0.13",
     "babel-jest": "^27.3.1",
     "babel-plugin-inline-react-svg": "^2.0.1",
+    "babel-plugin-named-exports-order": "^0.0.2",
     "eslint": "^8.2.0",
     "eslint-plugin-import": "^2.25.3",
-    "jest": "^27.3.1"
+    "jest": "^27.3.1",
+    "prop-types": "^15.8.1",
+    "webpack": "^5.75.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -44,12 +57,24 @@
     "test:watch": "npm test -- --watch",
     "test:coverage": "npm test -- --coverage",
     "eject": "react-scripts eject",
-    "server": "json-server --watch db.json"
+    "server": "json-server --watch db.json",
+    "storybook": "start-storybook -p 6006 -s .storybook watch-css -s ./src",
+    "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
     ]
   },
   "browserslist": {

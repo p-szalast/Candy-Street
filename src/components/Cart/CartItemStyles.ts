@@ -36,8 +36,8 @@ const StyledCartItem = styled(Item)`
   }
 
   & .item__price {
-    width: ${({ theme }) => theme.spacing.twoEnlarged}
-    min-width: 2.5rem;
+    width: 3rem;
+    text-align: center;
   }
 
   & .item__price-total {
@@ -54,6 +54,7 @@ export const BtnsAddRemoveContainer = styled(Container)`
   padding: 0 ${({ theme }) => theme.spacing.two};
   gap: ${({ theme }) => theme.spacing.half};
   width: 10rem;
+  text-align: center;
 
   & p {
     width: 4rem;
