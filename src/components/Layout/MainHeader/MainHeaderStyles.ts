@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { Button } from "../../../common/styles/componentsStyles";
 
-import { mediaQuery } from "../../../common/helpers";
-
 export const StyledMainHeader = styled.header`
   display: flex;
   position: fixed;

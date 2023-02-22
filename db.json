@@ -121,6 +121,27 @@
       },
       "date": "Mon Jan 23 2023 12:19:52 GMT+0100 (Central European Standard Time)",
       "id": 5
+    },
+    {
+      "orderedCandies": [
+        {
+          "id": "c01",
+          "name": "Classic Chocolate Chip Cookies (20 pieces)",
+          "price": 8,
+          "amount": 1
+        }
+      ],
+      "address": {
+        "firstName": "Jan",
+        "lastName": "Rutkowski",
+        "phoneNumber": "+2023037565",
+        "street": "Nożownicza 7",
+        "houseNumber": "1222",
+        "city": "Bielsko Czarna",
+        "postCode": "99-222"
+      },
+      "date": "Wed Feb 22 2023 10:18:54 GMT+0100 (Central European Standard Time)",
+      "id": 6
     }
   ]
 }

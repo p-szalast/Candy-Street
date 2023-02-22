@@ -52,6 +52,7 @@ const StyledCandyItem = styled(Item)<{ $inCart?: boolean }>`
 `;
 
 export const BtnsMainAddRemoveContainer = styled(Container)`
+  text-align: center;
   justify-content: space-around;
   padding-right: ${({ theme }) => theme.spacing.basic};
   gap: ${({ theme }) => theme.spacing.basic};
